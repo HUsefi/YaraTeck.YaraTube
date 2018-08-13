@@ -22,7 +22,7 @@ import static android.graphics.drawable.ClipDrawable.HORIZONTAL;
 import static android.support.constraint.Constraints.TAG;
 
 
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder> {
+public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public static final int HEADER = 0;
     public static final int HOME = 1;
@@ -45,7 +45,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
 
     @NonNull
     @Override
-    public HomeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         switch (viewType) {
             case HEADER:
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_item_header,
@@ -60,14 +60,15 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HomeViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         int viewType = holder.getItemViewType();
         if (viewType == HEADER) {
             ((HeaderViewHolder) holder).onBind();
         } else if (viewType == HOME)
-            ((HomeViewHolder) holder).onBind();
-
+            ((HomeViewHolder) holder).onBind(homeitems.get(position - 1));
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -89,49 +90,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
                 return HOME;
         }
     }
-
-
-//    private class HeaderListItemViewHolder extends HomeViewHolder {
-//        public HeaderListItemViewHolder(View itemView) {
-//            super(itemView);
-//        }
-//    }
-//
-//    private class HomeListItemViewHolder extends HomeViewHolder {
-//        public HomeListItemViewHolder(View itemView) {
-//            super(itemView);
-//        }
-//    }
-
-//    public class HomeViewHolder extends RecyclerView.ViewHolder {
-//
-//        RecyclerView mHeaderRecyclerView;
-//        RecyclerView mHomeRecyclerView;
-//        TextView mTextView;
-//
-//        public HomeViewHolder(View itemView) {
-//            super(itemView);
-//            mHeaderRecyclerView = itemView.findViewById(R.id.recycler_view_header);
-//            mHomeRecyclerView = itemView.findViewById(R.id.recycler_view_home);
-//            // mTextView=itemView.findViewById(R.id.text_view_home);
-//        }
-//
-//        public void onBindViewHeaderList(int pos) {
-//            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, HORIZONTAL, false);
-//            mHomeRecyclerView.setLayoutManager(linearLayoutManager);
-//            HeaderItemAdapter headerItemAdapter = new HeaderItemAdapter(headeritems);
-//            mHeaderRecyclerView.setAdapter(headerItemAdapter);
-//        }
-//
-//        public void onBindViewHomeList(int pos, Homeitem homeitem) {
-//            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, HORIZONTAL, false);
-//            mHomeRecyclerView.setLayoutManager(linearLayoutManager);
-//            HomeItemAdapter headerItemAdapter = new HomeItemAdapter(headeritems);
-//            mHeaderRecyclerView.setAdapter(headerItemAdapter);
-//        }
-//
-//
-//    }
 
     class HomeViewHolder extends RecyclerView.ViewHolder {
 
