@@ -25,6 +25,8 @@ public class HomeFragment extends Fragment implements HomeContract.Veiw{
     private RecyclerView mRecyclerView;
     private HomeAdapter mHomeAdapter;
     private ProgressBar mProgressBar;
+    private HomeContract.Presenter mPresenter;
+
 
 
     public HomeFragment() {
@@ -51,14 +53,16 @@ public class HomeFragment extends Fragment implements HomeContract.Veiw{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mPresenter=new HomePresenter(this);
+        mProgressBar=view.findViewById(R.id.progress_bar_home);
+        mPresenter.fetchDataStoreFromRemote();
        mRecyclerView=(RecyclerView)view.findViewById(R.id.recycler_view_home);
        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
        mHomeAdapter = new HomeAdapter(getContext());
        mRecyclerView.setAdapter(mHomeAdapter);
-
-
-
     }
+
+
 
     @Override
     public void showProgressBar() {

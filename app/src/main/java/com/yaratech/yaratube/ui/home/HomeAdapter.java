@@ -28,7 +28,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public static final int HOME = 1;
     private Store mStore = new Store();
     private Context context;
-    private  List<Homeitem> homeitems ;
+    private List<Homeitem> homeitems;
     private List<Headeritem> headeritems;
 
 
@@ -67,7 +67,6 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         } else if (viewType == HOME)
             ((HomeViewHolder) holder).onBind(homeitems.get(position - 1));
     }
-
 
 
     @Override

@@ -12,7 +12,7 @@ import retrofit2.Response;
 
 public class Repository {
 
- public    void getStore(final APIResult<Store> callBack) {
+ public void getStore(final APIResult<Store> callBack) {
         APIClient apiClient = new APIClient();
         APIInterface service = apiClient.getClient().create(APIInterface.class);
         Call<Store> usersList = service.getStore();
