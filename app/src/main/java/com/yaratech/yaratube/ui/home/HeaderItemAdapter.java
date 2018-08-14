@@ -2,6 +2,7 @@ package com.yaratech.yaratube.ui.home;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,18 +11,15 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.yaratech.yaratube.R;
 import com.yaratech.yaratube.data.model.Headeritem;
-import com.yaratech.yaratube.data.model.Homeitem;
+
 
 import java.util.List;
+
+import static com.yaratech.yaratube.utils.Kit.BASE_URL;
 
 public class HeaderItemAdapter extends RecyclerView.Adapter<HeaderItemAdapter.HomeItemViewHolder> {
 
     private List<Headeritem> headeritems;
-
-//    public HeaderItemAdapter(List<Headeritem> headeritems) {
-//        this.headeritems = headeritems;
-//        notifyDataSetChanged();
-//    }
 
     public void setHeaderItems(List<Headeritem> headeritems) {
         this.headeritems = headeritems;
@@ -51,7 +49,7 @@ public class HeaderItemAdapter extends RecyclerView.Adapter<HeaderItemAdapter.Ho
 
     public class HomeItemViewHolder extends RecyclerView.ViewHolder {
 
-        public static final String BASE_URL = "https://api.vasapi.click/";
+
         private ImageView mHeaderImage;
         private String urlHeaderImage;
 

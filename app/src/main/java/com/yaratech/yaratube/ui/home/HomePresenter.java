@@ -31,6 +31,5 @@ public class HomePresenter implements HomeContract.Presenter {
             view.hideProgressBar();
         }
     });
-
     }
 }

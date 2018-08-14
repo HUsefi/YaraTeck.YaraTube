@@ -16,16 +16,11 @@ import com.yaratech.yaratube.data.model.Product;
 
 import java.util.List;
 
+import static com.yaratech.yaratube.utils.Kit.BASE_URL;
+
 public class HomeItemAdapter extends RecyclerView.Adapter<HomeItemAdapter.HomeItemViewHolder> {
 
     private List<Product> mProducts;
-
-//    public HomeItemAdapter(List<Headeritem> headeritems) {
-//
-//        notifyDataSetChanged();
-//
-//    }
-
 
     public void setProducts(List<Product> products) {
         this.mProducts = products;
@@ -42,7 +37,7 @@ public class HomeItemAdapter extends RecyclerView.Adapter<HomeItemAdapter.HomeIt
 
     @Override
     public void onBindViewHolder(@NonNull HomeItemViewHolder holder, int position) {
-        //holder.onBind(mProducts.get(position));
+        holder.onBind(mProducts.get(position));
     }
 
     @Override
@@ -59,7 +54,7 @@ public class HomeItemAdapter extends RecyclerView.Adapter<HomeItemAdapter.HomeIt
         private ImageView mImageProduct;
         private TextView mNameProduct;
         private TextView mProductDescription;
-        public static final String BASE_URL = "https://api.vasapi.click/";
+
 
         public HomeItemViewHolder(View itemView) {
             super(itemView);

@@ -1,16 +1,21 @@
 package com.yaratech.yaratube.data.source.remote;
 
 
+import com.yaratech.yaratube.data.model.CategoryList;
 import com.yaratech.yaratube.data.model.Store;
+import com.yaratech.yaratube.utils.Kit;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 
+import static com.yaratech.yaratube.utils.Kit.STORE_ID;
+
 public interface APIInterface {
 
-    @GET("store/16")
+    @GET("/store/" + STORE_ID)
     Call<Store> getStore();
-//
-//    @GET("posts")
-//    Call<List<Post>> getPosts(@Query("userId") int id) ;
+    @GET("category/"+ Kit.STORE_ID +"/463")
+    Call<List<CategoryList>> getCategoryData();
 }

@@ -6,4 +6,5 @@
     <color name="colorNavigationHeader">#FFFF</color>
     <color name="color_text_user_name">#000000</color>
     <color name="ViewColorGray">#d3d3d3</color>
+    <color name="light_gray">#359ee9</color>
 </resources>

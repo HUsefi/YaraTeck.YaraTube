@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +14,8 @@ import com.yaratech.yaratube.data.model.Headeritem;
 import com.yaratech.yaratube.data.model.Homeitem;
 import com.yaratech.yaratube.data.model.Store;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static android.graphics.drawable.ClipDrawable.HORIZONTAL;
-import static android.support.constraint.Constraints.TAG;
 
 
 public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

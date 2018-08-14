@@ -3,9 +3,11 @@ package com.yaratech.yaratube.data.source.remote;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.yaratech.yaratube.utils.Kit.BASE_URL;
+
+
 public class APIClient {
 
-    public static final String BASE_URL="https://api.vasapi.click/";
     private static Retrofit retrofit=null;
     public Retrofit getClient(){
          if(retrofit== null){
