@@ -3,6 +3,7 @@ package com.yaratech.yaratube.ui.category;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.yaratech.yaratube.R;
 import com.yaratech.yaratube.data.model.CategoryList;
-import com.yaratech.yaratube.utils.Kit;
+import com.yaratech.yaratube.utils.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull CategoryAdapter.ViewHolder holder, int position) {
-        String image_url = Kit.BASE_URL+categoryLists.get(position).getAvatar();
+        String image_url = Constant.BASE_URL+categoryLists.get(position).getAvatar();
         String title = categoryLists.get(position).getTitle();
         Glide.with(context).load(image_url).into(holder.mImageViewCategoryAvatar);
         holder.mTextViewCategoryTitle.setText(title);

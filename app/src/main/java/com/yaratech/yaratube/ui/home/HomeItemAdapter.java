@@ -10,13 +10,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.yaratech.yaratube.R;
-import com.yaratech.yaratube.data.model.Headeritem;
-import com.yaratech.yaratube.data.model.Homeitem;
 import com.yaratech.yaratube.data.model.Product;
 
 import java.util.List;
 
-import static com.yaratech.yaratube.utils.Kit.BASE_URL;
+import static com.yaratech.yaratube.utils.Constant.BASE_URL;
 
 public class HomeItemAdapter extends RecyclerView.Adapter<HomeItemAdapter.HomeItemViewHolder> {
 

@@ -1,7 +1,10 @@
 package com.yaratech.yaratube.ui.home;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -26,15 +29,21 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     private List<Homeitem> homeitems;
     private List<Headeritem> headeritems;
+    private FragmentManager fragmentManager;
+    private ViewPager mViewPager;
+    private HeaderItemViewPagerAdapter mHeaderItemViewPagerAdapter;
 
 
-    public HomeAdapter(Context context) {
+    public HomeAdapter(Context context, FragmentManager fragmentManager) {
         this.context = context;
+        this.fragmentManager=fragmentManager;
     }
 
     public void setDateStore(Store store) {
         headeritems = store.getHeaderitem();
         homeitems = store.getHomeitem();
+        mHeaderItemViewPagerAdapter = new HeaderItemViewPagerAdapter(fragmentManager);
+        mHeaderItemViewPagerAdapter.setHeaderItems(headeritems);
         notifyDataSetChanged();
     }
 
@@ -118,17 +127,22 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         HeaderViewHolder(View itemView) {
             super(itemView);
 
-            mHeaderRecyclerView = itemView.findViewById(R.id.recycler_view_header);
+           // mHeaderRecyclerView = itemView.findViewById(R.id.recycler_view_header);
+            mViewPager=itemView.findViewById(R.id.view_pager_header);
         }
 
         void onBind() {
 
-            mHeaderRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,
-                    false));
+           // mHeaderRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,
+           //         false));
+           // HeaderItemAdapter adapter = new HeaderItemAdapter();
+           // adapter.setHeaderItems(headeritems);
+          //  mHeaderRecyclerView.setAdapter(adapter);
+          //  mViewPager.setAdapter(adapter);
 
-            HeaderItemAdapter adapter = new HeaderItemAdapter();
-            adapter.setHeaderItems(headeritems);
-            mHeaderRecyclerView.setAdapter(adapter);
+            mHeaderItemViewPagerAdapter = new HeaderItemViewPagerAdapter(fragmentManager);
+            mViewPager.setAdapter(mHeaderItemViewPagerAdapter);
+//            HeaderItemViewPagerAdapter adapter=new HeaderItemViewPagerAdapter();
         }
     }
 

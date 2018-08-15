@@ -62,7 +62,7 @@ public class HomeFragment extends Fragment implements HomeContract.Veiw{
         mPresenter.fetchDataStoreFromRemote();
        mRecyclerView=(RecyclerView)view.findViewById(R.id.recycler_view_home);
        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-       mHomeAdapter = new HomeAdapter(getContext());
+       mHomeAdapter = new HomeAdapter(getContext(), getFragmentManager());
        mRecyclerView.setAdapter(mHomeAdapter);
     }
 

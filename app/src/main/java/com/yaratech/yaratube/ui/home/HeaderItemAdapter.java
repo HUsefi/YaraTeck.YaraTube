@@ -2,7 +2,6 @@ package com.yaratech.yaratube.ui.home;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,7 @@ import com.yaratech.yaratube.data.model.Headeritem;
 
 import java.util.List;
 
-import static com.yaratech.yaratube.utils.Kit.BASE_URL;
+import static com.yaratech.yaratube.utils.Constant.BASE_URL;
 
 public class HeaderItemAdapter extends RecyclerView.Adapter<HeaderItemAdapter.HomeItemViewHolder> {
 

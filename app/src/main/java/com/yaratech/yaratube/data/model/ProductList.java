@@ -1,12 +1,11 @@
-
 package com.yaratech.yaratube.data.model;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Product {
+import java.util.List;
 
+public class ProductList {
     @SerializedName("id")
     @Expose
     private int id;
@@ -30,13 +29,16 @@ public class Product {
     private int price;
     @SerializedName("avatar")
     @Expose
-    private AvatarDPI avatar;
+    private Avatar avatar;
     @SerializedName("feature_avatar")
     @Expose
-    private FeatureAvatarDPI featureAvatar;
+    private FeatureAvatar featureAvatar;
     @SerializedName("rank")
     @Expose
     private double rank;
+    @SerializedName("totalInstalled")
+    @Expose
+    private int totalInstalled;
     @SerializedName("short_description")
     @Expose
     private String shortDescription;
@@ -52,12 +54,27 @@ public class Product {
     @SerializedName("sku")
     @Expose
     private String sku;
+    @SerializedName("tags")
+    @Expose
+    private List<String> tags = null;
+    @SerializedName("category_model")
+    @Expose
+    private List<CategoryModel> categoryModel = null;
+    @SerializedName("comments_summery")
+    @Expose
+    private List<Object> commentsSummery = null;
     @SerializedName("price_unit")
     @Expose
     private String priceUnit;
     @SerializedName("total_view")
     @Expose
     private int totalView;
+    @SerializedName("custom_json")
+    @Expose
+    private Object customJson;
+    @SerializedName("polls")
+    @Expose
+    private List<Object> polls = null;
     @SerializedName("date_added")
     @Expose
     private String dateAdded;
@@ -69,7 +86,7 @@ public class Product {
     private List<Object> productStaff = null;
     @SerializedName("support")
     @Expose
-    private SupportPlus support;
+    private Support support;
     @SerializedName("is_special")
     @Expose
     private boolean isSpecial;
@@ -139,19 +156,19 @@ public class Product {
         this.price = price;
     }
 
-    public AvatarDPI getAvatar() {
+    public Avatar getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(AvatarDPI avatar) {
+    public void setAvatar(Avatar avatar) {
         this.avatar = avatar;
     }
 
-    public FeatureAvatarDPI getFeatureAvatar() {
+    public FeatureAvatar getFeatureAvatar() {
         return featureAvatar;
     }
 
-    public void setFeatureAvatar(FeatureAvatarDPI featureAvatar) {
+    public void setFeatureAvatar(FeatureAvatar featureAvatar) {
         this.featureAvatar = featureAvatar;
     }
 
@@ -161,6 +178,14 @@ public class Product {
 
     public void setRank(double rank) {
         this.rank = rank;
+    }
+
+    public int getTotalInstalled() {
+        return totalInstalled;
+    }
+
+    public void setTotalInstalled(int totalInstalled) {
+        this.totalInstalled = totalInstalled;
     }
 
     public String getShortDescription() {
@@ -203,6 +228,30 @@ public class Product {
         this.sku = sku;
     }
 
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
+
+    public List<CategoryModel> getCategoryModel() {
+        return categoryModel;
+    }
+
+    public void setCategoryModel(List<CategoryModel> categoryModel) {
+        this.categoryModel = categoryModel;
+    }
+
+    public List<Object> getCommentsSummery() {
+        return commentsSummery;
+    }
+
+    public void setCommentsSummery(List<Object> commentsSummery) {
+        this.commentsSummery = commentsSummery;
+    }
+
     public String getPriceUnit() {
         return priceUnit;
     }
@@ -217,6 +266,22 @@ public class Product {
 
     public void setTotalView(int totalView) {
         this.totalView = totalView;
+    }
+
+    public Object getCustomJson() {
+        return customJson;
+    }
+
+    public void setCustomJson(Object customJson) {
+        this.customJson = customJson;
+    }
+
+    public List<Object> getPolls() {
+        return polls;
+    }
+
+    public void setPolls(List<Object> polls) {
+        this.polls = polls;
     }
 
     public String getDateAdded() {
@@ -243,11 +308,11 @@ public class Product {
         this.productStaff = productStaff;
     }
 
-    public SupportPlus getSupport() {
+    public Support getSupport() {
         return support;
     }
 
-    public void setSupport(SupportPlus support) {
+    public void setSupport(Support support) {
         this.support = support;
     }
 
@@ -282,5 +347,4 @@ public class Product {
     public void setCustomjson(Object customjson) {
         this.customjson = customjson;
     }
-
 }
