@@ -21,9 +21,11 @@ import android.view.MenuItem;
 import com.yaratech.yaratube.data.model.CategoryList;
 import com.yaratech.yaratube.ui.category.CategoryFragment;
 import com.yaratech.yaratube.ui.home.HomeFragment;
+import com.yaratech.yaratube.ui.productlist.ProductListFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,CategoryFragment.OnCategoryFragmentActionListener {
+        implements NavigationView.OnNavigationItemSelectedListener
+        ,CategoryFragment.OnCategoryFragmentActionListener{
 
     Toolbar toolbar;
     FragmentTransaction fragmentTransaction;
@@ -111,9 +113,10 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onCategorylistItemClicked(CategoryList category) {
-     //   setFragment(ProductListFragment.newInstance(category.getId()));
-        fragmentTransaction.addToBackStack("product_list");
-        toggle.setDrawerIndicatorEnabled(false);
-     //   toolbar.inflateMenu(R.menu.menu_back_button);
+        setFragment(ProductListFragment.newInstance(category.getId()));
+        //fragmentTransaction.addToBackStack("product_list");
+      //  toggle.setDrawerIndicatorEnabled(false);
+       // toolbar.inflateMenu(R.menu.menu_back_button);
     }
+
 }

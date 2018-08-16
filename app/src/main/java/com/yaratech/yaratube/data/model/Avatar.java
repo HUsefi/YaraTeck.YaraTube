@@ -49,7 +49,7 @@ public class Avatar {
     }
 
     public String getXxhdpi() {
-        return xxhdpi;
+        return BASE_URL+xxhdpi;
     }
 
     public void setXxhdpi(String xxhdpi) {

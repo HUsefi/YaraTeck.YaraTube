@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.yaratech.yaratube.R;
@@ -40,10 +42,10 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String image_url = Constant.BASE_URL+productLists.get(position).getAvatar();
-     //   String title = productLists.get(position).getTitle();
-     //   Glide.with(context).load(image_url).into(holder.mImageViewCategoryAvatar);
-//        holder.mTextViewCategoryTitle.setText(title);
+        String image_url = productLists.get(position).getAvatar().getXxhdpi();
+        String title = productLists.get(position).getName();
+        Glide.with(context).load(image_url).into(holder.mImageViewProductListAvatar);
+        holder.mTextViewProductListTitle.setText(title);
     }
 
     @Override
@@ -52,23 +54,27 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-
+        private ImageView mImageViewProductListAvatar;
+        private TextView mTextViewProductListTitle;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
+            mImageViewProductListAvatar = itemView.findViewById(R.id.image_view_product);
+            mTextViewProductListTitle = itemView.findViewById(R.id.text_view_product_name);
 
+            itemView.setOnClickListener((View.OnClickListener) this);
 
         }
 
         @Override
         public void onClick(View view) {
-            mItemClickListener.onItemClick(productLists.get(getAdapterPosition()));
+            mItemClickListener.onItemClick(productLists.get(getAdapterPosition()).getId());
         }
     }
 
     public interface ItemClickListener {
-        void onItemClick(ProductList productList);
+        void onItemClick(int productId);
     }
 
 }

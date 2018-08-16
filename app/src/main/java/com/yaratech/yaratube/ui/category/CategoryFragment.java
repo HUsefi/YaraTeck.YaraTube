@@ -15,10 +15,12 @@ import android.widget.Toast;
 
 import com.yaratech.yaratube.R;
 import com.yaratech.yaratube.data.model.CategoryList;
+import com.yaratech.yaratube.ui.productlist.ProductListFragment;
 
 import java.util.List;
 
-public class CategoryFragment extends Fragment implements CategoryContract.View,CategoryAdapter.ItemClickListener{
+public class CategoryFragment extends Fragment implements CategoryContract.View
+        ,CategoryAdapter.ItemClickListener {
 
     CategoryPresenter categoryPresenter;
     private ProgressBar mProgressBar;
@@ -93,6 +95,8 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
     public void onItemClick(CategoryList categoryList) {
         ((CategoryFragment.OnCategoryFragmentActionListener) getContext()).onCategorylistItemClicked(categoryList);
     }
+
+
     public interface OnCategoryFragmentActionListener{
         void onCategorylistItemClicked(CategoryList category);
     }

@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -18,24 +20,21 @@ import com.yaratech.yaratube.data.model.ProductList;
 
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class ProductListFragment extends Fragment implements ProductListContract.Veiw {
+
+public class ProductListFragment extends Fragment implements ProductListContract.Veiw,
+        ProductListAdapter.ItemClickListener {
 
     ProductListPresenter mProductListPresenter;
     private ProgressBar mProgressBar;
     private RecyclerView mRecyclerView;
-    //private CategoryAdapter mCategoryAdapter;
+    private ProductListAdapter mProductListAdapter;
 
     public ProductListFragment() {
-        // Required empty public constructor
     }
 
     public static ProductListFragment newInstance(int id) {
-
         Bundle args = new Bundle();
-        args.putInt("UserId", id);
+        args.putInt("CategoryId", id);
         ProductListFragment fragment = new ProductListFragment();
         fragment.setArguments(args);
         return fragment;
@@ -55,18 +54,17 @@ public class ProductListFragment extends Fragment implements ProductListContract
         mProgressBar = view.findViewById(R.id.progress_bar_list_product);
         mProgressBar.setVisibility(View.GONE);
         mProductListPresenter = new ProductListPresenter(getContext(), this);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),
-                LinearLayoutManager.VERTICAL, false);
         mRecyclerView = view.findViewById(R.id.recycler_view_list_product);
-        mRecyclerView.setLayoutManager(linearLayoutManager);
-   //     mCategoryAdapter = new CategoryAdapter(getContext(), this);
-   //     mRecyclerView.setAdapter(mCategoryAdapter);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),2,
+                LinearLayout.VERTICAL,false));
+        mProductListAdapter = new ProductListAdapter(getContext(),this);
+        mRecyclerView.setAdapter(mProductListAdapter);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mProductListPresenter.fetchDataProductListFromRemote(getArguments().getInt("UserId"));
+        mProductListPresenter.fetchDataProductListFromRemote(getArguments().getInt("CategoryId"));
     }
 
     @Override
@@ -87,6 +85,18 @@ public class ProductListFragment extends Fragment implements ProductListContract
 
     @Override
     public void onGetDateProductList(List<ProductList> productLists) {
+        mProductListAdapter.setData(productLists);
 
+    }
+
+    @Override
+    public void onItemClick(int productId) {
+        ((ProductListFragment.OnProductListFragmentActionListener) getContext())
+                .onProductListItemClicked(productId);
+    }
+
+
+    public interface OnProductListFragmentActionListener{
+        void onProductListItemClicked(int productId);
     }
 }

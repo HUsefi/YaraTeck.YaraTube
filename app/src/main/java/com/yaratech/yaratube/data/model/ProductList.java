@@ -347,4 +347,7 @@ public class ProductList {
     public void setCustomjson(Object customjson) {
         this.customjson = customjson;
     }
+
+    public class OnProductListFragmentActionListener {
+    }
 }
