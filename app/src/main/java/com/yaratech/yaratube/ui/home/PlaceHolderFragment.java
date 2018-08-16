@@ -38,6 +38,7 @@ public class PlaceHolderFragment extends Fragment {
         args.putString(ARG_SECTION_NUMBER, url);
         PlaceHolderFragment fragment = new PlaceHolderFragment();
         fragment.setArguments(args);
+        Log.e("DDDDD"," "+args);
         return fragment;
     }
 
