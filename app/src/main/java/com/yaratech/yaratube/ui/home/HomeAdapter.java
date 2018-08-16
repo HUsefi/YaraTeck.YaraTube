@@ -20,7 +20,6 @@ import com.yaratech.yaratube.data.model.Store;
 import java.util.List;
 
 
-
 public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public static final int HEADER = 0;
@@ -33,10 +32,9 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private HeaderItemViewPagerAdapter mHeaderItemViewPagerAdapter;
 
 
-
     public HomeAdapter(Context context, FragmentManager fragmentManager) {
         this.context = context;
-        this.fragmentManager=fragmentManager;
+        this.fragmentManager = fragmentManager;
     }
 
     public void setDateStore(Store store) {
@@ -124,21 +122,22 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         RecyclerView mHeaderRecyclerView;
         private ViewPager mViewPager;
+
         HeaderViewHolder(View itemView) {
             super(itemView);
 
-           // mHeaderRecyclerView = itemView.findViewById(R.id.recycler_view_header);
-            mViewPager=itemView.findViewById(R.id.view_pager_header);
+            // mHeaderRecyclerView = itemView.findViewById(R.id.recycler_view_header);
+            mViewPager = itemView.findViewById(R.id.view_pager_header);
         }
 
         void onBind() {
 
-           // mHeaderRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,
-           //         false));
-           // HeaderItemAdapter adapter = new HeaderItemAdapter();
-           // adapter.setHeaderItems(headeritems);
-          //  mHeaderRecyclerView.setAdapter(adapter);
-          //  mViewPager.setAdapter(adapter);
+            // mHeaderRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,
+            //         false));
+            // HeaderItemAdapter adapter = new HeaderItemAdapter();
+            // adapter.setHeaderItems(headeritems);
+            //  mHeaderRecyclerView.setAdapter(adapter);
+            //  mViewPager.setAdapter(adapter);
 
             mHeaderItemViewPagerAdapter = new HeaderItemViewPagerAdapter(fragmentManager);
             mViewPager.setAdapter(mHeaderItemViewPagerAdapter);

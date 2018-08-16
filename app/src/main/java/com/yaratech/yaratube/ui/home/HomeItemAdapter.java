@@ -66,7 +66,7 @@ public class HomeItemAdapter extends RecyclerView.Adapter<HomeItemAdapter.HomeIt
         void onBind(Product product) {
 
             if (product.getAvatar() != null) {
-                mUrlImageProduct = BASE_URL + '/' + product.getAvatar().getXxhdpi();
+                mUrlImageProduct = "" + product.getAvatar().getXxhdpi();
                 Glide.with(itemView.getContext()).load(mUrlImageProduct).into(mImageProduct);
             }
 

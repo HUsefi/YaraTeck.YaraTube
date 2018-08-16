@@ -4,6 +4,8 @@ package com.yaratech.yaratube.data.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import static com.yaratech.yaratube.utils.Constant.BASE_URL;
+
 public class AvatarDPI {
 
     @SerializedName("mdpi")
@@ -31,7 +33,7 @@ public class AvatarDPI {
     }
 
     public String getXxxdpi() {
-        return xxxdpi;
+        return BASE_URL+'/'+xxxdpi;
     }
 
     public void setXxxdpi(String xxxdpi) {
@@ -47,7 +49,7 @@ public class AvatarDPI {
     }
 
     public String getXxhdpi() {
-        return xxhdpi;
+        return BASE_URL+xxhdpi;
     }
 
     public void setXxhdpi(String xxhdpi) {
