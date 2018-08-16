@@ -42,8 +42,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void setDateStore(Store store) {
         headeritems = store.getHeaderitem();
         homeitems = store.getHomeitem();
-        mHeaderItemViewPagerAdapter = new HeaderItemViewPagerAdapter(fragmentManager);
-        mHeaderItemViewPagerAdapter.setHeaderItems(headeritems);
+//        mHeaderItemViewPagerAdapter = new HeaderItemViewPagerAdapter(fragmentManager);
+//        mHeaderItemViewPagerAdapter.setHeaderItems(headeritems);
         notifyDataSetChanged();
     }
 
@@ -142,6 +142,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
             mHeaderItemViewPagerAdapter = new HeaderItemViewPagerAdapter(fragmentManager);
             mViewPager.setAdapter(mHeaderItemViewPagerAdapter);
+            mHeaderItemViewPagerAdapter.setHeaderItems(headeritems);
 //            HeaderItemViewPagerAdapter adapter=new HeaderItemViewPagerAdapter();
         }
     }
