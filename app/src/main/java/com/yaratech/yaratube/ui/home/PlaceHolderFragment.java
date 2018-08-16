@@ -12,10 +12,10 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.yaratech.yaratube.R;
 import com.yaratech.yaratube.data.model.Headeritem;
-
+import static com.yaratech.yaratube.utils.Constant.BASE_URL;
 import java.util.List;
 
-import static com.yaratech.yaratube.utils.Constant.BASE_URL;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,8 +26,10 @@ public class PlaceHolderFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
     private String urlHeaderImage;
     private List<Headeritem> headeritems;
+
+
+
     public PlaceHolderFragment() {
-        // Required empty public constructor
     }
 
     public static PlaceHolderFragment newInstance(String url) {
@@ -46,7 +48,7 @@ public class PlaceHolderFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_place_holder, container, false);
         mHeaderImage = rootView.findViewById(R.id.image_view_header);
-        Log.e("HIDE"," "+getArguments().getString(ARG_SECTION_NUMBER));
+       Log.e("DDDDD"," "+getArguments().getString(ARG_SECTION_NUMBER));
 //        urlHeaderImage = BASE_URL + '/' + headeritem.getFeatureAvatar().getXxhdpi();
         Glide.with(rootView.getContext()).load(getArguments().getString(ARG_SECTION_NUMBER)).into(mHeaderImage);
        // textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));

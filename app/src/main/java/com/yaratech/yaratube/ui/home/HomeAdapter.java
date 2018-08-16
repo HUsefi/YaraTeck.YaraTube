@@ -30,8 +30,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Homeitem> homeitems;
     private List<Headeritem> headeritems;
     private FragmentManager fragmentManager;
-    private ViewPager mViewPager;
     private HeaderItemViewPagerAdapter mHeaderItemViewPagerAdapter;
+
 
 
     public HomeAdapter(Context context, FragmentManager fragmentManager) {
@@ -123,7 +123,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     class HeaderViewHolder extends RecyclerView.ViewHolder {
 
         RecyclerView mHeaderRecyclerView;
-
+        private ViewPager mViewPager;
         HeaderViewHolder(View itemView) {
             super(itemView);
 
