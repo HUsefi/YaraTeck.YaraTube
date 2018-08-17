@@ -92,7 +92,6 @@ public class BaseFragment extends Fragment {
             fragmentTransaction.add(R.id.frameLayout, homeFragment).commit();
 
         }else if (!homeFragment.isVisible()){
-            Log.e("home ",homeFragment.isVisible()+" "+categoryFragment.isVisible());
             fragmentManager.beginTransaction().hide(categoryFragment).commit();
             fragmentManager.beginTransaction().show(homeFragment).commit();
         }
@@ -107,13 +106,10 @@ public class BaseFragment extends Fragment {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.add(R.id.frameLayout, categoryFragment).commit();
         }else if (!categoryFragment.isVisible()){
-            Log.e("category ",homeFragment.isVisible()+" "+categoryFragment.isVisible());
             fragmentManager.beginTransaction().hide(homeFragment).commit();
             fragmentManager.beginTransaction().show(categoryFragment).commit();
         }
     }
-
-
 
 //    private void setFragment(Fragment fragment) {
 //        FragmentManager fragmentManager = getChildFragmentManager();

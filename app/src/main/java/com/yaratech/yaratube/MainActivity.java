@@ -23,6 +23,9 @@ import com.yaratech.yaratube.ui.category.CategoryFragment;
 import com.yaratech.yaratube.ui.home.HomeFragment;
 import com.yaratech.yaratube.ui.productlist.ProductListFragment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
         ,CategoryFragment.OnCategoryFragmentActionListener{
@@ -30,6 +33,13 @@ public class MainActivity extends AppCompatActivity
     Toolbar toolbar;
     FragmentTransaction fragmentTransaction;
     ActionBarDrawerToggle toggle;
+    ProductListFragment productListFragment;
+    CategoryFragment categoryFragment;
+    FragmentManager fragmentManager;
+    public final String BASE_FRAGMENT_TAG = "BaseFragment";
+    public final String PRODUCT_LIST_FRAGMENT_TAG = "ProductList";
+    public BaseFragment baseFragment;
+    public List<String> addedFragmentsNames = new ArrayList<>();
 
 
 
@@ -38,7 +48,10 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
-        setFragment(BaseFragment.newInstance());
+
+         baseFragment = BaseFragment.newInstance();
+         setFragment(baseFragment, BASE_FRAGMENT_TAG);
+         //setFragment(BaseFragment.newInstance());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -103,20 +116,35 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    void  setFragment(Fragment fragment){
-        FragmentManager fragmentManager=getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container_home_fragment,fragment)
-                .addToBackStack(null)
-                .commit();
+    void  setFragment(Fragment fragment, String fragmentName){
+
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.container_home_fragment, fragment).commit();
+        addedFragmentsNames.add(fragmentName);
+        if (fragmentName != "Base")
+            fragmentTransaction.addToBackStack(fragmentName);
+
+//        FragmentManager fragmentManager=getSupportFragmentManager();
+//        fragmentManager.beginTransaction()
+//                .replace(R.id.container_home_fragment,fragment)
+//                .addToBackStack(null)
+//                .commit();
     }
 
     @Override
     public void onCategorylistItemClicked(CategoryList category) {
-        setFragment(ProductListFragment.newInstance(category.getId()));
-        //fragmentTransaction.addToBackStack("product_list");
+        productListFragment = ProductListFragment.newInstance(category.getId());
+        setFragment(productListFragment, PRODUCT_LIST_FRAGMENT_TAG);
+        fragmentTransaction.addToBackStack(PRODUCT_LIST_FRAGMENT_TAG);
+      //    setFragment(ProductListFragment.newInstance(category.getId()));
+      //  fragmentTransaction.addToBackStack(null);
       //  toggle.setDrawerIndicatorEnabled(false);
        // toolbar.inflateMenu(R.menu.menu_back_button);
     }
+
+
+
+
 
 }
