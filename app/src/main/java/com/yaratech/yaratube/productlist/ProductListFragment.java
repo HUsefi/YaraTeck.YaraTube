@@ -52,7 +52,7 @@ public class ProductListFragment extends Fragment implements ProductListContract
         super.onViewCreated(view, savedInstanceState);
         mProgressBar = view.findViewById(R.id.progress_bar_list_product);
         mProgressBar.setVisibility(View.GONE);
-        mProductListPresenter = new ProductListPresenter(getContext(), this);
+        mProductListPresenter = new ProductListPresenter( this);
         mRecyclerView = view.findViewById(R.id.recycler_view_list_product);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),2,
                 LinearLayout.VERTICAL,false));
@@ -89,13 +89,13 @@ public class ProductListFragment extends Fragment implements ProductListContract
     }
 
     @Override
-    public void onItemClick(int productId) {
+    public void onItemClick(int categoryId) {
         ((ProductListFragment.OnProductListFragmentActionListener) getContext())
-                .onProductListItemClicked(productId);
+                .onProductListItemClicked(categoryId);
     }
 
 
     public interface OnProductListFragmentActionListener{
-        void onProductListItemClicked(int productId);
+        void onProductListItemClicked(int categoryId);
     }
 }

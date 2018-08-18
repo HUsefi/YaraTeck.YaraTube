@@ -18,23 +18,18 @@ import com.yaratech.yaratube.data.model.CategoryList;
 import com.yaratech.yaratube.dashbord.category.CategoryFragment;
 import com.yaratech.yaratube.productlist.ProductListFragment;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
         ,CategoryFragment.OnCategoryFragmentActionListener{
 
     Toolbar toolbar;
     FragmentTransaction fragmentTransaction;
-    ActionBarDrawerToggle toggle;
     ProductListFragment productListFragment;
-    CategoryFragment categoryFragment;
     FragmentManager fragmentManager;
     public final String BASE_FRAGMENT_TAG = "BaseFragment";
     public final String PRODUCT_LIST_FRAGMENT_TAG = "ProductList";
     public BaseFragment baseFragment;
-    public List<String> addedFragmentsNames = new ArrayList<>();
+
 
 
 
@@ -48,21 +43,21 @@ public class MainActivity extends AppCompatActivity
          setFragment(baseFragment, BASE_FRAGMENT_TAG);
          //setFragment(BaseFragment.newInstance());
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -106,7 +101,7 @@ public class MainActivity extends AppCompatActivity
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -116,7 +111,6 @@ public class MainActivity extends AppCompatActivity
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.container_home_fragment, fragment).commit();
-        addedFragmentsNames.add(fragmentName);
         if (fragmentName != "Base")
             fragmentTransaction.addToBackStack(fragmentName);
 
@@ -131,11 +125,6 @@ public class MainActivity extends AppCompatActivity
     public void onCategorylistItemClicked(CategoryList category) {
         productListFragment = ProductListFragment.newInstance(category.getId());
         setFragment(productListFragment, PRODUCT_LIST_FRAGMENT_TAG);
-        fragmentTransaction.addToBackStack(PRODUCT_LIST_FRAGMENT_TAG);
-      //    setFragment(ProductListFragment.newInstance(category.getId()));
-      //  fragmentTransaction.addToBackStack(null);
-      //  toggle.setDrawerIndicatorEnabled(false);
-       // toolbar.inflateMenu(R.menu.menu_back_button);
     }
 
 

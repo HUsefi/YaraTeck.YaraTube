@@ -13,7 +13,7 @@ public class CategoryPresenter implements CategoryContract.Presenter {
     private CategoryContract.View mView;
     private Repository mCategoryRepository;
 
-    public CategoryPresenter(Context context,CategoryContract.View view) {
+     CategoryPresenter(CategoryContract.View view) {
         mView = view;
         mCategoryRepository=new Repository();
      }
@@ -24,14 +24,14 @@ public class CategoryPresenter implements CategoryContract.Presenter {
         mCategoryRepository.getCategory(new APIResult<List<CategoryList>>() {
             @Override
             public void onSuccess(List<CategoryList> result) {
-                mView.onGetDateCategory(result);
                 mView.hideProgressBar();
+                mView.onGetDateCategory(result);
             }
 
             @Override
             public void onFail() {
-                mView.notAvailableDateCategort();
                 mView.hideProgressBar();
+                mView.notAvailableDateCategort();
             }
         });
 

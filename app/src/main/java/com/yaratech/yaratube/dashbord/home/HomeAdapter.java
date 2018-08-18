@@ -53,12 +53,12 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_item_header,
                         parent, false);
                 return new HeaderViewHolder(view);
-            default:
+            case HOME:
                 View view1 = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_item_home,
                         parent, false);
                 return new HomeViewHolder(view1);
         }
-
+        return null;
     }
 
     @Override
@@ -127,6 +127,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
             // mHeaderRecyclerView = itemView.findViewById(R.id.recycler_view_header);
             mViewPager = itemView.findViewById(R.id.view_pager_header);
+            mViewPager.setRotationY(180);
         }
 
         void onBind() {

@@ -21,14 +21,14 @@ public class HomePresenter implements HomeContract.Presenter {
         mRepository.getStore(new APIResult<Store>() {
             @Override
             public void onSuccess(Store result) {
-                view.onGetDateStore(result);
                 view.hideProgressBar();
+                view.onGetDateStore(result);
             }
 
             @Override
             public void onFail() {
-                view.notAvailableDate();
                 view.hideProgressBar();
+                view.notAvailableDate();
             }
         });
     }

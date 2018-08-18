@@ -18,28 +18,22 @@ import com.yaratech.yaratube.data.model.Headeritem;
 import java.util.List;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class PlaceHolderFragment extends Fragment {
+public class HeaderHolderFragment extends Fragment {
 
     private ImageView mHeaderImage;
     private static final String ARG_SECTION_NUMBER = "section_number";
-    private String urlHeaderImage;
-    private List<Headeritem> headeritems;
     String url;
 
 
-    public PlaceHolderFragment() {
+    public HeaderHolderFragment() {
     }
 
-    public static PlaceHolderFragment newInstance(String url) {
+    public static HeaderHolderFragment newInstance(String url) {
 
         Bundle args = new Bundle();
         args.putString(ARG_SECTION_NUMBER, url);
-        PlaceHolderFragment fragment = new PlaceHolderFragment();
+        HeaderHolderFragment fragment = new HeaderHolderFragment();
         fragment.setArguments(args);
-        Log.e("DDDDD", " " + url);
         return fragment;
     }
 

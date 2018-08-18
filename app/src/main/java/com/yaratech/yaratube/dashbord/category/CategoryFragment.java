@@ -53,7 +53,7 @@ public class CategoryFragment extends Fragment implements CategoryContract.View
 
         mProgressBar = view.findViewById(R.id.progress_bar_category);
         mProgressBar.setVisibility(View.GONE);
-        categoryPresenter = new CategoryPresenter(getContext(), this);
+        categoryPresenter = new CategoryPresenter( this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),
                 LinearLayoutManager.VERTICAL, false);
         mRecyclerView = view.findViewById(R.id.recycler_view_category);

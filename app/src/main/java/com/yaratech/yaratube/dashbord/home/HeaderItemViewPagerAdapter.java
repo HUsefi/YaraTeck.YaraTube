@@ -23,11 +23,13 @@ public class HeaderItemViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return PlaceHolderFragment.newInstance(headeritems.get(position).getFeatureAvatar().getXxhdpi());
+        return HeaderHolderFragment.newInstance(headeritems.get(position).getFeatureAvatar().getXxhdpi());
     }
 
     @Override
     public int getCount() {
+        if(headeritems==null)
+            return 0;
         return headeritems.size();
     }
 }

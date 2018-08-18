@@ -13,7 +13,7 @@ public class ProductListPresenter implements ProductListContract.Presenter {
     private Repository mReposiroryProductList;
     private ProductListContract.Veiw mView;
 
-    public ProductListPresenter(Context context, ProductListContract.Veiw mView) {
+     ProductListPresenter(ProductListContract.Veiw mView) {
         mReposiroryProductList = new Repository();
         this.mView = mView;
     }
@@ -24,14 +24,15 @@ public class ProductListPresenter implements ProductListContract.Presenter {
         mReposiroryProductList.getProductList(new APIResult<List<ProductList>>() {
             @Override
             public void onSuccess(List<ProductList> result) {
-                mView.onGetDateProductList(result);
                 mView.hideProgressBar();
+                mView.onGetDateProductList(result);
+
             }
 
             @Override
             public void onFail() {
-                mView.notAvailableDate();
                 mView.hideProgressBar();
+                mView.notAvailableDate();
             }
         }, productId);
 
