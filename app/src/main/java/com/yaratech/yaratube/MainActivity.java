@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.container_home_fragment, fragment).commit();
-        if (fragmentName != "Base")
+        if (!fragmentName.equals("BaseFragment") )
             fragmentTransaction.addToBackStack(fragmentName);
 
 //        FragmentManager fragmentManager=getSupportFragmentManager();
