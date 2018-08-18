@@ -1,4 +1,4 @@
-package com.yaratech.yaratube.ui.productlist;
+package com.yaratech.yaratube.productlist;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.yaratech.yaratube.R;
 import com.yaratech.yaratube.data.model.ProductList;
-import com.yaratech.yaratube.utils.Constant;
 
 import java.util.ArrayList;
 import java.util.List;

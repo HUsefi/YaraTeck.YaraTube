@@ -1,4 +1,4 @@
-package com.yaratech.yaratube.ui.productlist;
+package com.yaratech.yaratube.productlist;
 
 import android.content.Context;
 

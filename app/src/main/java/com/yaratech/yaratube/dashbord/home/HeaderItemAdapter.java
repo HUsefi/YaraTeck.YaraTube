@@ -1,4 +1,4 @@
-package com.yaratech.yaratube.ui.home;
+package com.yaratech.yaratube.dashbord.home;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;

@@ -1,6 +1,5 @@
-package com.yaratech.yaratube.ui.home;
+package com.yaratech.yaratube.dashbord.home;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;

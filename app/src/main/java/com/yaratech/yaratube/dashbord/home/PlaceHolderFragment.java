@@ -1,4 +1,4 @@
-package com.yaratech.yaratube.ui.home;
+package com.yaratech.yaratube.dashbord.home;
 
 
 import android.os.Bundle;
@@ -14,8 +14,6 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.yaratech.yaratube.R;
 import com.yaratech.yaratube.data.model.Headeritem;
-
-import static com.yaratech.yaratube.utils.Constant.BASE_URL;
 
 import java.util.List;
 

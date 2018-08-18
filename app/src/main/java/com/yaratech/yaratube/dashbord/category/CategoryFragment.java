@@ -1,4 +1,4 @@
-package com.yaratech.yaratube.ui.category;
+package com.yaratech.yaratube.dashbord.category;
 
 
 import android.os.Bundle;
@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import com.yaratech.yaratube.R;
 import com.yaratech.yaratube.data.model.CategoryList;
-import com.yaratech.yaratube.ui.productlist.ProductListFragment;
 
 import java.util.List;
 

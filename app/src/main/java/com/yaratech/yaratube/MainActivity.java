@@ -1,10 +1,6 @@
 package com.yaratech.yaratube;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -19,9 +15,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.yaratech.yaratube.data.model.CategoryList;
-import com.yaratech.yaratube.ui.category.CategoryFragment;
-import com.yaratech.yaratube.ui.home.HomeFragment;
-import com.yaratech.yaratube.ui.productlist.ProductListFragment;
+import com.yaratech.yaratube.dashbord.category.CategoryFragment;
+import com.yaratech.yaratube.productlist.ProductListFragment;
 
 import java.util.ArrayList;
 import java.util.List;

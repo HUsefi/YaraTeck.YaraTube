@@ -1,8 +1,6 @@
-package com.yaratech.yaratube.ui.home;
+package com.yaratech.yaratube.dashbord.home;
 
 import com.yaratech.yaratube.data.model.Store;
-
-import java.util.List;
 
 public interface HomeContract {
 

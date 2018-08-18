@@ -4,5 +4,5 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/image_view_header"
-    tools:context=".ui.home.PlaceHolderFragment">
+    tools:context=".dashbord.home.PlaceHolderFragment">
 </ImageView>

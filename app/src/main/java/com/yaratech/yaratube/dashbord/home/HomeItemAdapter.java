@@ -1,4 +1,4 @@
-package com.yaratech.yaratube.ui.home;
+package com.yaratech.yaratube.dashbord.home;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -13,8 +13,6 @@ import com.yaratech.yaratube.R;
 import com.yaratech.yaratube.data.model.Product;
 
 import java.util.List;
-
-import static com.yaratech.yaratube.utils.Constant.BASE_URL;
 
 public class HomeItemAdapter extends RecyclerView.Adapter<HomeItemAdapter.HomeItemViewHolder> {
 

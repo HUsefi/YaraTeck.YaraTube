@@ -1,4 +1,4 @@
-package com.yaratech.yaratube.ui.category;
+package com.yaratech.yaratube.dashbord.category;
 
 import com.yaratech.yaratube.data.model.CategoryList;
 
