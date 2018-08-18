@@ -27,6 +27,7 @@ public class ProductListFragment extends Fragment implements ProductListContract
     private ProgressBar mProgressBar;
     private RecyclerView mRecyclerView;
     private ProductListAdapter mProductListAdapter;
+    public static final String PRODUCT_LIST_FRAGMENT_TAG = "ProductList";
 
     public ProductListFragment() {
     }

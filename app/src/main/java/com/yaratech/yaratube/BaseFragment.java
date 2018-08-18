@@ -23,6 +23,7 @@ public class BaseFragment extends Fragment {
     private HomeFragment homeFragment;
     private CategoryFragment categoryFragment;
     private FragmentManager fragmentManager;
+    public static final String BASE_FRAGMENT_TAG = "BaseFragment";
     public BaseFragment() {
         // Required empty public constructor
     }

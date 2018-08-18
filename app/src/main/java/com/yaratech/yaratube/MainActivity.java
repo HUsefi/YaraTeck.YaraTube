@@ -26,11 +26,9 @@ public class MainActivity extends AppCompatActivity
     FragmentTransaction fragmentTransaction;
     ProductListFragment productListFragment;
     FragmentManager fragmentManager;
-    public final String BASE_FRAGMENT_TAG = "BaseFragment";
-    public final String PRODUCT_LIST_FRAGMENT_TAG = "ProductList";
+
+
     public BaseFragment baseFragment;
-
-
 
 
     @Override
@@ -40,7 +38,7 @@ public class MainActivity extends AppCompatActivity
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
 
          baseFragment = BaseFragment.newInstance();
-         setFragment(baseFragment, BASE_FRAGMENT_TAG);
+         setFragment(baseFragment, BaseFragment.BASE_FRAGMENT_TAG);
          //setFragment(BaseFragment.newInstance());
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -124,7 +122,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onCategorylistItemClicked(CategoryList category) {
         productListFragment = ProductListFragment.newInstance(category.getId());
-        setFragment(productListFragment, PRODUCT_LIST_FRAGMENT_TAG);
+        setFragment(productListFragment, ProductListFragment.PRODUCT_LIST_FRAGMENT_TAG);
     }
 
 

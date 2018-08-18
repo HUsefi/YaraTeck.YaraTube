@@ -15,4 +15,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="TextViewOther">پربازدیدترین ها</string>
     <string name="productImage">تصویر محصول</string>
+    <string name="TitlecardViewPayer">عنوان</string>
+    <string name="DescriptionCardViewTitle">توضیحات</string>
+    <string name="CommentButton">نظر دهید</string>
+    <string name="CommentUserText">نظرات کاربران</string>
 </resources>
