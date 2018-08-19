@@ -8,4 +8,5 @@
     <color name="ViewColorGray">#d3d3d3</color>
     <color name="light_gray">#359ee9</color>
     <color name="BackgrandProductList">#FFFF</color>
+    <color name="White">#ffff</color>
 </resources>

@@ -12,9 +12,9 @@ public class ProductDetailPresenter implements ProductDetailContract.Presenter {
     private Repository mReposiroryProductDetail;
     private ProductDetailContract.Veiw mView;
 
-    public ProductDetailPresenter(ProductDetailContract.Veiw mView) {
+     ProductDetailPresenter(ProductDetailContract.Veiw mView) {
         this.mView = mView;
-        this.mReposiroryProductDetail = mReposiroryProductDetail;
+        mReposiroryProductDetail = new Repository();
     }
 
     @Override

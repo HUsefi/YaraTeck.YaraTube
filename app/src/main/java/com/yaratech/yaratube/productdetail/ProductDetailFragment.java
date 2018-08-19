@@ -29,7 +29,7 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
     ProductDetailPresenter mProductDetailPresenter;
     private ProductDetails mProductDetails;
     private ProgressBar mProgressBar;
-     RecyclerView mRecyclerView;
+    RecyclerView mRecyclerView;
     private ImageView mImageviewdisplay;
     private ImageView mImageViewIcon;
     private TextView mTextViewTitle;
@@ -66,8 +66,8 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mImageviewdisplay=view.findViewById(R.id.image_view_palyer);
-        mImageViewIcon = view.findViewById(R.id.image_view_paly_sign);
         mTextViewTitle=view.findViewById(R.id.text_view_product_name_player);
+        mImageViewIcon=view.findViewById(R.id.image_view_icon);
         mTextViewTitleDescription = view.findViewById(R.id.text_view_title_description);
         mTextViewDescription = view.findViewById(R.id.text_view_content_discription);
         mProgressBar=view.findViewById(R.id.progress_bar_detail_product);
@@ -105,11 +105,11 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
 
     @Override
     public void onGetDateProductDetail(ProductDetails productDetails) {
-        Glide.with(context).load(productDetails.getFeatureAvatar().getXxhdpi()).into(mImageviewdisplay);
-        Glide.with(context).load(productDetails.getFeatureAvatar().getXxhdpi()).into(mImageViewIcon);
+        Glide.with(getContext()).load(productDetails.getFeatureAvatar().getXxhdpi()).into(mImageviewdisplay);
+       // Glide.with(getContext()).load(productDetails.getFeatureAvatar().getXxhdpi()).into(mImageViewIcon);
         mTextViewTitle.setText(productDetails.getName());
         mTextViewTitleDescription.setText(productDetails.getDescription());
-
+        mProductDetailPresenter.fetchCommentFromRemote(productDetails.getId());
     }
 
     @Override

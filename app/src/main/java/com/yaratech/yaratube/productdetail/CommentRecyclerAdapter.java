@@ -10,11 +10,12 @@ import android.widget.TextView;
 import com.yaratech.yaratube.R;
 import com.yaratech.yaratube.data.model.Comment;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.Inflater;
 
 public class CommentRecyclerAdapter extends RecyclerView.Adapter<CommentRecyclerAdapter.ViewHolder> {
-    private List<Comment> commentList;
+    private List<Comment> commentList =new ArrayList<>();;
 
     @NonNull
     @Override
@@ -40,7 +41,7 @@ public class CommentRecyclerAdapter extends RecyclerView.Adapter<CommentRecycler
 
         public ViewHolder(View itemView) {
             super(itemView);
-            mTextViewContentComment=itemView.findViewById(R.id.text_view_comment_content);
+            mTextViewContentComment=itemView.findViewById(R.id.text_view_content_comment);
             mTextViewUserNameComment=itemView.findViewById(R.id.text_view_name_user_comment);
 
         }
