@@ -1,4 +1,4 @@
-package com.yaratech.yaratube;
+package com.yaratech.yaratube.dashbord;
 
 
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.yaratech.yaratube.R;
 import com.yaratech.yaratube.dashbord.category.CategoryFragment;
 import com.yaratech.yaratube.dashbord.home.HomeFragment;
 

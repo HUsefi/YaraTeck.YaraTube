@@ -41,7 +41,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String image_url = productLists.get(position).getAvatar().getXxhdpi();
+        String image_url = productLists.get(position).getFeatureAvatar().getXxhdpi();
         String title = productLists.get(position).getName();
         Glide.with(context).load(image_url).into(holder.mImageViewProductListAvatar);
         holder.mTextViewProductListTitle.setText(title);

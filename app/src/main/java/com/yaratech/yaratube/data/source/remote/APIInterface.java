@@ -2,6 +2,7 @@ package com.yaratech.yaratube.data.source.remote;
 
 
 import com.yaratech.yaratube.data.model.CategoryList;
+import com.yaratech.yaratube.data.model.Comment;
 import com.yaratech.yaratube.data.model.ProductDetails;
 import com.yaratech.yaratube.data.model.ProductList;
 import com.yaratech.yaratube.data.model.Store;
@@ -25,4 +26,6 @@ public interface APIInterface {
     Call<List<ProductList>> getProductListData(@Path("product_id") int productId);
     @GET ("/product/{product_id}")
     Call<ProductDetails> getProductDetailData(@Path("product_id") int productId);
+    @GET("/comment/{product_id}")
+    Call<List<Comment>> getCommentData (@Path("product_id") int productId);
 }

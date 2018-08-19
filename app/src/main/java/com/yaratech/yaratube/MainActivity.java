@@ -14,17 +14,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.yaratech.yaratube.dashbord.BaseFragment;
 import com.yaratech.yaratube.data.model.CategoryList;
 import com.yaratech.yaratube.dashbord.category.CategoryFragment;
+import com.yaratech.yaratube.productdetail.ProductDetailFragment;
 import com.yaratech.yaratube.productlist.ProductListFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
-        ,CategoryFragment.OnCategoryFragmentActionListener{
+        ,CategoryFragment.OnCategoryFragmentActionListener
+,ProductListFragment.OnProductListFragmentActionListener{
 
     Toolbar toolbar;
     FragmentTransaction fragmentTransaction;
     ProductListFragment productListFragment;
+    ProductDetailFragment productDetailFragment;
     FragmentManager fragmentManager;
 
 
@@ -126,7 +130,9 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
-
-
+    @Override
+    public void onProductListItemClicked(int categoryId) {
+      productDetailFragment=ProductDetailFragment.newInstance(categoryId);
+      setFragment(productDetailFragment,ProductDetailFragment.PRODUCT_DETAIL_FRAGMENT_TAG);
+    }
 }
