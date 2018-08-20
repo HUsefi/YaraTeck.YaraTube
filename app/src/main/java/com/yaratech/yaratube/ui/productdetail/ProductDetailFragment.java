@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,9 +36,7 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
     private ImageView mImageviewdisplay;
     private ImageView mImageViewIcon;
     private TextView mTextViewTitle;
-    private TextView mTextViewTitleDescription;
     TextView mTextViewDescription;
-    private Context context;
     private CommentRecyclerAdapter mCommentRecyclerAdapter;
     public static final String PRODUCT_DETAIL_FRAGMENT_TAG = "ProductDetail";
 
@@ -56,7 +55,7 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
 
     public static ProductDetailFragment newInstance(Product product) {
         Bundle args = new Bundle();
-        args.putParcelable("product", (Parcelable) product);
+        args.putParcelable("product", product);
         ProductDetailFragment fragment = new ProductDetailFragment();
         fragment.setArguments(args);
         return fragment;
@@ -66,7 +65,6 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_product_detail, container, false);
     }
 
@@ -86,9 +84,10 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mProductDetailPresenter =new ProductDetailPresenter(this);
-      //  mProductDetailPresenter.fetchDataProductDetailFromRemote(getArguments().getInt("ProductId"));
+        mProductDetailPresenter =new ProductDetailPresenter(getContext(),this);
         product = getArguments().getParcelable("product");
+        mProductDetailPresenter.fetchDataProductDetailFromRemote(product.getId());
+
     }
 
     private void initRecycleview() {
@@ -119,7 +118,8 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
         Glide.with(getContext()).load(productDetails.getFeatureAvatar().getXxhdpi()).into(mImageviewdisplay);
         mTextViewTitle.setText(productDetails.getName());
         mTextViewDescription.setText(productDetails.getDescription());
-        mProductDetailPresenter.fetchCommentFromRemote(productDetails.getId());
+        mProductDetailPresenter.fetchCommentFromRemote(product.getId());
+
     }
 
     @Override

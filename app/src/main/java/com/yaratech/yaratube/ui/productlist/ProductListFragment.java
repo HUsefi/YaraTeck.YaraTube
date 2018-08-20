@@ -2,6 +2,7 @@ package com.yaratech.yaratube.ui.productlist;
 
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 
+import com.yaratech.yaratube.MainActivity;
 import com.yaratech.yaratube.R;
 import com.yaratech.yaratube.data.model.Product;
 import com.yaratech.yaratube.ui.OnProductItemClick;
@@ -44,6 +46,16 @@ public class ProductListFragment extends Fragment implements ProductListContract
         ProductListFragment fragment = new ProductListFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    public void onAttach(Context context) {
+        if (context instanceof MainActivity)
+            onProductItemClick = (OnProductItemClick) context;
+        super.onAttach(context);
+    }
+    public void onDetach() {
+        onProductItemClick = null;
+        super.onDetach();
     }
 
 

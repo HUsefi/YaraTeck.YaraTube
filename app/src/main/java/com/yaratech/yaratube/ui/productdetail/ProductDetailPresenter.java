@@ -1,5 +1,7 @@
 package com.yaratech.yaratube.ui.productdetail;
 
+import android.content.Context;
+
 import com.yaratech.yaratube.data.model.Comment;
 import com.yaratech.yaratube.data.model.ProductDetails;
 import com.yaratech.yaratube.data.source.Repository;
@@ -12,7 +14,7 @@ public class ProductDetailPresenter implements ProductDetailContract.Presenter {
     private Repository mReposiroryProductDetail;
     private ProductDetailContract.Veiw mView;
 
-     ProductDetailPresenter(ProductDetailContract.Veiw mView) {
+     ProductDetailPresenter(Context context,ProductDetailContract.Veiw mView) {
         this.mView = mView;
         mReposiroryProductDetail = new Repository();
     }

@@ -21,7 +21,6 @@ public class HomeItemAdapter extends RecyclerView.Adapter<HomeItemAdapter.HomeIt
 
     private List<Product> mProducts;
     private OnHomeItemClickListener mOnHomeItemClickListener;
-    private List<ProductList> productLists = new ArrayList<>();
     private Context context;
 
 
@@ -30,6 +29,12 @@ public class HomeItemAdapter extends RecyclerView.Adapter<HomeItemAdapter.HomeIt
         this.mProducts = products;
         notifyDataSetChanged();
     }
+
+//    public HomeItemAdapter(Context context,List<Product> mProducts, OnHomeItemClickListener mOnHomeItemClickListener) {
+//        this.mProducts = mProducts;
+//        this.mOnHomeItemClickListener = mOnHomeItemClickListener;
+//        this.context = context;
+//    }
 
     @NonNull
     @Override
@@ -54,7 +59,6 @@ public class HomeItemAdapter extends RecyclerView.Adapter<HomeItemAdapter.HomeIt
 
     public class HomeItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private String mUrlImageProduct;
         private ImageView mImageProduct;
         private TextView mNameProduct;
         private TextView mProductDescription;

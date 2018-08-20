@@ -1,6 +1,7 @@
 package com.yaratech.yaratube.ui.dashbord.home;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.yaratech.yaratube.MainActivity;
 import com.yaratech.yaratube.R;
 import com.yaratech.yaratube.data.model.Product;
 import com.yaratech.yaratube.data.model.Store;
@@ -66,6 +68,16 @@ public class HomeFragment extends Fragment implements HomeContract.Veiw
     }
 
 
+    public void onAttach(Context context) {
+        if (context instanceof MainActivity)
+            onProductItemClick = (OnProductItemClick) context;
+        super.onAttach(context);
+    }
+    public void onDetach() {
+        onProductItemClick = null;
+        super.onDetach();
+    }
+
     @Override
     public void showProgressBar() {
         mProgressBar.setVisibility(View.VISIBLE);
@@ -87,10 +99,9 @@ public class HomeFragment extends Fragment implements HomeContract.Veiw
         mHomeAdapter.setDateStore(store);
     }
 
-
-
     public void getHomeProductItem(Product product) {
         onProductItemClick.onClick(product);
     }
+
 
 }
