@@ -1,4 +1,4 @@
-package com.yaratech.yaratube.dashbord.category;
+package com.yaratech.yaratube.ui.dashbord.category;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

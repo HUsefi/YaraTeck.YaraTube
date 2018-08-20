@@ -1,4 +1,4 @@
-package com.yaratech.yaratube.dashbord.home;
+package com.yaratech.yaratube.ui.dashbord.home;
 
 import com.yaratech.yaratube.data.model.Store;
 import com.yaratech.yaratube.data.source.Repository;

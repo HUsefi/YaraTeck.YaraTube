@@ -1,4 +1,4 @@
-package com.yaratech.yaratube.dashbord.home;
+package com.yaratech.yaratube.ui.dashbord.home;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -92,7 +92,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
     }
 
-    class HomeViewHolder extends RecyclerView.ViewHolder {
+    class HomeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private RecyclerView mHomeRecyclerView;
         private TextView productListName;
@@ -113,6 +113,12 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             adapter.setProducts(homeitem.getProducts());
             mHomeRecyclerView.setAdapter(adapter);
             productListName.setText(homeitem.getTitle());
+        }
+
+
+        @Override
+        public void onClick(View view) {
+
         }
     }
 

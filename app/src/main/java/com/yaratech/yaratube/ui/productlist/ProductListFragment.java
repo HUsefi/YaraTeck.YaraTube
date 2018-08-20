@@ -1,4 +1,5 @@
-package com.yaratech.yaratube.productlist;
+package com.yaratech.yaratube.ui.productlist;
+
 
 
 import android.os.Bundle;
@@ -14,8 +15,10 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+
 import com.yaratech.yaratube.R;
-import com.yaratech.yaratube.data.model.ProductList;
+import com.yaratech.yaratube.data.model.Product;
+import com.yaratech.yaratube.ui.OnProductItemClick;
 
 import java.util.List;
 
@@ -28,6 +31,9 @@ public class ProductListFragment extends Fragment implements ProductListContract
     private RecyclerView mRecyclerView;
     private ProductListAdapter mProductListAdapter;
     public static final String PRODUCT_LIST_FRAGMENT_TAG = "ProductList";
+    OnProductItemClick onProductItemClick;
+
+
 
     public ProductListFragment() {
     }
@@ -44,7 +50,6 @@ public class ProductListFragment extends Fragment implements ProductListContract
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_product_list, container, false);
     }
 
@@ -84,19 +89,14 @@ public class ProductListFragment extends Fragment implements ProductListContract
     }
 
     @Override
-    public void onGetDateProductList(List<ProductList> productLists) {
+    public void onGetDateProductList(List<Product> productLists) {
         mProductListAdapter.setData(productLists);
 
     }
 
     @Override
-    public void onItemClick(int categoryId) {
-        ((ProductListFragment.OnProductListFragmentActionListener) getContext())
-                .onProductListItemClicked(categoryId);
+    public void onItemClick(Product product) {
+        onProductItemClick.onClick(product);
     }
 
-
-    public interface OnProductListFragmentActionListener{
-        void onProductListItemClicked(int categoryId);
-    }
 }

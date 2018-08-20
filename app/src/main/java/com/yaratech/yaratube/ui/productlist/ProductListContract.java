@@ -1,6 +1,7 @@
-package com.yaratech.yaratube.productlist;
+package com.yaratech.yaratube.ui.productlist;
 
-import com.yaratech.yaratube.data.model.ProductList;
+import com.yaratech.yaratube.data.model.Product;
+
 
 
 import java.util.List;
@@ -10,7 +11,7 @@ public interface ProductListContract {
         void showProgressBar();
         void hideProgressBar();
         void notAvailableDate();
-        void onGetDateProductList(List<ProductList> productLists );
+        void onGetDateProductList(List<Product> productLists );
 
     }
 

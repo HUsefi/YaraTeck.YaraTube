@@ -1,4 +1,4 @@
-package com.yaratech.yaratube.productdetail;
+package com.yaratech.yaratube.ui.productdetail;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -12,10 +12,15 @@ import com.yaratech.yaratube.data.model.Comment;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
 
 public class CommentRecyclerAdapter extends RecyclerView.Adapter<CommentRecyclerAdapter.ViewHolder> {
-    private List<Comment> commentList =new ArrayList<>();;
+
+    private List<Comment> commentList =new ArrayList<>();
+
+    void setData(List<Comment> commentList){
+        this.commentList=commentList;
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override
@@ -27,8 +32,7 @@ public class CommentRecyclerAdapter extends RecyclerView.Adapter<CommentRecycler
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.mTextViewUserNameComment.setText(commentList.get(position).getUser());
-        holder.mTextViewContentComment.setText(commentList.get(position).getCommentText());
+        holder.onBind(commentList.get(position));
     }
 
     @Override
@@ -45,10 +49,9 @@ public class CommentRecyclerAdapter extends RecyclerView.Adapter<CommentRecycler
             mTextViewUserNameComment=itemView.findViewById(R.id.text_view_name_user_comment);
 
         }
-    }
-
-    void setData(List<Comment> commentList){
-        this.commentList=commentList;
-        notifyDataSetChanged();
+        public void onBind(Comment comment) {
+            mTextViewUserNameComment.setText(comment.getUser());
+            mTextViewContentComment.setText(comment.getCommentText());
+        }
     }
 }

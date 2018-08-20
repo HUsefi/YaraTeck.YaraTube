@@ -1,4 +1,4 @@
-package com.yaratech.yaratube.dashbord.home;
+package com.yaratech.yaratube.ui.dashbord.home;
 
 
 import android.os.Bundle;
@@ -14,18 +14,22 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.yaratech.yaratube.R;
+import com.yaratech.yaratube.data.model.Product;
 import com.yaratech.yaratube.data.model.Store;
+import com.yaratech.yaratube.ui.OnProductItemClick;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment implements HomeContract.Veiw {
+public class HomeFragment extends Fragment implements HomeContract.Veiw
+,HomeItemAdapter.OnHomeItemClickListener{
 
     private RecyclerView mRecyclerView;
     private HomeAdapter mHomeAdapter;
     private ProgressBar mProgressBar;
     private HomeContract.Presenter mPresenter;
+    OnProductItemClick onProductItemClick;
 
 
     public HomeFragment() {
@@ -84,6 +88,9 @@ public class HomeFragment extends Fragment implements HomeContract.Veiw {
     }
 
 
-    //Initializing the bottomNavigationView
+
+    public void getHomeProductItem(Product product) {
+        onProductItemClick.onClick(product);
+    }
 
 }

@@ -1,6 +1,4 @@
-package com.yaratech.yaratube.dashbord.category;
-
-import android.content.Context;
+package com.yaratech.yaratube.ui.dashbord.category;
 
 import com.yaratech.yaratube.data.model.CategoryList;
 import com.yaratech.yaratube.data.source.Repository;

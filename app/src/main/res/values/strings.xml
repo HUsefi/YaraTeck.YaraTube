@@ -19,4 +19,6 @@
     <string name="DescriptionCardViewTitle">توضیحات</string>
     <string name="CommentButton">نظر دهید</string>
     <string name="CommentUserText">نظرات کاربران</string>
+    <string name="DescriptionProductDetail">توضیحات</string>
+    <string name="UserCommentProductDetail">نظرات کاربران</string>
 </resources>

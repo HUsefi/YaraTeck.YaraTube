@@ -14,22 +14,26 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.yaratech.yaratube.dashbord.BaseFragment;
+import com.yaratech.yaratube.data.model.Product;
+import com.yaratech.yaratube.ui.OnProductItemClick;
+import com.yaratech.yaratube.ui.dashbord.BaseFragment;
+import com.yaratech.yaratube.ui.dashbord.home.HomeFragment;
 import com.yaratech.yaratube.data.model.CategoryList;
-import com.yaratech.yaratube.dashbord.category.CategoryFragment;
-import com.yaratech.yaratube.productdetail.ProductDetailFragment;
-import com.yaratech.yaratube.productlist.ProductListFragment;
+import com.yaratech.yaratube.ui.dashbord.category.CategoryFragment;
+import com.yaratech.yaratube.ui.productdetail.ProductDetailFragment;
+import com.yaratech.yaratube.ui.productlist.ProductListFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
-        ,CategoryFragment.OnCategoryFragmentActionListener
-,ProductListFragment.OnProductListFragmentActionListener{
+        , CategoryFragment.OnCategoryFragmentActionListener
+        , OnProductItemClick {
 
     Toolbar toolbar;
     FragmentTransaction fragmentTransaction;
     ProductListFragment productListFragment;
     ProductDetailFragment productDetailFragment;
     FragmentManager fragmentManager;
+    Product product;
 
 
     public BaseFragment baseFragment;
@@ -41,9 +45,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
 
-         baseFragment = BaseFragment.newInstance();
-         setFragment(baseFragment, BaseFragment.BASE_FRAGMENT_TAG);
-         //setFragment(BaseFragment.newInstance());
+        baseFragment = BaseFragment.newInstance();
+        setFragment(baseFragment, BaseFragment.BASE_FRAGMENT_TAG);
+        //setFragment(BaseFragment.newInstance());
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -59,7 +63,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -108,12 +112,12 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    void  setFragment(Fragment fragment, String fragmentName){
+    void setFragment(Fragment fragment, String fragmentName) {
 
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.container_home_fragment, fragment).commit();
-        if (!fragmentName.equals("BaseFragment") )
+        if (!fragmentName.equals("BaseFragment"))
             fragmentTransaction.addToBackStack(fragmentName);
 
 //        FragmentManager fragmentManager=getSupportFragmentManager();
@@ -130,9 +134,16 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+//    @Override
+//    public void onHomeItemClicked(int categoryId) {
+//        productDetailFragment = ProductDetailFragment.newInstance(product);
+//        setFragment(productDetailFragment, ProductDetailFragment.PRODUCT_DETAIL_FRAGMENT_TAG);
+//    }
+
     @Override
-    public void onProductListItemClicked(int categoryId) {
-      productDetailFragment=ProductDetailFragment.newInstance(categoryId);
-      setFragment(productDetailFragment,ProductDetailFragment.PRODUCT_DETAIL_FRAGMENT_TAG);
+    public void onClick(Object product) {
+        productDetailFragment = ProductDetailFragment.newInstance((Product) product);
+        setFragment(productDetailFragment, ProductDetailFragment.PRODUCT_DETAIL_FRAGMENT_TAG);
     }
+
 }

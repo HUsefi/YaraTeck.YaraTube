@@ -1,4 +1,4 @@
-package com.yaratech.yaratube.dashbord;
+package com.yaratech.yaratube.ui.dashbord;
 
 
 import android.os.Bundle;
@@ -14,8 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yaratech.yaratube.R;
-import com.yaratech.yaratube.dashbord.category.CategoryFragment;
-import com.yaratech.yaratube.dashbord.home.HomeFragment;
+import com.yaratech.yaratube.ui.dashbord.category.CategoryFragment;
+import com.yaratech.yaratube.ui.dashbord.home.HomeFragment;
 
 
 public class BaseFragment extends Fragment {

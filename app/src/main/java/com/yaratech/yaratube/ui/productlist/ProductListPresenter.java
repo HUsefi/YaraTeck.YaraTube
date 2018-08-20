@@ -1,7 +1,6 @@
-package com.yaratech.yaratube.productlist;
+package com.yaratech.yaratube.ui.productlist;
 
-import android.content.Context;
-
+import com.yaratech.yaratube.data.model.Product;
 import com.yaratech.yaratube.data.model.ProductList;
 import com.yaratech.yaratube.data.source.Repository;
 import com.yaratech.yaratube.data.source.remote.APIResult;
@@ -21,9 +20,9 @@ public class ProductListPresenter implements ProductListContract.Presenter {
     @Override
     public void fetchDataProductListFromRemote(int productId) {
         mView.showProgressBar();
-        mReposiroryProductList.getProductList(new APIResult<List<ProductList>>() {
+        mReposiroryProductList.getProductList(new APIResult<List<Product>>() {
             @Override
-            public void onSuccess(List<ProductList> result) {
+            public void onSuccess(List<Product> result) {
                 mView.hideProgressBar();
                 mView.onGetDateProductList(result);
 

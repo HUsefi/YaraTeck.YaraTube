@@ -1,4 +1,4 @@
-package com.yaratech.yaratube.productdetail;
+package com.yaratech.yaratube.ui.productdetail;
 
 import com.yaratech.yaratube.data.model.Comment;
 import com.yaratech.yaratube.data.model.ProductDetails;
@@ -19,6 +19,7 @@ public class ProductDetailPresenter implements ProductDetailContract.Presenter {
 
     @Override
     public void fetchDataProductDetailFromRemote(int productId) {
+        mView.showProgressBar();
         mReposiroryProductDetail.getProductDetail(new APIResult<ProductDetails>() {
             @Override
             public void onSuccess(ProductDetails result) {

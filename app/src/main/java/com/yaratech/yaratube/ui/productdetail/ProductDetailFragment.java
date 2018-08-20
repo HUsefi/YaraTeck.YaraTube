@@ -1,8 +1,9 @@
-package com.yaratech.yaratube.productdetail;
+package com.yaratech.yaratube.ui.productdetail;
 
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.yaratech.yaratube.R;
 import com.yaratech.yaratube.data.model.Comment;
+import com.yaratech.yaratube.data.model.Product;
 import com.yaratech.yaratube.data.model.ProductDetails;
 
 import java.util.List;
@@ -27,7 +29,7 @@ import java.util.List;
 public class ProductDetailFragment extends Fragment implements ProductDetailContract.Veiw{
 
     ProductDetailPresenter mProductDetailPresenter;
-    private ProductDetails mProductDetails;
+    Product product;
     private ProgressBar mProgressBar;
     RecyclerView mRecyclerView;
     private ImageView mImageviewdisplay;
@@ -39,16 +41,22 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
     private CommentRecyclerAdapter mCommentRecyclerAdapter;
     public static final String PRODUCT_DETAIL_FRAGMENT_TAG = "ProductDetail";
 
+
     public ProductDetailFragment() {
         // Required empty public constructor
     }
 
+//    public static ProductDetailFragment newInstance(int id) {
+//        Bundle args = new Bundle();
+//        args.putInt("ProductId", id);
+//        ProductDetailFragment fragment = new ProductDetailFragment();
+//        fragment.setArguments(args);
+//        return fragment;
+//    }
 
-
-
-    public static ProductDetailFragment newInstance(int id) {
+    public static ProductDetailFragment newInstance(Product product) {
         Bundle args = new Bundle();
-        args.putInt("ProductId", id);
+        args.putParcelable("product", (Parcelable) product);
         ProductDetailFragment fragment = new ProductDetailFragment();
         fragment.setArguments(args);
         return fragment;
@@ -68,23 +76,26 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
         mImageviewdisplay=view.findViewById(R.id.image_view_palyer);
         mTextViewTitle=view.findViewById(R.id.text_view_product_name_player);
         mImageViewIcon=view.findViewById(R.id.image_view_icon);
-        mTextViewTitleDescription = view.findViewById(R.id.text_view_title_description);
         mTextViewDescription = view.findViewById(R.id.text_view_content_discription);
         mProgressBar=view.findViewById(R.id.progress_bar_detail_product);
         mProgressBar.setVisibility(View.GONE);
         mRecyclerView=view.findViewById(R.id.recycler_view_comment);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()
-                , LinearLayoutManager.VERTICAL, false));
-        mCommentRecyclerAdapter = new CommentRecyclerAdapter();
-        mRecyclerView.setAdapter(mCommentRecyclerAdapter);
-
+        initRecycleview();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mProductDetailPresenter =new ProductDetailPresenter(this);
-        mProductDetailPresenter.fetchDataProductDetailFromRemote(getArguments().getInt("ProductId"));
+      //  mProductDetailPresenter.fetchDataProductDetailFromRemote(getArguments().getInt("ProductId"));
+        product = getArguments().getParcelable("product");
+    }
+
+    private void initRecycleview() {
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()
+                , LinearLayoutManager.VERTICAL, false));
+        mCommentRecyclerAdapter = new CommentRecyclerAdapter();
+        mRecyclerView.setAdapter(mCommentRecyclerAdapter);
     }
 
     @Override
@@ -106,9 +117,8 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
     @Override
     public void onGetDateProductDetail(ProductDetails productDetails) {
         Glide.with(getContext()).load(productDetails.getFeatureAvatar().getXxhdpi()).into(mImageviewdisplay);
-       // Glide.with(getContext()).load(productDetails.getFeatureAvatar().getXxhdpi()).into(mImageViewIcon);
         mTextViewTitle.setText(productDetails.getName());
-        mTextViewTitleDescription.setText(productDetails.getDescription());
+        mTextViewDescription.setText(productDetails.getDescription());
         mProductDetailPresenter.fetchCommentFromRemote(productDetails.getId());
     }
 

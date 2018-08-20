@@ -2,6 +2,7 @@ package com.yaratech.yaratube.data.source;
 
 import com.yaratech.yaratube.data.model.CategoryList;
 import com.yaratech.yaratube.data.model.Comment;
+import com.yaratech.yaratube.data.model.Product;
 import com.yaratech.yaratube.data.model.ProductDetails;
 import com.yaratech.yaratube.data.model.ProductList;
 import com.yaratech.yaratube.data.model.Store;
@@ -67,13 +68,13 @@ public class Repository {
 
 
 
-    public void getProductList( final APIResult<List<ProductList>> callBack ,int categoryId) {
+    public void getProductList(final APIResult<List<Product>> callBack , int categoryId) {
         APIClient apiClient = new APIClient();
         APIInterface service = apiClient.getClient().create(APIInterface.class);
-        Call<List<ProductList>> productList = service.getProductListData(categoryId);
-        productList.enqueue(new Callback<List<ProductList>>() {
+        Call<List<Product>> productList = service.getProductListData(categoryId);
+        productList.enqueue(new Callback<List<Product>>() {
             @Override
-            public void onResponse(Call<List<ProductList>> call, Response<List<ProductList>> response) {
+            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
                 if (response.isSuccessful()) {
                     callBack.onSuccess(response.body());
                 } else {
@@ -83,7 +84,7 @@ public class Repository {
             }
 
             @Override
-            public void onFailure(Call<List<ProductList>> call, Throwable t) {
+            public void onFailure(Call<List<Product>> call, Throwable t) {
                 callBack.onFail();
             }
         });
