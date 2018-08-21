@@ -1,5 +1,7 @@
 package com.yaratech.yaratube.data.source;
 
+import android.util.Log;
+
 import com.yaratech.yaratube.data.model.CategoryList;
 import com.yaratech.yaratube.data.model.Comment;
 import com.yaratech.yaratube.data.model.Product;
@@ -19,7 +21,7 @@ import retrofit2.Response;
 
 public class Repository {
 
- public void getStore(final APIResult<Store> callBack) {
+    public void getStore(final APIResult<Store> callBack) {
         APIClient apiClient = new APIClient();
         APIInterface service = apiClient.getClient().create(APIInterface.class);
         Call<Store> store = service.getStore();
@@ -67,8 +69,7 @@ public class Repository {
     }
 
 
-
-    public void getProductList(final APIResult<List<Product>> callBack , int categoryId) {
+    public void getProductList(final APIResult<List<Product>> callBack, int categoryId) {
         APIClient apiClient = new APIClient();
         APIInterface service = apiClient.getClient().create(APIInterface.class);
         Call<List<Product>> productList = service.getProductListData(categoryId);
@@ -90,7 +91,7 @@ public class Repository {
         });
     }
 
-    public void getProductDetail(final APIResult<ProductDetails> callBack , int productId) {
+    public void getProductDetail(final APIResult<ProductDetails> callBack, int productId) {
         APIClient apiClient = new APIClient();
         APIInterface service = apiClient.getClient().create(APIInterface.class);
         Call<ProductDetails> productList = service.getProductDetailData(productId);
@@ -111,7 +112,7 @@ public class Repository {
         });
     }
 
-    public void getComment(final APIResult<List<Comment>> callBack , int productId) {
+    public void getComment(final APIResult<List<Comment>> callBack, int productId) {
         APIClient apiClient = new APIClient();
         APIInterface service = apiClient.getClient().create(APIInterface.class);
         Call<List<Comment>> commentList = service.getCommentData(productId);

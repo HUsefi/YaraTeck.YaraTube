@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity
     ProductListFragment productListFragment;
     ProductDetailFragment productDetailFragment;
     FragmentManager fragmentManager;
-    Product product;
 
 
     public BaseFragment baseFragment;

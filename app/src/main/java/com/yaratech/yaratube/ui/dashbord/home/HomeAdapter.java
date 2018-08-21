@@ -29,11 +29,13 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Headeritem> headeritems;
     private FragmentManager fragmentManager;
     private HeaderItemViewPagerAdapter mHeaderItemViewPagerAdapter;
+    HomeItemAdapter.OnHomeItemClickListener onHomeItemClickListener;
 
 
-    public HomeAdapter(Context context, FragmentManager fragmentManager) {
+    public HomeAdapter(Context context, FragmentManager fragmentManager, HomeItemAdapter.OnHomeItemClickListener onHomeItemClickListener) {
         this.context = context;
         this.fragmentManager = fragmentManager;
+        this.onHomeItemClickListener = onHomeItemClickListener;
     }
 
     public void setDateStore(Store store) {
@@ -109,7 +111,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             mHomeRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,
                     false));
 
-            HomeItemAdapter adapter = new HomeItemAdapter();
+            HomeItemAdapter adapter = new HomeItemAdapter(onHomeItemClickListener);
             adapter.setProducts(homeitem.getProducts());
             mHomeRecyclerView.setAdapter(adapter);
             productListName.setText(homeitem.getTitle());

@@ -63,7 +63,7 @@ public class HomeFragment extends Fragment implements HomeContract.Veiw
         mPresenter.fetchDataStoreFromRemote();
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_home);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mHomeAdapter = new HomeAdapter(getContext(), getFragmentManager());
+        mHomeAdapter = new HomeAdapter(getContext(), getFragmentManager(), this);
         mRecyclerView.setAdapter(mHomeAdapter);
     }
 
@@ -99,9 +99,9 @@ public class HomeFragment extends Fragment implements HomeContract.Veiw
         mHomeAdapter.setDateStore(store);
     }
 
+
+    @Override
     public void getHomeProductItem(Product product) {
         onProductItemClick.onClick(product);
     }
-
-
 }

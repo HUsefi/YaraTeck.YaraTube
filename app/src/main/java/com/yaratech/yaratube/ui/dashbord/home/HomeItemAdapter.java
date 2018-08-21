@@ -23,6 +23,9 @@ public class HomeItemAdapter extends RecyclerView.Adapter<HomeItemAdapter.HomeIt
     private OnHomeItemClickListener mOnHomeItemClickListener;
     private Context context;
 
+    public HomeItemAdapter(OnHomeItemClickListener mOnHomeItemClickListener){
+        this.mOnHomeItemClickListener = mOnHomeItemClickListener;
+    }
 
 
     public void setProducts(List<Product> products) {
@@ -70,6 +73,8 @@ public class HomeItemAdapter extends RecyclerView.Adapter<HomeItemAdapter.HomeIt
             mImageProduct = itemView.findViewById(R.id.image_view_product);
             mNameProduct = itemView.findViewById(R.id.text_view_product_name);
             mProductDescription = itemView.findViewById(R.id.text_view_product_description);
+
+            itemView.setOnClickListener(this);
 
         }
 
