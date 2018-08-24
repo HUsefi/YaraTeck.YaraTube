@@ -21,4 +21,7 @@
     <string name="CommentUserText">نظرات کاربران</string>
     <string name="DescriptionProductDetail">توضیحات</string>
     <string name="UserCommentProductDetail">نظرات کاربران</string>
+    <string name="dialog_phone_number_title">ورود</string>
+    <string name="enter_your_phone_number">از طریق شماره موبایل</string>
+    <string name="send">از طریق حساب google</string>
 </resources>

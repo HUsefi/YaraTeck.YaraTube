@@ -88,8 +88,8 @@
                         android:id="@+id/text_view_title_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/DescriptionProductDetail"
                         android:padding="10dp"
+                        android:text="@string/DescriptionProductDetail"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 

@@ -1,6 +1,7 @@
 package com.yaratech.yaratube.ui.productdetail;
 
 
+import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
