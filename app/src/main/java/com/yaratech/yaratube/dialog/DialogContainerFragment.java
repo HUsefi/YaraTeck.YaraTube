@@ -55,8 +55,6 @@ public class DialogContainerFragment extends DialogFragment implements LoginDial
         public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container
                 , @Nullable Bundle savedInstanceState) {
             View result =  inflater.inflate(R.layout.fragment_dialog_container, container, false);
-//            addButtonToDialogTitle(getDialog());
-            //getDialog().setCancelable(false);
             SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
             editor = sharedPreferences.edit();
             int loginStep = sharedPreferences.getInt("Login Step", 1);
@@ -95,31 +93,6 @@ public class DialogContainerFragment extends DialogFragment implements LoginDial
         verificationFragment.setListener(this);
         getChildFragmentManager().beginTransaction().replace(R.id.login_container, verificationFragment).commit();
     }
-
-
-    @SuppressLint("ClickableViewAccessibility")
-        public static void addButtonToDialogTitle(final Dialog mdialog) {
-
-
-            final TextView title = mdialog.findViewById(android.R.id.title);
-
-            title.setCompoundDrawablesWithIntrinsicBounds(0, 0, android.R.drawable.ic_delete, 0);
-
-            title.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View view, MotionEvent event) {
-                    if (event.getAction() == MotionEvent.ACTION_UP) {
-                        if (event.getRawX() >= title.getRight() - title.getTotalPaddingRight()) {
-                            mdialog.cancel();
-
-                            return true;
-                        }
-                    }
-                    return true;
-                }
-            });
-        }
-
 
     }
   
