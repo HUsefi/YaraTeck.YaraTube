@@ -100,7 +100,7 @@ public class LoginPhoneFragment extends Fragment implements LoginPhoneContract.V
 
     @Override
     public void smsReceived(String phoneNumber) {
-      //  listener.goToLoginCode(phoneNumber);
+       listener.goToLoginCode(phoneNumber);
     }
 
     @Override

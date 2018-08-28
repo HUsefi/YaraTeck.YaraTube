@@ -1,6 +1,7 @@
 package com.yaratech.yaratube.data.source.remote;
 
 
+import com.yaratech.yaratube.data.model.Activation;
 import com.yaratech.yaratube.data.model.CategoryList;
 import com.yaratech.yaratube.data.model.Comment;
 import com.yaratech.yaratube.data.model.MobileLoginStep1;
@@ -45,4 +46,11 @@ public interface APIInterface {
             @Field("device_model") String deviceModel,
             @Field("device_os") String deviceOs);
            // @Field("gcm") String gcm);
+
+    // send activation code and get token
+    @POST("mobile_login_step2/" + STORE_ID)
+    @FormUrlEncoded
+    Call<Activation> activateStep2(@Field("mobile") String phoneNumber,
+                                   @Field("device_id") String deviceId,
+                                   @Field("verification_code") int verificationCode);
 }

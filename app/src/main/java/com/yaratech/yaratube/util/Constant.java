@@ -1,7 +1,10 @@
 package com.yaratech.yaratube.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 
 public class Constant {
@@ -29,6 +32,17 @@ public class Constant {
                 .replace("۷", "7")
                 .replace("۸", "8")
                 .replace("۹", "9");
+    }
+
+    public static void hideKeyboardFrom(Context context, View view) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        assert imm != null;
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    public static boolean validateActivationCode(String activationCode) {
+
+        return activationCode.length() == 5;
     }
 
 

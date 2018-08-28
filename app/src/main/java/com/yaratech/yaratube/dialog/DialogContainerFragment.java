@@ -20,6 +20,7 @@ import com.yaratech.yaratube.R;
 import com.yaratech.yaratube.data.source.local.AppDatabase;
 import com.yaratech.yaratube.dialog.loginphone.LoginPhoneFragment;
 import com.yaratech.yaratube.dialog.loginselect.SelectLoginMethodFragment;
+import com.yaratech.yaratube.dialog.verification.VerificationFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -54,13 +55,15 @@ public class DialogContainerFragment extends DialogFragment implements LoginDial
         public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container
                 , @Nullable Bundle savedInstanceState) {
             View result =  inflater.inflate(R.layout.fragment_dialog_container, container, false);
-            addButtonToDialogTitle(getDialog());
+//            addButtonToDialogTitle(getDialog());
             //getDialog().setCancelable(false);
             SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
             editor = sharedPreferences.edit();
             int loginStep = sharedPreferences.getInt("Login Step", 1);
             if(loginStep == 2)
                 goToLoginPhone();
+            else if(loginStep == 3)
+                goToLoginCode(database.userDao().getPhoneNumber());
             else
                 goToLoginMethod();
             return result;
@@ -83,8 +86,18 @@ public class DialogContainerFragment extends DialogFragment implements LoginDial
             getChildFragmentManager().beginTransaction().replace(R.id.login_container, loginPhoneFragment).commit();
         }
 
+    @Override
+    public void goToLoginCode(String phoneNumber) {
+        editor.clear();
+        editor.putInt("Login Step", 3);
+        editor.commit();
+        VerificationFragment verificationFragment = VerificationFragment.newInstance();
+        verificationFragment.setListener(this);
+        getChildFragmentManager().beginTransaction().replace(R.id.login_container, verificationFragment).commit();
+    }
 
-        @SuppressLint("ClickableViewAccessibility")
+
+    @SuppressLint("ClickableViewAccessibility")
         public static void addButtonToDialogTitle(final Dialog mdialog) {
 
 

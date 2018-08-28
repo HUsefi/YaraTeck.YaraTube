@@ -3,6 +3,7 @@ package com.yaratech.yaratube.data.source;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.yaratech.yaratube.data.model.Activation;
 import com.yaratech.yaratube.data.model.MobileLoginStep1;
 import com.yaratech.yaratube.data.source.local.AppDatabase;
 import com.yaratech.yaratube.data.source.local.UserEntity;
@@ -81,6 +82,33 @@ public class UserRepository {
     private void toastNetworkNotAvailable(Context context) {
 
         Toast.makeText(context, Constant.INTERNET_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
+    }
+
+    public void sendVerificationCode(final APIResult<Activation> callback
+            , String phoneNumber
+            , String deviceId
+            , int verificationCode) {
+
+        Call<Activation> call = service.activateStep2(phoneNumber, deviceId, verificationCode);
+
+        if(Constant.isNetworkAvailable(context)) {
+            call.enqueue(new Callback<Activation>() {
+                @Override
+                public void onResponse(Call<Activation> call, Response<Activation> response) {
+                    if(response.isSuccessful()) {
+                        callback.onSuccess(response.body());
+                    } else {
+                        callback.onFail(response.message());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Activation> call, Throwable t) {
+
+                    callback.onFail(t.getMessage());
+                }
+            });
+        }
     }
 
 
