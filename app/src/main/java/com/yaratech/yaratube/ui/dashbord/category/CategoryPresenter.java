@@ -27,7 +27,7 @@ public class CategoryPresenter implements CategoryContract.Presenter {
             }
 
             @Override
-            public void onFail() {
+            public void onFail(String errorMessage) {
                 mView.hideProgressBar();
                 mView.notAvailableDateCategort();
             }

@@ -14,7 +14,7 @@ import com.yaratech.yaratube.data.model.Headeritem;
 
 import java.util.List;
 
-import static com.yaratech.yaratube.utils.Constant.BASE_URL;
+import static com.yaratech.yaratube.util.Constant.BASE_URL;
 
 public class HeaderItemAdapter extends RecyclerView.Adapter<HeaderItemAdapter.HomeItemViewHolder> {
 

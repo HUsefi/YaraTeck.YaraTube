@@ -32,14 +32,14 @@ public class Repository {
                 if (response.isSuccessful()) {
                     callBack.onSuccess(response.body());
                 } else {
-                    callBack.onFail();
+                    callBack.onFail(response.message());
                 }
 
             }
 
             @Override
             public void onFailure(Call<Store> call, Throwable t) {
-                callBack.onFail();
+                callBack.onFail(t.getMessage());
             }
         });
 
@@ -56,14 +56,14 @@ public class Repository {
                 if (response.isSuccessful()) {
                     callBack.onSuccess(response.body());
                 } else {
-                    callBack.onFail();
+                    callBack.onFail(response.message());
                 }
 
             }
 
             @Override
             public void onFailure(Call<List<CategoryList>> call, Throwable t) {
-                callBack.onFail();
+                callBack.onFail(t.getMessage());
             }
         });
 
@@ -80,14 +80,14 @@ public class Repository {
                 if (response.isSuccessful()) {
                     callBack.onSuccess(response.body());
                 } else {
-                    callBack.onFail();
+                    callBack.onFail(response.message());
                 }
 
             }
 
             @Override
             public void onFailure(Call<List<Product>> call, Throwable t) {
-                callBack.onFail();
+                callBack.onFail(t.getMessage());
             }
         });
     }
@@ -102,13 +102,13 @@ public class Repository {
                 if (response.isSuccessful()) {
                     callBack.onSuccess(response.body());
                 } else {
-                    callBack.onFail();
+                    callBack.onFail(response.message());
                 }
             }
 
             @Override
             public void onFailure(Call<ProductDetails> call, Throwable t) {
-                callBack.onFail();
+                callBack.onFail(t.getMessage());
             }
         });
     }
@@ -123,46 +123,46 @@ public class Repository {
                 if (response.isSuccessful()) {
                     callBack.onSuccess(response.body());
                 } else {
-                    callBack.onFail();
+                    callBack.onFail(response.message());
                 }
             }
 
             @Override
             public void onFailure(Call<List<Comment>> call, Throwable t) {
-                callBack.onFail();
+                callBack.onFail(t.getMessage());
             }
         });
     }
 
-    public void sendMobileLoginStep1(final APIResult<MobileLoginStep1> callBack, String mobile
-            , String deviceId
-            , String deviceModel
-            , String deviceOs
-            , String gcm) {
-
-        APIClient apiClient = new APIClient();
-        APIInterface service = apiClient.getClient().create(APIInterface.class);
-        Call<MobileLoginStep1> loginPhoneCall = service.sendMobileLoginStep1(mobile,
-                deviceId,
-                deviceModel,
-                deviceOs,
-                gcm);
-        loginPhoneCall.enqueue(new Callback<MobileLoginStep1>() {
-            @Override
-            public void onResponse(Call<MobileLoginStep1> call, Response<MobileLoginStep1> response) {
-                if (response.isSuccessful()) {
-                    callBack.onSuccess(response.body());
-                } else {
-                    callBack.onFail();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<MobileLoginStep1> call, Throwable t) {
-                callBack.onFail();
-            }
-        });
-    }
+//    public void sendMobileLoginStep1(final APIResult<MobileLoginStep1> callBack, String mobile
+//            , String deviceId
+//            , String deviceModel
+//            , String deviceOs
+//            , String gcm) {
+//
+//        APIClient apiClient = new APIClient();
+//        APIInterface service = apiClient.getClient().create(APIInterface.class);
+//        Call<MobileLoginStep1> loginPhoneCall = service.sendMobileLoginStep1(mobile,
+//                deviceId,
+//                deviceModel,
+//                deviceOs,
+//                gcm);
+//        loginPhoneCall.enqueue(new Callback<MobileLoginStep1>() {
+//            @Override
+//            public void onResponse(Call<MobileLoginStep1> call, Response<MobileLoginStep1> response) {
+//                if (response.isSuccessful()) {
+//                    callBack.onSuccess(response.body());
+//                } else {
+//                    callBack.onFail();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<MobileLoginStep1> call, Throwable t) {
+//                callBack.onFail();
+//            }
+//        });
+//    }
 
 
 

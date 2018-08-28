@@ -1,16 +1,12 @@
 package com.yaratech.yaratube.ui.productdetail;
 
 
-import android.app.Fragment;
-import android.content.Context;
+
+
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,14 +14,18 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.yaratech.yaratube.R;
 import com.yaratech.yaratube.data.model.Comment;
 import com.yaratech.yaratube.data.model.Product;
 import com.yaratech.yaratube.data.model.ProductDetails;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.LinearLayoutManager;
+
 
 import java.util.List;
+
+import static java.security.AccessController.getContext;
 
 
 public class ProductDetailFragment extends Fragment implements ProductDetailContract.Veiw{
@@ -127,6 +127,8 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
     public void onGetDateComment(List<Comment> commentList) {
         mCommentRecyclerAdapter.setData(commentList);
     }
+
+
 
 
 }

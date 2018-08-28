@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.yaratech.yaratube.R;
 import com.yaratech.yaratube.data.model.CategoryList;
-import com.yaratech.yaratube.utils.Constant;
+import com.yaratech.yaratube.util.Constant;
 
 import java.util.ArrayList;
 import java.util.List;

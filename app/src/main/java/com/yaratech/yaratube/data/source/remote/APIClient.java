@@ -3,7 +3,7 @@ package com.yaratech.yaratube.data.source.remote;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.yaratech.yaratube.utils.Constant.BASE_URL;
+import static com.yaratech.yaratube.util.Constant.BASE_URL;
 
 
 public class APIClient {

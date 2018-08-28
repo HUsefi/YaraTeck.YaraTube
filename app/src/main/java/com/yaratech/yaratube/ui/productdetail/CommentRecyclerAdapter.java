@@ -1,15 +1,13 @@
 package com.yaratech.yaratube.ui.productdetail;
 
 import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
+import android.support.v7.widget.RecyclerView;
 import com.yaratech.yaratube.R;
 import com.yaratech.yaratube.data.model.Comment;
-
 import java.util.ArrayList;
 import java.util.List;
 

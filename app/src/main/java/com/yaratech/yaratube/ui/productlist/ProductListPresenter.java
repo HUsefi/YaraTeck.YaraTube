@@ -29,7 +29,7 @@ public class ProductListPresenter implements ProductListContract.Presenter {
             }
 
             @Override
-            public void onFail() {
+            public void onFail(String errorMessage) {
                 mView.hideProgressBar();
                 mView.notAvailableDate();
             }

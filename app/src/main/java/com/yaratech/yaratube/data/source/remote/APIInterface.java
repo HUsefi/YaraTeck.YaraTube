@@ -7,7 +7,7 @@ import com.yaratech.yaratube.data.model.MobileLoginStep1;
 import com.yaratech.yaratube.data.model.Product;
 import com.yaratech.yaratube.data.model.ProductDetails;
 import com.yaratech.yaratube.data.model.Store;
-import com.yaratech.yaratube.utils.Constant;
+import com.yaratech.yaratube.util.Constant;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
-import static com.yaratech.yaratube.utils.Constant.STORE_ID;
+import static com.yaratech.yaratube.util.Constant.STORE_ID;
 
 public interface APIInterface {
 
@@ -43,6 +43,6 @@ public interface APIInterface {
             @Field("mobile") String mobile,
             @Field("device_id") String deviceId,
             @Field("device_model") String deviceModel,
-            @Field("device_os") String deviceOs,
-            @Field("gcm") String gcm);
+            @Field("device_os") String deviceOs);
+           // @Field("gcm") String gcm);
 }

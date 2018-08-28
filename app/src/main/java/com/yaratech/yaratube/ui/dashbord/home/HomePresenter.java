@@ -26,7 +26,7 @@ public class HomePresenter implements HomeContract.Presenter {
             }
 
             @Override
-            public void onFail() {
+            public void onFail(String errorMessage) {
                 view.hideProgressBar();
                 view.notAvailableDate();
             }

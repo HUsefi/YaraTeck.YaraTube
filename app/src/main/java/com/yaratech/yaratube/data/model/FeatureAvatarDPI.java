@@ -4,7 +4,7 @@ package com.yaratech.yaratube.data.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import static com.yaratech.yaratube.utils.Constant.BASE_URL;
+import static com.yaratech.yaratube.util.Constant.BASE_URL;
 
 public class FeatureAvatarDPI {
 
