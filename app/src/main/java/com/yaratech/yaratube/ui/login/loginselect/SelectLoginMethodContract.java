@@ -1,4 +1,4 @@
-package com.yaratech.yaratube.dialog.loginselect;
+package com.yaratech.yaratube.ui.login.loginselect;
 
 public interface SelectLoginMethodContract {
 

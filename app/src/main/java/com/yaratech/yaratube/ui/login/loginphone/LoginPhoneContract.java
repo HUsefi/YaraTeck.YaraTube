@@ -1,4 +1,4 @@
-package com.yaratech.yaratube.dialog.loginphone;
+package com.yaratech.yaratube.ui.login.loginphone;
 
 public interface LoginPhoneContract {
 

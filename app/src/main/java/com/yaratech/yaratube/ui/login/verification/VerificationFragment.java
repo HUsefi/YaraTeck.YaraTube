@@ -1,4 +1,4 @@
-package com.yaratech.yaratube.dialog.verification;
+package com.yaratech.yaratube.ui.login.verification;
 
 
 import android.content.Context;
@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.yaratech.yaratube.R;
 import com.yaratech.yaratube.data.source.local.AppDatabase;
-import com.yaratech.yaratube.dialog.LoginDialogContract;
+import com.yaratech.yaratube.ui.login.LoginDialogContract;
 import com.yaratech.yaratube.util.Constant;
 
 /**
@@ -67,17 +67,17 @@ public class VerificationFragment extends Fragment implements VerificationContra
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Button submitCodeButton = view.findViewById(R.id.button_submit);
+        Button submitCodeButton = view.findViewById(R.id.button_submit_code);
         Button editPhoneButton = view.findViewById(R.id.button_edit_code);
 
         final EditText verificationCode = view.findViewById(R.id.edit_text_enter_verification);
 
-        final String deviceId = Settings.Secure.getString(view.getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        final String deviceId = Settings.Secure.getString(view.getContext().getContentResolver()
+                , Settings.Secure.ANDROID_ID);
 
         submitCodeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if(Constant.validateActivationCode(verificationCode.getText().toString())) {
                     // fixme send user instead of fields
                     presenter.onSendVerificationCode(phoneNumber, deviceId,

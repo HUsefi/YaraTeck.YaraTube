@@ -1,4 +1,4 @@
-package com.yaratech.yaratube.dialog.loginphone;
+package com.yaratech.yaratube.ui.login.loginphone;
 
 
 import android.content.Context;
@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.yaratech.yaratube.R;
 import com.yaratech.yaratube.data.source.local.AppDatabase;
-import com.yaratech.yaratube.dialog.LoginDialogContract;
+import com.yaratech.yaratube.ui.login.LoginDialogContract;
 import com.yaratech.yaratube.util.Constant;
 
 /**

@@ -1,8 +1,7 @@
-package com.yaratech.yaratube.dialog;
+package com.yaratech.yaratube.ui.login;
 
 
 import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.support.v4.app.DialogFragment;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -11,16 +10,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.yaratech.yaratube.R;
 import com.yaratech.yaratube.data.source.local.AppDatabase;
-import com.yaratech.yaratube.dialog.loginphone.LoginPhoneFragment;
-import com.yaratech.yaratube.dialog.loginselect.SelectLoginMethodFragment;
-import com.yaratech.yaratube.dialog.verification.VerificationFragment;
+import com.yaratech.yaratube.ui.login.loginphone.LoginPhoneFragment;
+import com.yaratech.yaratube.ui.login.loginselect.SelectLoginMethodFragment;
+import com.yaratech.yaratube.ui.login.verification.VerificationFragment;
 
 /**
  * A simple {@link Fragment} subclass.

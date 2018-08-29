@@ -1,4 +1,4 @@
-package com.yaratech.yaratube.dialog;
+package com.yaratech.yaratube.ui.login;
 
 public interface LoginDialogContract {
 

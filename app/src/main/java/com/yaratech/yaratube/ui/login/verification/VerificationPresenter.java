@@ -1,4 +1,4 @@
-package com.yaratech.yaratube.dialog.verification;
+package com.yaratech.yaratube.ui.login.verification;
 
 import android.content.Context;
 

@@ -16,15 +16,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.yaratech.yaratube.R;
+import android.support.v4.app.FragmentManager;
 import com.yaratech.yaratube.data.model.Comment;
 import com.yaratech.yaratube.data.model.Product;
 import com.yaratech.yaratube.data.model.ProductDetails;
+import com.yaratech.yaratube.ui.login.DialogContainerFragment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.LinearLayoutManager;
 
 
 import java.util.List;
 
+import static com.yaratech.yaratube.ui.login.DialogContainerFragment.DIALOG_CONTAINER_FRAGMENT_TAG;
 import static java.security.AccessController.getContext;
 
 
@@ -40,6 +43,7 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
     TextView mTextViewDescription;
     private CommentRecyclerAdapter mCommentRecyclerAdapter;
     public static final String PRODUCT_DETAIL_FRAGMENT_TAG = "ProductDetail";
+    DialogContainerFragment dialogContainerFragment;
 
 
     public ProductDetailFragment() {
@@ -80,7 +84,10 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
         mProgressBar.setVisibility(View.GONE);
         mRecyclerView=view.findViewById(R.id.recycler_view_comment);
         initRecycleview();
+
     }
+
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -120,6 +127,13 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
         mTextViewTitle.setText(productDetails.getName());
         mTextViewDescription.setText(productDetails.getDescription());
         mProductDetailPresenter.fetchCommentFromRemote(product.getId());
+        mImageViewIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogContainerFragment = DialogContainerFragment.newInstance();
+                dialogContainerFragment.show(getFragmentManager(),DIALOG_CONTAINER_FRAGMENT_TAG);
+            }
+        });
 
     }
 

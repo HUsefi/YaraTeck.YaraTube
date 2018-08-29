@@ -8,7 +8,7 @@
     android:clickable="true"
     android:focusable="true"
     android:elevation="3dp"
-    tools:context=".dialog.loginphone.LoginPhoneFragment">
+    tools:context=".ui.login.loginphone.LoginPhoneFragment">
 
     <TextView
         android:id="@+id/text_view_phone_number"

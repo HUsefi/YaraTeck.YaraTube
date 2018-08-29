@@ -1,7 +1,6 @@
 package com.yaratech.yaratube;
 
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -16,14 +15,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.yaratech.yaratube.data.model.Product;
-import com.yaratech.yaratube.dialog.DialogContainerFragment;
+import com.yaratech.yaratube.ui.login.DialogContainerFragment;
 import com.yaratech.yaratube.ui.OnProductItemClick;
 import com.yaratech.yaratube.ui.dashbord.BaseFragment;
-import com.yaratech.yaratube.ui.dashbord.home.HomeFragment;
 import com.yaratech.yaratube.data.model.CategoryList;
 import com.yaratech.yaratube.ui.dashbord.category.CategoryFragment;
 import com.yaratech.yaratube.ui.productdetail.ProductDetailFragment;
 import com.yaratech.yaratube.ui.productlist.ProductListFragment;
+
+import static com.yaratech.yaratube.ui.productlist.ProductListFragment.PRODUCT_LIST_FRAGMENT_TAG;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onCategorylistItemClicked(CategoryList category) {
         productListFragment = ProductListFragment.newInstance(category.getId());
-        setFragment(productListFragment, ProductListFragment.PRODUCT_LIST_FRAGMENT_TAG);
+        setFragment(productListFragment, PRODUCT_LIST_FRAGMENT_TAG);
     }
 
 
@@ -144,10 +144,9 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onClick(Object product) {
-//        productDetailFragment = ProductDetailFragment.newInstance((Product) product);
-//        setFragment(productDetailFragment, ProductDetailFragment.PRODUCT_DETAIL_FRAGMENT_TAG);
-        dialogContainerFragment = DialogContainerFragment.newInstance();
-        setFragment(dialogContainerFragment, dialogContainerFragment.DIALOG_CONTAINER_FRAGMENT_TAG);
+        productDetailFragment = ProductDetailFragment.newInstance((Product) product);
+        setFragment(productDetailFragment, ProductDetailFragment.PRODUCT_DETAIL_FRAGMENT_TAG);
+
     }
 
 }

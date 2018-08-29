@@ -1,4 +1,4 @@
-package com.yaratech.yaratube.dialog.loginselect;
+package com.yaratech.yaratube.ui.login.loginselect;
 
 
 import android.content.Context;
@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.yaratech.yaratube.R;
-import com.yaratech.yaratube.dialog.LoginDialogContract;
+import com.yaratech.yaratube.ui.login.LoginDialogContract;
 
 /**
  * A simple {@link Fragment} subclass.
