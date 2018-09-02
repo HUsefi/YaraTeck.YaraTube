@@ -1,15 +1,18 @@
 package com.yaratech.yaratube.data.source;
 
 import android.content.Context;
+import android.support.v4.app.FragmentManager;
 import android.widget.Toast;
 
 import com.yaratech.yaratube.data.model.Activation;
+import com.yaratech.yaratube.data.model.CommentPostResponse;
 import com.yaratech.yaratube.data.model.MobileLoginStep1;
 import com.yaratech.yaratube.data.source.local.AppDatabase;
 import com.yaratech.yaratube.data.source.local.UserEntity;
 import com.yaratech.yaratube.data.source.remote.APIClient;
 import com.yaratech.yaratube.data.source.remote.APIInterface;
 import com.yaratech.yaratube.data.source.remote.APIResult;
+import com.yaratech.yaratube.ui.login.DialogContainerFragment;
 import com.yaratech.yaratube.util.Constant;
 
 import retrofit2.Call;
@@ -46,6 +49,17 @@ public class UserRepository {
         return database.userDao().getToken() != null;
     }
 
+    public void login(FragmentManager fragmentManager) {
+
+        DialogContainerFragment dialogContainerFragment = DialogContainerFragment.newInstance();
+        dialogContainerFragment.setCancelable(false);
+        dialogContainerFragment.show(fragmentManager, dialogContainerFragment.getClass().getName());
+    }
+
+    public void logout() {
+        database.userDao().deleteToken();
+    }
+
     public String phoneNumber() {
         return database.userDao().getPhoneNumber();
     }
@@ -79,10 +93,7 @@ public class UserRepository {
         }
     }
 
-    private void toastNetworkNotAvailable(Context context) {
 
-        Toast.makeText(context, Constant.INTERNET_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
-    }
 
     public void sendVerificationCode(final APIResult<Activation> callback
             , String phoneNumber
@@ -109,6 +120,36 @@ public class UserRepository {
                 }
             });
         }
+    }
+
+    public void sendUsercomment(int score, String commentText, int productId, String token,
+                                final APIResult<CommentPostResponse> callback) {
+
+        Call<CommentPostResponse> call = service.sendComment("", score, commentText, productId, token);
+
+        if(Constant.isNetworkAvailable(context)) {
+            call.enqueue(new Callback<CommentPostResponse>() {
+                @Override
+                public void onResponse(Call<CommentPostResponse> call, Response<CommentPostResponse> response) {
+                    if(response.isSuccessful()) {
+                        callback.onSuccess(response.body());
+                    } else {
+                        callback.onFail(response.message());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<CommentPostResponse> call, Throwable t) {
+
+                    callback.onFail(t.getMessage());
+                }
+            });
+        }
+    }
+
+    private void toastNetworkNotAvailable(Context context) {
+
+        Toast.makeText(context, Constant.INTERNET_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
     }
 
 

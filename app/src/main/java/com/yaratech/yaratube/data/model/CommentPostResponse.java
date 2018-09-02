@@ -3,7 +3,8 @@ package com.yaratech.yaratube.data.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class commentPostResponse {
+public class CommentPostResponse {
+
     @SerializedName("error")
     @Expose
     private String error;

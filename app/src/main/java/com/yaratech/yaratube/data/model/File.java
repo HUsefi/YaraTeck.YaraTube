@@ -4,6 +4,10 @@ package com.yaratech.yaratube.data.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import org.parceler.Parcel;
+import org.parceler.ParcelConstructor;
+
+@Parcel
 public class File {
 
     @SerializedName("id")
@@ -15,9 +19,9 @@ public class File {
     @SerializedName("file")
     @Expose
     private String file;
-    @SerializedName("img")
+    /*@SerializedName("img")
     @Expose
-    private Object img;
+    private Object img;*/
     @SerializedName("sku")
     @Expose
     private String sku;
@@ -39,12 +43,12 @@ public class File {
     @SerializedName("description")
     @Expose
     private String description;
-    @SerializedName("sub_fa")
+    /*@SerializedName("sub_fa")
     @Expose
     private Object subFa;
     @SerializedName("sub_en")
     @Expose
-    private Object subEn;
+    private Object subEn;*/
     @SerializedName("is_downloadable")
     @Expose
     private Boolean isDownloadable;
@@ -60,6 +64,11 @@ public class File {
     @SerializedName("file_redirect")
     @Expose
     private String fileRedirect;
+
+    @ParcelConstructor
+    File() {
+
+    }
 
     public Integer getId() {
         return id;
@@ -84,14 +93,14 @@ public class File {
     public void setFile(String file) {
         this.file = file;
     }
-
+/*
     public Object getImg() {
         return img;
     }
-
     public void setImg(Object img) {
         this.img = img;
     }
+*/
 
     public String getSku() {
         return sku;
@@ -149,22 +158,19 @@ public class File {
         this.description = description;
     }
 
-    public Object getSubFa() {
+    /*public Object getSubFa() {
         return subFa;
     }
-
     public void setSubFa(Object subFa) {
         this.subFa = subFa;
     }
-
     public Object getSubEn() {
         return subEn;
     }
-
     public void setSubEn(Object subEn) {
         this.subEn = subEn;
     }
-
+*/
     public Boolean getIsDownloadable() {
         return isDownloadable;
     }

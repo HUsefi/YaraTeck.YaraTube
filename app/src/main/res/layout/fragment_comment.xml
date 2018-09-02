@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".ui.productdetail.comment.CommentFragment">
+    <RatingBar
+        android:id="@+id/comment_score"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="8dp"/>
+
+    <EditText
+        android:id="@+id/comment_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/Comment"
+        android:layout_margin="@dimen/padding_8dp"/>
+
+    <Button
+        android:id="@+id/comment_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#649af9"
+        android:text="@string/submit"
+        android:textColor="@color/White"
+        android:layout_margin="@dimen/padding_8dp"/>
+
+</LinearLayout>

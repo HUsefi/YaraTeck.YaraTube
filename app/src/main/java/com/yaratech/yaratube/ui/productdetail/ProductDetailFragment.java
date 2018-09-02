@@ -4,12 +4,14 @@ package com.yaratech.yaratube.ui.productdetail;
 
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -21,17 +23,21 @@ import com.yaratech.yaratube.data.model.Comment;
 import com.yaratech.yaratube.data.model.Product;
 import com.yaratech.yaratube.data.model.ProductDetails;
 import com.yaratech.yaratube.ui.login.DialogContainerFragment;
+import com.yaratech.yaratube.ui.productdetail.comment.CommentFragment;
+
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.LinearLayoutManager;
 
 
+import org.parceler.Parcels;
+
 import java.util.List;
 
 import static com.yaratech.yaratube.ui.login.DialogContainerFragment.DIALOG_CONTAINER_FRAGMENT_TAG;
-import static java.security.AccessController.getContext;
 
 
-public class ProductDetailFragment extends Fragment implements ProductDetailContract.Veiw{
+
+public class ProductDetailFragment extends Fragment implements ProductDetailContract.View{
 
     ProductDetailPresenter mProductDetailPresenter;
     Product product;
@@ -43,6 +49,7 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
     TextView mTextViewDescription;
     private CommentRecyclerAdapter mCommentRecyclerAdapter;
     public static final String PRODUCT_DETAIL_FRAGMENT_TAG = "ProductDetail";
+    private final static String PRODUCT = "product";
     DialogContainerFragment dialogContainerFragment;
 
 
@@ -59,12 +66,21 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
 //    }
 
     public static ProductDetailFragment newInstance(Product product) {
-        Bundle args = new Bundle();
-        args.putParcelable("product", product);
         ProductDetailFragment fragment = new ProductDetailFragment();
+        Bundle args = new Bundle();
+        args.putParcelable(PRODUCT, Parcels.wrap(product));
         fragment.setArguments(args);
         return fragment;
     }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        this.product = Parcels.unwrap(getArguments().getParcelable(PRODUCT));
+
+    }
+
 
 
     @Override
@@ -85,6 +101,18 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
         mRecyclerView=view.findViewById(R.id.recycler_view_comment);
         initRecycleview();
 
+        Button comment = view.findViewById(R.id.button_comment);
+        comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mProductDetailPresenter.isLogin())
+                    openCommentDialog(product.getId());
+                else {
+                    mProductDetailPresenter.login(getChildFragmentManager());
+                }
+            }
+        });
+
     }
 
 
@@ -93,7 +121,7 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mProductDetailPresenter =new ProductDetailPresenter(getContext(),this);
-        product = getArguments().getParcelable("product");
+      //  product = getArguments().getParcelable("product");
         mProductDetailPresenter.fetchDataProductDetailFromRemote(product.getId());
 
     }
@@ -122,11 +150,11 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
     }
 
     @Override
-    public void onGetDateProductDetail(ProductDetails productDetails) {
-        Glide.with(getContext()).load(productDetails.getFeatureAvatar().getXxhdpi()).into(mImageviewdisplay);
-        mTextViewTitle.setText(productDetails.getName());
-        mTextViewDescription.setText(productDetails.getDescription());
-        mProductDetailPresenter.fetchCommentFromRemote(product.getId());
+    public void onGetDateProductDetail(Product product) {
+        Glide.with(getContext()).load(product.getFeatureAvatar().getXxhdpi()).into(mImageviewdisplay);
+        mTextViewTitle.setText(product.getName());
+        mTextViewDescription.setText(product.getDescription());
+        mProductDetailPresenter.fetchCommentFromRemote(product);
         mImageViewIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -134,15 +162,29 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
                 dialogContainerFragment.show(getFragmentManager(),DIALOG_CONTAINER_FRAGMENT_TAG);
             }
         });
-
     }
+
+
 
     @Override
     public void onGetDateComment(List<Comment> commentList) {
         mCommentRecyclerAdapter.setData(commentList);
     }
 
-
+    @Override
+    public void openCommentDialog(int productId) {
+        CommentFragment commentFragment = CommentFragment.newInstance(productId);
+        commentFragment.show(getChildFragmentManager(), commentFragment.getClass().getName());
+    }
 
 
 }
+
+
+//    public static ProductDetailFragment newInstance(Product product) {
+//        Bundle args = new Bundle();
+//        args.putParcelable("product", product);
+//        ProductDetailFragment fragment = new ProductDetailFragment();
+//        fragment.setArguments(args);
+//        return fragment;
+//    }

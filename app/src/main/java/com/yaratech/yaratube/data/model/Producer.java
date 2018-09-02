@@ -3,7 +3,11 @@ package com.yaratech.yaratube.data.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import org.parceler.Parcel;
+
+@Parcel
 public class Producer {
+
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -18,7 +22,7 @@ public class Producer {
     private String producerSlug;
     @SerializedName("avatar")
     @Expose
-    private Object avatar;
+    private Avatar avatar;
     @SerializedName("description")
     @Expose
     private String description;
@@ -59,7 +63,7 @@ public class Producer {
         return avatar;
     }
 
-    public void setAvatar(Object avatar) {
+    public void setAvatar(Avatar avatar) {
         this.avatar = avatar;
     }
 
@@ -70,4 +74,5 @@ public class Producer {
     public void setDescription(String description) {
         this.description = description;
     }
+
 }

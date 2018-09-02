@@ -4,8 +4,11 @@ package com.yaratech.yaratube.data.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import static com.yaratech.yaratube.util.Constant.BASE_URL;
+import org.parceler.Parcel;
+import org.parceler.ParcelConstructor;
 
+import static com.yaratech.yaratube.util.Constant.BASE_URL;
+@Parcel
 public class Avatar {
 
     @SerializedName("mdpi")
@@ -23,6 +26,11 @@ public class Avatar {
     @SerializedName("hdpi")
     @Expose
     private String hdpi;
+
+    @ParcelConstructor
+    Avatar() {
+
+    }
 
     public String getMdpi() {
         return mdpi;

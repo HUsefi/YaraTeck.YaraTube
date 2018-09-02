@@ -32,4 +32,6 @@
     <string name="text_view_not_recieve">کد را دریافت نکردید؟</string>
     <string name="button_edit_number">تصحیح شماره</string>
     <string name="google_method">از طریق حساب گوگل</string>
+    <string name="Comment">نظر</string>
+    <string name="submit">ثبت</string>
 </resources>

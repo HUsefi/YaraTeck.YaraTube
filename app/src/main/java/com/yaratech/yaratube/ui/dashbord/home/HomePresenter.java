@@ -1,5 +1,7 @@
 package com.yaratech.yaratube.ui.dashbord.home;
 
+import android.content.Context;
+
 import com.yaratech.yaratube.data.model.Store;
 import com.yaratech.yaratube.data.source.Repository;
 import com.yaratech.yaratube.data.source.remote.APIResult;
@@ -8,10 +10,11 @@ public class HomePresenter implements HomeContract.Presenter {
 
     HomeContract.Veiw view;
     Repository mRepository;
+    Context context;
 
     public HomePresenter(HomeContract.Veiw view) {
         this.view = view;
-        mRepository = new Repository();
+        mRepository = new Repository(context);
 
     }
 

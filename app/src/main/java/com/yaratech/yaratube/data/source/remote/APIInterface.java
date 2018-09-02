@@ -4,6 +4,7 @@ package com.yaratech.yaratube.data.source.remote;
 import com.yaratech.yaratube.data.model.Activation;
 import com.yaratech.yaratube.data.model.CategoryList;
 import com.yaratech.yaratube.data.model.Comment;
+import com.yaratech.yaratube.data.model.CommentPostResponse;
 import com.yaratech.yaratube.data.model.MobileLoginStep1;
 import com.yaratech.yaratube.data.model.Product;
 import com.yaratech.yaratube.data.model.ProductDetails;
@@ -16,6 +17,7 @@ import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -33,7 +35,7 @@ public interface APIInterface {
     Call<List<Product>> getProductListData(@Path("product_id") int productId);
 
     @GET("/product/{product_id}")
-    Call<ProductDetails> getProductDetailData(@Path("product_id") int productId);
+    Call<Product> getProductDetailData(@Path("product_id") int productId);
 
     @GET("/comment/{product_id}")
     Call<List<Comment>> getCommentData(@Path("product_id") int productId);
@@ -53,4 +55,13 @@ public interface APIInterface {
     Call<Activation> activateStep2(@Field("mobile") String phoneNumber,
                                    @Field("device_id") String deviceId,
                                    @Field("verification_code") int verificationCode);
+
+    // send user comment to server
+    @POST("comment/{productId}")
+    @FormUrlEncoded
+    Call<CommentPostResponse> sendComment(@Field("title") String title,
+                                          @Field("score") int score,
+                                          @Field("comment_text") String commnetText,
+                                          @Path("productId") int productId,
+                                          @Header("Authorization") String token);
 }
