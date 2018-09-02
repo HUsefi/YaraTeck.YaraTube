@@ -36,4 +36,7 @@ public interface UserDao {
 
     @Update
     void update(UserEntity userEntity);
+
+    @Query("UPDATE user SET token = null")
+    void deleteToken();
 }
