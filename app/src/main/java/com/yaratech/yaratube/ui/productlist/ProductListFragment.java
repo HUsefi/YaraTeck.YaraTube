@@ -1,7 +1,6 @@
 package com.yaratech.yaratube.ui.productlist;
 
 
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,10 +31,12 @@ public class ProductListFragment extends Fragment implements ProductListContract
     ProductListPresenter mProductListPresenter;
     private ProgressBar mProgressBar;
     private RecyclerView mRecyclerView;
+    boolean isLoading = false;
     private ProductListAdapter mProductListAdapter;
     public static final String PRODUCT_LIST_FRAGMENT_TAG = "ProductList";
     OnProductItemClick onProductItemClick;
-
+    private int offset = 0;
+    private int limit = 10;
 
 
     public ProductListFragment() {
@@ -53,6 +55,7 @@ public class ProductListFragment extends Fragment implements ProductListContract
             onProductItemClick = (OnProductItemClick) context;
         super.onAttach(context);
     }
+
     public void onDetach() {
         onProductItemClick = null;
         super.onDetach();
@@ -70,18 +73,42 @@ public class ProductListFragment extends Fragment implements ProductListContract
         super.onViewCreated(view, savedInstanceState);
         mProgressBar = view.findViewById(R.id.progress_bar_list_product);
         mProgressBar.setVisibility(View.GONE);
-        mProductListPresenter = new ProductListPresenter( this);
+        mProductListPresenter = new ProductListPresenter(this);
         mRecyclerView = view.findViewById(R.id.recycler_view_list_product);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),2,
-                LinearLayout.VERTICAL,false));
-        mProductListAdapter = new ProductListAdapter(getContext(),this);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2,
+                LinearLayout.VERTICAL, false);
+        mRecyclerView.setLayoutManager(gridLayoutManager);
+        mProductListAdapter = new ProductListAdapter(getContext(), this);
         mRecyclerView.setAdapter(mProductListAdapter);
+        mRecyclerView.addOnScrollListener(new PaginationScrollListener(gridLayoutManager) {
+            @Override
+            protected void loadMoreItems() {
+                isLoading = true;
+                Log.e("OFFSET", "" + offset);
+                mProductListPresenter.fetchDataProductListFromRemote(getArguments().getInt("CategoryId"), offset, limit);
+            }
+
+//            @Override
+//            public int getTotalPageCount() {
+//                return 0;
+//            }
+
+            @Override
+            public boolean isLastPage() {
+                return false;
+            }
+
+            @Override
+            public boolean isLoading() {
+                return isLoading;
+            }
+        });
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mProductListPresenter.fetchDataProductListFromRemote(getArguments().getInt("CategoryId"));
+        mProductListPresenter.fetchDataProductListFromRemote(getArguments().getInt("CategoryId"), offset, limit);
     }
 
     @Override
@@ -97,13 +124,16 @@ public class ProductListFragment extends Fragment implements ProductListContract
 
     @Override
     public void notAvailableDate() {
+        isLoading = false;
         Toast.makeText(getContext(), "not available data", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onGetDateProductList(List<Product> productLists) {
-        mProductListAdapter.setData(productLists);
-
+        isLoading = false;
+        mProductListAdapter.UpdateData(productLists);
+        offset += productLists.size();
+        Log.e("Tag", " mag " + offset + " " + productLists.size());
     }
 
     @Override

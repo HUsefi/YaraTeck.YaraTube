@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.support.v7.util.DiffUtil;
 
 import com.bumptech.glide.Glide;
 import com.yaratech.yaratube.MainActivity;
@@ -32,9 +33,16 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         this.mItemClickListener = mItemClickListener;
     }
 
-    public void setData(List<Product> productLists) {
-        this.productLists = productLists;
-        notifyDataSetChanged();
+    public void UpdateData(List<Product> productLists) {
+       // this.productLists = productLists;
+       // notifyDataSetChanged();
+        List<Product> newProductList = new ArrayList<>();
+        newProductList.addAll(this.productLists);
+        newProductList.addAll(productLists);
+        DiffUtil.DiffResult diffResult
+                = DiffUtil.calculateDiff(new DiffUtilfCallBack(this.productLists, newProductList));
+        this.productLists = newProductList;
+        diffResult.dispatchUpdatesTo(this);
     }
 
 

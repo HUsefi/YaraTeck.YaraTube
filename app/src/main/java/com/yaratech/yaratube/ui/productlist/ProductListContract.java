@@ -16,6 +16,6 @@ public interface ProductListContract {
     }
 
     public interface Presenter{
-        void fetchDataProductListFromRemote(int categoryId);
+        void fetchDataProductListFromRemote(int categoryId, int offset, int limit);
     }
 }

@@ -2,6 +2,7 @@ package com.yaratech.yaratube.data.source;
 
 import android.content.Context;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.yaratech.yaratube.data.model.Activation;
@@ -99,8 +100,8 @@ public class UserRepository {
             , String phoneNumber
             , String deviceId
             , int verificationCode) {
-
-        Call<Activation> call = service.activateStep2(phoneNumber, deviceId, verificationCode);
+        Log.e("TAGG",""+phoneNumber);
+        Call<Activation> call = service.activateStep2(phoneNumber, deviceId, verificationCode,"");
 
         if(Constant.isNetworkAvailable(context)) {
             call.enqueue(new Callback<Activation>() {

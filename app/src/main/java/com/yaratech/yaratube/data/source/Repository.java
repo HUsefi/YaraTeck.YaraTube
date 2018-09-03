@@ -78,8 +78,8 @@ public class Repository {
     }
 
 
-    public void getProductList(final APIResult<List<Product>> callBack, int categoryId) {
-        Call<List<Product>> productList = service.getProductListData(categoryId);
+    public void getProductList(final APIResult<List<Product>> callBack, int categoryId,int offset, int limit) {
+        Call<List<Product>> productList = service.getProductListData(categoryId,offset,limit);
         productList.enqueue(new Callback<List<Product>>() {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {

@@ -20,6 +20,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 import static com.yaratech.yaratube.util.Constant.STORE_ID;
 
@@ -32,7 +33,9 @@ public interface APIInterface {
     Call<List<CategoryList>> getCategoryData();
 
     @GET("/listproducts/{product_id}")
-    Call<List<Product>> getProductListData(@Path("product_id") int productId);
+    Call<List<Product>> getProductListData(@Path("product_id") int productId
+            ,@Query("offset") int offset
+            ,@Query("limit") int limit);
 
     @GET("/product/{product_id}")
     Call<Product> getProductDetailData(@Path("product_id") int productId);
@@ -54,7 +57,8 @@ public interface APIInterface {
     @FormUrlEncoded
     Call<Activation> activateStep2(@Field("mobile") String phoneNumber,
                                    @Field("device_id") String deviceId,
-                                   @Field("verification_code") int verificationCode);
+                                   @Field("verification_code") int verificationCode,
+                                   @Field("nickname") String nickname);
 
     // send user comment to server
     @POST("comment/{productId}")

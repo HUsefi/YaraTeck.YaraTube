@@ -52,13 +52,13 @@ public class ProductDetailPresenter implements ProductDetailContract.Presenter {
              @Override
              public void onSuccess(List<Comment> result) {
                  mView.hideProgressBar();
-//                mView.onGetDateComment(commentList);
+                mView.onGetDateComment(result);
              }
 
              @Override
              public void onFail(String errorMessage) {
                  mView.hideProgressBar();
-//                mView.notAvailableDate();
+                mView.notAvailableDate();
              }
          },product);
 

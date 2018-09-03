@@ -34,4 +34,5 @@
     <string name="google_method">از طریق حساب گوگل</string>
     <string name="Comment">نظر</string>
     <string name="submit">ثبت</string>
+    <string name="comment_response">نظر شما پس از بررسی ثبت خواهد شد</string>
 </resources>

@@ -1,8 +1,6 @@
 package com.yaratech.yaratube.ui.productdetail;
 
 
-
-
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
@@ -16,9 +14,12 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.bumptech.glide.Glide;
 import com.yaratech.yaratube.R;
+
 import android.support.v4.app.FragmentManager;
+
 import com.yaratech.yaratube.data.model.Comment;
 import com.yaratech.yaratube.data.model.Product;
 import com.yaratech.yaratube.data.model.ProductDetails;
@@ -36,8 +37,7 @@ import java.util.List;
 import static com.yaratech.yaratube.ui.login.DialogContainerFragment.DIALOG_CONTAINER_FRAGMENT_TAG;
 
 
-
-public class ProductDetailFragment extends Fragment implements ProductDetailContract.View{
+public class ProductDetailFragment extends Fragment implements ProductDetailContract.View {
 
     ProductDetailPresenter mProductDetailPresenter;
     Product product;
@@ -82,7 +82,6 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -92,20 +91,20 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mImageviewdisplay=view.findViewById(R.id.image_view_palyer);
-        mTextViewTitle=view.findViewById(R.id.text_view_product_name_player);
-        mImageViewIcon=view.findViewById(R.id.image_view_icon);
+        mImageviewdisplay = view.findViewById(R.id.image_view_palyer);
+        mTextViewTitle = view.findViewById(R.id.text_view_product_name_player);
+        mImageViewIcon = view.findViewById(R.id.image_view_icon);
         mTextViewDescription = view.findViewById(R.id.text_view_content_discription);
-        mProgressBar=view.findViewById(R.id.progress_bar_detail_product);
+        mProgressBar = view.findViewById(R.id.progress_bar_detail_product);
         mProgressBar.setVisibility(View.GONE);
-        mRecyclerView=view.findViewById(R.id.recycler_view_comment);
+        mRecyclerView = view.findViewById(R.id.recycler_view_comment);
         initRecycleview();
 
         Button comment = view.findViewById(R.id.button_comment);
         comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mProductDetailPresenter.isLogin())
+                if (mProductDetailPresenter.isLogin())
                     openCommentDialog(product.getId());
                 else {
                     mProductDetailPresenter.login(getChildFragmentManager());
@@ -116,12 +115,11 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
     }
 
 
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mProductDetailPresenter =new ProductDetailPresenter(getContext(),this);
-      //  product = getArguments().getParcelable("product");
+        mProductDetailPresenter = new ProductDetailPresenter(getContext(), this);
+        //  product = getArguments().getParcelable("product");
         mProductDetailPresenter.fetchDataProductDetailFromRemote(product.getId());
 
     }
@@ -158,13 +156,13 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
         mImageViewIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialogContainerFragment = DialogContainerFragment.newInstance();
-                dialogContainerFragment.show(getFragmentManager(),DIALOG_CONTAINER_FRAGMENT_TAG);
+                if (!mProductDetailPresenter.isLogin()) {
+                    dialogContainerFragment = DialogContainerFragment.newInstance();
+                    dialogContainerFragment.show(getFragmentManager(), DIALOG_CONTAINER_FRAGMENT_TAG);
+                }
             }
         });
     }
-
-
 
     @Override
     public void onGetDateComment(List<Comment> commentList) {
