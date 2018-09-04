@@ -1,11 +1,13 @@
 package com.yaratech.yaratube.ui.productdetail;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.yaratech.yaratube.ExoPlayerActivity;
 import com.yaratech.yaratube.R;
 
 import android.support.v4.app.FragmentManager;
@@ -25,6 +28,7 @@ import com.yaratech.yaratube.data.model.Product;
 import com.yaratech.yaratube.data.model.ProductDetails;
 import com.yaratech.yaratube.ui.login.DialogContainerFragment;
 import com.yaratech.yaratube.ui.productdetail.comment.CommentFragment;
+import static com.yaratech.yaratube.ExoPlayerActivity.PLAYER_ACTIVITY_KEY;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -51,6 +55,7 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
     public static final String PRODUCT_DETAIL_FRAGMENT_TAG = "ProductDetail";
     private final static String PRODUCT = "product";
     DialogContainerFragment dialogContainerFragment;
+    private ProductDetails productDetails;
 
 
     public ProductDetailFragment() {
@@ -159,6 +164,11 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
                 if (!mProductDetailPresenter.isLogin()) {
                     dialogContainerFragment = DialogContainerFragment.newInstance();
                     dialogContainerFragment.show(getFragmentManager(), DIALOG_CONTAINER_FRAGMENT_TAG);
+                }
+                else {
+                    Intent intent = new Intent(getActivity(), ExoPlayerActivity.class);
+                    intent.putExtra(PLAYER_ACTIVITY_KEY, productDetails.getFiles().get(0).getFile());
+                    startActivity(intent);
                 }
             }
         });

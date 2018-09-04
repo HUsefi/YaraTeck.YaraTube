@@ -81,11 +81,13 @@ public class ProductListFragment extends Fragment implements ProductListContract
         mProductListAdapter = new ProductListAdapter(getContext(), this);
         mRecyclerView.setAdapter(mProductListAdapter);
         mRecyclerView.addOnScrollListener(new PaginationScrollListener(gridLayoutManager) {
+
             @Override
             protected void loadMoreItems() {
                 isLoading = true;
                 Log.e("OFFSET", "" + offset);
-                mProductListPresenter.fetchDataProductListFromRemote(getArguments().getInt("CategoryId"), offset, limit);
+                mProductListPresenter.fetchDataProductListFromRemote(getArguments().getInt("CategoryId")
+                        , offset, limit);
             }
 
 //            @Override
@@ -108,7 +110,8 @@ public class ProductListFragment extends Fragment implements ProductListContract
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mProductListPresenter.fetchDataProductListFromRemote(getArguments().getInt("CategoryId"), offset, limit);
+        mProductListPresenter.fetchDataProductListFromRemote(getArguments().getInt("CategoryId")
+                , offset, limit);
     }
 
     @Override
