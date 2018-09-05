@@ -37,8 +37,8 @@ public interface APIInterface {
             ,@Query("offset") int offset
             ,@Query("limit") int limit);
 
-    @GET("/product/{product_id}")
-    Call<Product> getProductDetailData(@Path("product_id") int productId);
+    @GET("/product/{product_id}?device_os=ios")
+    Call<Product> getProductDetailData(@Path("product_id") int productId );
 
     @GET("/comment/{product_id}")
     Call<List<Comment>> getCommentData(@Path("product_id") int productId);

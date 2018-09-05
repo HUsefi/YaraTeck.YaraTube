@@ -22,7 +22,6 @@ import com.yaratech.yaratube.ExoPlayerActivity;
 import com.yaratech.yaratube.R;
 
 import android.support.v4.app.FragmentManager;
-
 import com.yaratech.yaratube.data.model.Comment;
 import com.yaratech.yaratube.data.model.Product;
 import com.yaratech.yaratube.data.model.ProductDetails;
@@ -55,7 +54,7 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
     public static final String PRODUCT_DETAIL_FRAGMENT_TAG = "ProductDetail";
     private final static String PRODUCT = "product";
     DialogContainerFragment dialogContainerFragment;
-    private ProductDetails productDetails;
+
 
 
     public ProductDetailFragment() {
@@ -117,8 +116,32 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
             }
         });
 
+        mImageViewIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               showPlay();
+            }
+        });
+
+        mImageviewdisplay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPlay();
+            }
+        });
     }
 
+    void showPlay(){
+        if (!mProductDetailPresenter.isLogin()) {
+            dialogContainerFragment = DialogContainerFragment.newInstance();
+            dialogContainerFragment.show(getFragmentManager(), DIALOG_CONTAINER_FRAGMENT_TAG);
+        }
+        else {
+            Intent intent = new Intent(getContext(), ExoPlayerActivity.class);
+            intent.putExtra(PLAYER_ACTIVITY_KEY, product.getFiles().get(0).getFile());
+            startActivity(intent);
+        }
+    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -154,25 +177,15 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
 
     @Override
     public void onGetDateProductDetail(Product product) {
+        this.product=product;
         Glide.with(getContext()).load(product.getFeatureAvatar().getXxhdpi()).into(mImageviewdisplay);
         mTextViewTitle.setText(product.getName());
         mTextViewDescription.setText(product.getDescription());
         mProductDetailPresenter.fetchCommentFromRemote(product);
-        mImageViewIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!mProductDetailPresenter.isLogin()) {
-                    dialogContainerFragment = DialogContainerFragment.newInstance();
-                    dialogContainerFragment.show(getFragmentManager(), DIALOG_CONTAINER_FRAGMENT_TAG);
-                }
-                else {
-                    Intent intent = new Intent(getActivity(), ExoPlayerActivity.class);
-                    intent.putExtra(PLAYER_ACTIVITY_KEY, productDetails.getFiles().get(0).getFile());
-                    startActivity(intent);
-                }
-            }
-        });
+
     }
+
+
 
     @Override
     public void onGetDateComment(List<Comment> commentList) {

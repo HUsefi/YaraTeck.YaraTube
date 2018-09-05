@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.hls.HlsMediaSource;
@@ -24,7 +26,7 @@ public class ExoPlayerActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String videoUri = intent.getStringExtra(PLAYER_ACTIVITY_KEY);
-
+        Log.e("TAG",""+ videoUri);
         playerView = (PlayerView) findViewById(R.id.player_view);
         simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(this, new DefaultTrackSelector());
         DefaultDataSourceFactory dataSourceFactory = new DefaultDataSourceFactory(this,
@@ -38,5 +40,12 @@ public class ExoPlayerActivity extends AppCompatActivity {
         playerView.setPlayer(simpleExoPlayer);
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        playerView.setPlayer(null);
+        simpleExoPlayer.release();
+        simpleExoPlayer = null;
+    }
 
 }
