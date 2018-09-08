@@ -32,6 +32,7 @@ import android.widget.Toast;
 import com.yaratech.yaratube.R;
 import com.yaratech.yaratube.data.source.local.AppDatabase;
 import com.yaratech.yaratube.ui.login.LoginDialogContract;
+import com.yaratech.yaratube.ui.login.verification.broadcastreciever.SMSListener;
 import com.yaratech.yaratube.util.Constant;
 
 import java.util.ArrayList;
@@ -46,9 +47,10 @@ public class VerificationFragment extends Fragment implements VerificationContra
     private VerificationContract.Presenter presenter;
     private LoginDialogContract.steps listener;
     private SharedPreferences mSharedPreferences;
-    private EditText mNumberEditText;
     private static final String PREF_USER_MOBILE_PHONE = "pref_user_mobile_phone";
     private static final int SMS_PERMISSION_CODE = 0;
+    private SMSListener smsListener;
+    private EditText verificationCode;
 
 
     public VerificationFragment() {
@@ -77,7 +79,20 @@ public class VerificationFragment extends Fragment implements VerificationContra
 
         if (!hasReadSmsPermission()) {
             showRequestPermissionsInfoAlertDialog();
+            Log.e("IFTAG","permision");
         }
+        else
+        {
+            Log.e("TAGG","doooo");
+        }
+
+        smsListener = new SMSListener();
+        smsListener.bindListener(new SMSListener.SmsBroadCastListener() {
+            @Override
+            public void onTextReceived(String message) {
+                verificationCode.setText(message);
+            }
+        });
 
     }
 
@@ -96,36 +111,28 @@ public class VerificationFragment extends Fragment implements VerificationContra
         Button submitCodeButton = view.findViewById(R.id.button_submit_code);
         Button editPhoneButton = view.findViewById(R.id.button_edit_code);
 
-        final EditText verificationCode = view.findViewById(R.id.edit_text_enter_verification);
+         verificationCode = view.findViewById(R.id.edit_text_enter_verification);
 
         final String deviceId = Settings.Secure.getString(view.getContext().getContentResolver()
                 , Settings.Secure.ANDROID_ID);
 
-//        submitCodeButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(Constant.validateActivationCode(verificationCode.getText().toString())) {
-//                    // fixme send user instead of fields
-//                    presenter.onSendVerificationCode(phoneNumber, deviceId,
-//                            Integer.parseInt(Constant.faToEn(verificationCode.getText().toString())));
-//                    Constant.hideKeyboardFrom(view.getContext(), view);
-//                }
-//                else
-//                    showErrorMessage(getString(R.string.invalid_code));
-//            }
-//        });
-
-        editPhoneButton.setOnClickListener(new View.OnClickListener() {
+        submitCodeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.goToLoginPhone();
-                SharedPreferences mSharedPreferences = (getActivity()).getPreferences(Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = mSharedPreferences.edit();
-                editor.clear();
-                editor.putInt("Login Step", 2);
-                editor.commit();
+                if(Constant.validateActivationCode(verificationCode.getText().toString())) {
+                    // fixme send user instead of fields
+                    presenter.onSendVerificationCode(phoneNumber, deviceId,
+                            Integer.parseInt(Constant.faToEn(verificationCode.getText().toString())));
+                    Constant.hideKeyboardFrom(view.getContext(), view);
+                }
+                else
+                    showErrorMessage(getString(R.string.invalid_code));
             }
         });
+
+
+
+        editPhoneButton.setOnClickListener(new MyOnClickListener());
     }
 
     /**
@@ -208,5 +215,15 @@ public class VerificationFragment extends Fragment implements VerificationContra
     }
 
 
-
+    private class MyOnClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            listener.goToLoginPhone();
+            SharedPreferences mSharedPreferences = (getActivity()).getPreferences(Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = mSharedPreferences.edit();
+            editor.clear();
+            editor.putInt("Login Step", 2);
+            editor.commit();
+        }
+    }
 }
