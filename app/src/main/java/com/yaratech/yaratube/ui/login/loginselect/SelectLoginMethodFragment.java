@@ -38,7 +38,9 @@ import com.yaratech.yaratube.ui.login.LoginDialogContract;
  * A simple {@link Fragment} subclass.
  */
 public class SelectLoginMethodFragment extends Fragment implements SelectLoginMethodContract.View
-        , View.OnClickListener{
+        , View.OnClickListener
+        , GoogleApiClient.ConnectionCallbacks
+        , GoogleApiClient.OnConnectionFailedListener{
 
 
     private LoginDialogContract.steps listener;
@@ -47,6 +49,9 @@ public class SelectLoginMethodFragment extends Fragment implements SelectLoginMe
     private static final int RC_SIGN_IN = 1;
     private GoogleSignInClient mGoogleSignInClient;
     private TextView mStatusTextView;
+    private boolean mIsResolving = false;
+    private boolean mShouldResolve = false;
+    private GoogleApiClient mGoogleApiClient;
 
 
 
@@ -205,5 +210,40 @@ public class SelectLoginMethodFragment extends Fragment implements SelectLoginMe
                 break;
         }
     }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
     }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        Log.d(TAG, "onConnectionFailed:" + connectionResult);
+
+        if (!mIsResolving && mShouldResolve) {
+            if (connectionResult.hasResolution()) {
+                try {
+                    connectionResult.startResolutionForResult(this, RC_SIGN_IN);
+                    mIsResolving = true;
+                } catch (IntentSender.SendIntentException e) {
+                    Log.e(TAG, "Could not resolve ConnectionResult.", e);
+                    mIsResolving = false;
+                    mGoogleApiClient.connect();
+                }
+            } else {
+                // Could not resolve the connection result, show the user an
+                // error dialog.
+                //showErrorDialog(connectionResult);
+            }
+        } else {
+            // Show the signed-out UI
+           // showSignedOutUI();
+        }
+    }
+}
 
