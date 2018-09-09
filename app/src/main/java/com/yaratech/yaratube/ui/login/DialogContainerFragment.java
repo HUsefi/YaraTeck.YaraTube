@@ -91,6 +91,7 @@ public class DialogContainerFragment extends DialogFragment implements LoginDial
         getChildFragmentManager().beginTransaction().replace(R.id.login_container, verificationFragment).commit();
     }
 
-    }
+
+}
   
 

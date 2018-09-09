@@ -3,11 +3,8 @@ package com.yaratech.yaratube.ui.login.verification;
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -18,15 +15,12 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.content.LocalBroadcastManager;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yaratech.yaratube.R;
@@ -35,8 +29,6 @@ import com.yaratech.yaratube.ui.login.LoginDialogContract;
 import com.yaratech.yaratube.ui.login.verification.broadcastreciever.SMSListener;
 import com.yaratech.yaratube.util.Constant;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -47,7 +39,6 @@ public class VerificationFragment extends Fragment implements VerificationContra
     private VerificationContract.Presenter presenter;
     private LoginDialogContract.steps listener;
     private SharedPreferences mSharedPreferences;
-    private static final String PREF_USER_MOBILE_PHONE = "pref_user_mobile_phone";
     private static final int SMS_PERMISSION_CODE = 0;
     private SMSListener smsListener;
     private EditText verificationCode;
@@ -135,20 +126,6 @@ public class VerificationFragment extends Fragment implements VerificationContra
         editPhoneButton.setOnClickListener(new MyOnClickListener());
     }
 
-    /**
-     * Checks if stored SharedPreferences value needs updating and updates \o/
-//     */
-//    private void checkAndUpdateUserPrefNumber(){
-//        if (TextUtils.isEmpty(phoneNumber) && !phoneNumber.equals(mNumberEditText.getText().toString())) {
-//            mSharedPreferences
-//                    .edit()
-//                    .putString(PREF_USER_MOBILE_PHONE, mNumberEditText.getText().toString())
-//                    .apply();
-//        }
-//    }
-
-
-
     @Override
     public void activationDone() {
         Toast.makeText(this.getContext(), R.string.success_sign_in, Toast.LENGTH_SHORT).show();
@@ -219,7 +196,7 @@ public class VerificationFragment extends Fragment implements VerificationContra
         @Override
         public void onClick(View view) {
             listener.goToLoginPhone();
-            SharedPreferences mSharedPreferences = (getActivity()).getPreferences(Context.MODE_PRIVATE);
+             mSharedPreferences = (getActivity()).getPreferences(Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = mSharedPreferences.edit();
             editor.clear();
             editor.putInt("Login Step", 2);
