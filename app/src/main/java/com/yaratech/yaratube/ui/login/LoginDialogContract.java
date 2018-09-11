@@ -6,5 +6,6 @@ public interface LoginDialogContract {
 
         void goToLoginPhone();
         void goToLoginCode(String phoneNumber);
+        void hideDialogFragment();
     }
 }

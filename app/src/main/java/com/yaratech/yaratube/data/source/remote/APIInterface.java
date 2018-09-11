@@ -5,6 +5,7 @@ import com.yaratech.yaratube.data.model.Activation;
 import com.yaratech.yaratube.data.model.CategoryList;
 import com.yaratech.yaratube.data.model.Comment;
 import com.yaratech.yaratube.data.model.CommentPostResponse;
+import com.yaratech.yaratube.data.model.GoogleLoginResponse;
 import com.yaratech.yaratube.data.model.MobileLoginStep1;
 import com.yaratech.yaratube.data.model.Product;
 import com.yaratech.yaratube.data.model.ProductDetails;
@@ -68,4 +69,11 @@ public interface APIInterface {
                                           @Field("comment_text") String commnetText,
                                           @Path("productId") int productId,
                                           @Header("Authorization") String token);
+    @FormUrlEncoded
+    @POST("login_google/" + Constant.STORE_ID )
+    Call<GoogleLoginResponse> sendGoogleLogin(
+            @Field("token_id") String tokenId,
+            @Field("device_id") String deviceId,
+            @Field("device_os") String deviceOs,
+            @Field("device_model") String deviceModel);
 }

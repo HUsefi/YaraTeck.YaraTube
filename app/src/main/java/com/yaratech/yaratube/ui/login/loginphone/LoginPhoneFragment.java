@@ -24,7 +24,7 @@ import com.yaratech.yaratube.util.Constant;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LoginPhoneFragment extends Fragment implements LoginPhoneContract.View{
+public class LoginPhoneFragment extends Fragment implements LoginPhoneContract.View {
 
     private EditText phoneNumber;
     private LoginPhonePresenter presenter;
@@ -40,9 +40,9 @@ public class LoginPhoneFragment extends Fragment implements LoginPhoneContract.V
     }
 
     public static LoginPhoneFragment newInstance() {
-        
+
         Bundle args = new Bundle();
-        
+
         LoginPhoneFragment fragment = new LoginPhoneFragment();
         fragment.setArguments(args);
         return fragment;
@@ -100,7 +100,7 @@ public class LoginPhoneFragment extends Fragment implements LoginPhoneContract.V
 
     @Override
     public void smsReceived(String phoneNumber) {
-       listener.goToLoginCode(phoneNumber);
+        listener.goToLoginCode(phoneNumber);
     }
 
     @Override

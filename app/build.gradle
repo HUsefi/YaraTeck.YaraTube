@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'yaratech'
+            keyPassword '&p2=Z9XZRGt3f<qU'
+            storeFile file('C:/Users/Hassan/Desktop/Yara/yaratech/yaratech_sign.jks')
+            storePassword '&p2=Z9XZRGt3f<qU'
+        }
+    }
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.yaratech.yaratube"
@@ -14,6 +22,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        debug {
+            signingConfig signingConfigs.config
         }
     }
 }
@@ -40,7 +52,8 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer-dash:2.7.3'
     implementation 'com.google.android.exoplayer:exoplayer-ui:2.7.3'
     implementation 'com.android.support:appcompat-v7:27.1.1'
-    compile 'com.google.android.gms:play-services-auth:15.0.1'
-    compile 'com.google.android.gms:play-services-identity:15.0.1'
-    compile 'com.google.android.gms:play-services-plus:15.0.1'
+    implementation 'com.google.android.gms:play-services-auth:16.0.0'
+    implementation 'com.google.android.gms:play-services-identity:15.0.1'
+    implementation 'com.google.android.gms:play-services-plus:15.0.1'
 }
+apply plugin: 'com.google.gms.google-services'

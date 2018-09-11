@@ -42,15 +42,7 @@
         android:layout_margin="8dp"
         android:paddingStart="8dp" />
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/sign_in_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/google_method"
-        android:textColor="@color/White"
-        android:background="@drawable/shape"
-        android:layout_margin="8dp"
-        android:paddingStart="8dp" />
+
 
     <LinearLayout
         android:id="@+id/sign_out_and_disconnect"

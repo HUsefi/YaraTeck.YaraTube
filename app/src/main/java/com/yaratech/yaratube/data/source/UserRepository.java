@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.yaratech.yaratube.data.model.Activation;
 import com.yaratech.yaratube.data.model.CommentPostResponse;
+import com.yaratech.yaratube.data.model.GoogleLoginResponse;
 import com.yaratech.yaratube.data.model.MobileLoginStep1;
 import com.yaratech.yaratube.data.source.local.AppDatabase;
 import com.yaratech.yaratube.data.source.local.UserEntity;
@@ -142,6 +143,29 @@ public class UserRepository {
                 @Override
                 public void onFailure(Call<CommentPostResponse> call, Throwable t) {
 
+                    callback.onFail(t.getMessage());
+                }
+            });
+        }
+    }
+
+
+    public void sendGoogleLogin(String tokenId, String deviceId, String deviceos, String deviceModle, final
+                                APIResult<GoogleLoginResponse> callback){
+        Call<GoogleLoginResponse> call = service.sendGoogleLogin(tokenId,deviceId,deviceos,deviceModle);
+        if(Constant.isNetworkAvailable(context)){
+            call.enqueue(new Callback<GoogleLoginResponse>() {
+                @Override
+                public void onResponse(Call<GoogleLoginResponse> call, Response<GoogleLoginResponse> response) {
+                    if(response.isSuccessful()) {
+                        callback.onSuccess(response.body());
+                    } else {
+                        callback.onFail(response.message());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<GoogleLoginResponse> call, Throwable t) {
                     callback.onFail(t.getMessage());
                 }
             });

@@ -103,4 +103,5 @@
     <!-- Server Client ID.  This should be a valid Web OAuth 2.0 Client ID obtained
          from https://console.developers.google.com/ -->
     <string name="server_client_id">YOUR_SERVER_CLIENT_ID</string>
+    <string name="success_login_google">ورود شما با موفقیت انجام شد!!</string>
 </resources>

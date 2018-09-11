@@ -32,12 +32,9 @@ public class MainActivity extends AppCompatActivity
 
     Toolbar toolbar;
     FragmentTransaction fragmentTransaction;
+    FragmentManager fragmentManager;
     ProductListFragment productListFragment;
     ProductDetailFragment productDetailFragment;
-    FragmentManager fragmentManager;
-    DialogContainerFragment dialogContainerFragment;
-
-
     public BaseFragment baseFragment;
 
 
