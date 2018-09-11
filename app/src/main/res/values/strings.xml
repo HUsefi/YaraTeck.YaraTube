@@ -104,4 +104,25 @@
          from https://console.developers.google.com/ -->
     <string name="server_client_id">YOUR_SERVER_CLIENT_ID</string>
     <string name="success_login_google">ورود شما با موفقیت انجام شد!!</string>
+    <string name="navigation_more">بیشتر</string>
+    <string name="text_more_profile">پروفایل</string>
+    <string name="text_more_about_us">درباره ما</string>
+    <string name="text_more_contact_us">تماس با ما</string>
+
+    <string name="name">نام نمایشی</string>
+    <string name="gender">جنسیت</string>
+    <string name="birthday">تاریخ تولد</string>
+    <string name="save">ثبت تغییرات</string>
+    <string name="cancel">انصراف</string>
+    <string name="back">back</string>
+    <string name="camera">دوربین</string>
+    <string name="galery">گالری</string>
+    <string name="login">ورود</string>
+    <string name="login_by_phone_number">از طریق شماره موبایل</string>
+    <string name="login_by_google">از طریق حساب google</string>
+    <string name="details">توضیحات</string>
+    <string name="comments">نظرات کاربران</string>
+    <string name="comment">نظر</string>
+
+    <string name="send_comment">نظر دهید</string>
 </resources>

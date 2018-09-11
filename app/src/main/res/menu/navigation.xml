@@ -5,9 +5,14 @@
         android:icon="@drawable/ic_main_page"
         android:title="صفحه اصلی" />
 
-
     <item
         android:id="@+id/navigation_category"
         android:icon="@drawable/ic_category"
         android:title=" دسته بندی ها" />
+
+    <item
+        android:id="@+id/navigation_more"
+        android:icon="@drawable/mask"
+        android:title="@string/navigation_more" />
+
 </menu>

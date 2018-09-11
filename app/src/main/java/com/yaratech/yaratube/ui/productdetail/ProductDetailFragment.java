@@ -3,11 +3,9 @@ package com.yaratech.yaratube.ui.productdetail;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,16 +16,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.yaratech.yaratube.ExoPlayerActivity;
+import com.yaratech.yaratube.ui.player.ExoPlayerActivity;
 import com.yaratech.yaratube.R;
 
-import android.support.v4.app.FragmentManager;
 import com.yaratech.yaratube.data.model.Comment;
 import com.yaratech.yaratube.data.model.Product;
-import com.yaratech.yaratube.data.model.ProductDetails;
 import com.yaratech.yaratube.ui.login.DialogContainerFragment;
 import com.yaratech.yaratube.ui.productdetail.comment.CommentFragment;
-import static com.yaratech.yaratube.ExoPlayerActivity.PLAYER_ACTIVITY_KEY;
+import static com.yaratech.yaratube.ui.player.ExoPlayerActivity.PLAYER_ACTIVITY_KEY;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.LinearLayoutManager;

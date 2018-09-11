@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import com.yaratech.yaratube.R;
 import com.yaratech.yaratube.ui.dashbord.category.CategoryFragment;
 import com.yaratech.yaratube.ui.dashbord.home.HomeFragment;
+import com.yaratech.yaratube.ui.dashbord.more.MoreMenuFragment;
 
 
 public class BaseFragment extends Fragment {
@@ -24,6 +25,7 @@ public class BaseFragment extends Fragment {
     private HomeFragment homeFragment;
     private CategoryFragment categoryFragment;
     private FragmentManager fragmentManager;
+    private MoreMenuFragment moreMenuFragment;
     public static final String BASE_FRAGMENT_TAG = "BaseFragment";
     public BaseFragment() {
         // Required empty public constructor
@@ -73,6 +75,9 @@ public class BaseFragment extends Fragment {
                        // setFragment(CategoryFragment.newInstance());
                         setCategoryFragment();
                         break;
+                    case R.id.navigation_more:
+                        item.setChecked(true);
+                        setMoreMenuFragment();
                 }
                 return false;
             }
@@ -92,6 +97,7 @@ public class BaseFragment extends Fragment {
 
         }else if (!homeFragment.isVisible()){
             fragmentManager.beginTransaction().hide(categoryFragment).commit();
+            fragmentManager.beginTransaction().hide(moreMenuFragment).commit();
             fragmentManager.beginTransaction().show(homeFragment).commit();
         }
     }
@@ -106,8 +112,20 @@ public class BaseFragment extends Fragment {
             fragmentTransaction.add(R.id.frameLayout, categoryFragment).commit();
         }else if (!categoryFragment.isVisible()){
             fragmentManager.beginTransaction().hide(homeFragment).commit();
+            fragmentManager.beginTransaction().hide(moreMenuFragment).commit();
             fragmentManager.beginTransaction().show(categoryFragment).commit();
         }
+    }
+
+    private void setMoreMenuFragment(){
+        if(homeFragment.isVisible()||categoryFragment.isVisible()){
+            fragmentManager.beginTransaction().hide(homeFragment).commit();
+            fragmentManager.beginTransaction().hide(categoryFragment).commit();
+        }
+        moreMenuFragment=MoreMenuFragment.newInstance();
+        fragmentManager=getChildFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.frameLayout, moreMenuFragment).commit();
     }
 
 //    private void setFragment(Fragment fragment) {

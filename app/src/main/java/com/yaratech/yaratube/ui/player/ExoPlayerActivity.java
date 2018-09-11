@@ -1,4 +1,4 @@
-package com.yaratech.yaratube;
+package com.yaratech.yaratube.ui.player;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -13,6 +13,7 @@ import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
+import com.yaratech.yaratube.R;
 
 
 public class ExoPlayerActivity extends AppCompatActivity {

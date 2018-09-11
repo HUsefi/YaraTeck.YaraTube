@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ExoPlayerActivity">
+            android:name=".ui.player.ExoPlayerActivity">
         </activity>
 
         <receiver
