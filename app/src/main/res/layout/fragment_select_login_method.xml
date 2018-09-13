@@ -10,7 +10,7 @@
     android:layout_gravity="center"
     android:clickable="true"
     android:focusable="true"
-    android:layout_margin="16dp"
+    android:layout_margin="10dp"
     tools:context=".ui.login.loginselect.SelectLoginMethodFragment">
 
     <TextView
@@ -18,7 +18,9 @@
         android:layout_height="wrap_content"
         android:text="@string/dialog_phone_number_title"
         android:textSize="@dimen/font_size_18sp"
-        android:layout_margin="8dp"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:textColor="@color/black"
         android:textStyle="bold"/>
     <Button
         android:id="@+id/phonenumber"
@@ -29,6 +31,8 @@
         android:padding="10dp"
         android:layout_margin="10dp"
         android:inputType="phone"
+        android:paddingStart="50dp"
+        android:textSize="14sp"
         android:text="@string/enter_your_phone_number"
         android:drawableEnd="@drawable/smartphone__1_"/>
 
@@ -36,43 +40,12 @@
         android:id="@+id/google_method_butt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/google_method"
+        android:text="@string/google_account_method"
         android:textColor="@color/White"
         android:background="@drawable/shape"
-        android:layout_margin="8dp"
-        android:paddingStart="8dp" />
-
-
-
-    <LinearLayout
-        android:id="@+id/sign_out_and_disconnect"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:orientation="horizontal"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:visibility="gone"
-        tools:visibility="visible">
-
-        <Button
-            android:id="@+id/sign_out_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/sign_out" />
-
-        <Button
-            android:id="@+id/disconnect_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/disconnect" />
-    </LinearLayout>
-
-
-
-
-
-
+        android:textSize="14sp"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:paddingEnd="20dp"
+        />
 </LinearLayout>

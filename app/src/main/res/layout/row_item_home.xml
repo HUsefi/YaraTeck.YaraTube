@@ -7,7 +7,7 @@
     >
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/TextViewOther"
         android:textSize="20dp"
@@ -15,6 +15,9 @@
         android:layout_gravity="start|top"
         android:layout_margin="10dp"
         android:textStyle="bold"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="21dp"
         android:id="@+id/product_List_Name"
         />
     <android.support.v7.widget.RecyclerView

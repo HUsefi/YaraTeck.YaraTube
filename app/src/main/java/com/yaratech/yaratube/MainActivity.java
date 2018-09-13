@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.yaratech.yaratube.data.model.Product;
+import com.yaratech.yaratube.ui.dashbord.more.MoreMenuFragment;
 import com.yaratech.yaratube.ui.login.DialogContainerFragment;
 import com.yaratech.yaratube.ui.OnProductItemClick;
 import com.yaratech.yaratube.ui.dashbord.BaseFragment;
@@ -28,7 +29,8 @@ import static com.yaratech.yaratube.ui.productlist.ProductListFragment.PRODUCT_L
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
         , CategoryFragment.OnCategoryFragmentActionListener
-        , OnProductItemClick {
+        , OnProductItemClick
+,MoreMenuFragment.ReplaceContainer{
 
     Toolbar toolbar;
     FragmentTransaction fragmentTransaction;
@@ -67,10 +69,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-      if (drawer.isDrawerOpen(GravityCompat.START)) {
-          drawer.closeDrawer(GravityCompat.START);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
         } else {
-           super.onBackPressed();
+            super.onBackPressed();
         }
     }
 
@@ -86,9 +88,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-    //    if (id == R.id.action_settings) {
-    //        return true;
-     //   }
+        //    if (id == R.id.action_settings) {
+        //        return true;
+        //   }
 
         return super.onOptionsItemSelected(item);
     }
@@ -147,4 +149,9 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+
+    @Override
+    public void replace(Fragment fragment) {
+        setFragment(fragment,"");
+    }
 }

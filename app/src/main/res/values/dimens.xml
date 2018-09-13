@@ -7,5 +7,13 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="TextSize">18dp</dimen>
     <dimen name="font_size_18sp">18sp</dimen>
-    <dimen name="padding_8dp">8dp</dimen>
+    <dimen name="padding_8dp">10dp</dimen>
+
+    <dimen name="stroke_width_edittext">1dp</dimen>
+    <dimen name="corner_radius_edittext">10dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+
+    <dimen name="imageview_height">208dp</dimen>
+    <dimen name="default_padding">10dp</dimen>
+
 </resources>

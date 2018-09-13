@@ -1,6 +1,7 @@
 package com.yaratech.yaratube.ui.dashbord.more;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,6 +23,20 @@ public class MoreMenuFragment extends Fragment {
 
     private TextView mTextView;
     private ProfileFragment profileFragment;
+    private ReplaceContainer replaceContainer;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        replaceContainer=(ReplaceContainer)context;
+
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        replaceContainer = null;
+    }
 
     public MoreMenuFragment() {
         // Required empty public constructor
@@ -51,14 +66,12 @@ public class MoreMenuFragment extends Fragment {
         mTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                profileFragment = ProfileFragment.newInstance();
-                FragmentManager fragmentManager = getChildFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.more_fragment_container, profileFragment)
-                .addToBackStack(null)
-                .commit();
-
+               replaceContainer.replace(profileFragment.newInstance());
             }
         });
+    }
+
+    public interface ReplaceContainer {
+        void replace(Fragment fragment);
     }
 }

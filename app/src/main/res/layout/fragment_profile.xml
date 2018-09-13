@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/White"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.profile.ProfileFragment">
     <ImageView
@@ -11,7 +12,7 @@
         android:layout_height="100dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:src="@mipmap/ic_launcher_round"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +37,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="50dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,13 +49,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/name" />
+                android:text="@string/name"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_18sp" />
 
             <EditText
                 android:id="@+id/name_family"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="نام و نام خانوادگی" />
+                android:hint="@string/full_name_user_profile"
+                android:textSize="@dimen/font_size_18sp" />
 
         </LinearLayout>
 
@@ -91,7 +95,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="30dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -102,13 +106,35 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_18sp"
                 android:text="@string/gender" />
 
-            <Spinner
-                android:id="@+id/gender"
+            <!--<Spinner-->
+                <!--android:id="@+id/gender"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                 <!--/>-->
+
+            <RadioGroup
+                android:id="@+id/radioSex"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                 />
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:id="@+id/radioMale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="مرد"
+                    android:checked="true" />
+
+                <RadioButton
+                    android:id="@+id/radioFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="زن" />
+
+            </RadioGroup>
 
         </LinearLayout>
 
@@ -146,7 +172,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="30dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -158,6 +184,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/font_size_18sp"
+                android:textColor="@color/black"
                 android:text="@string/birthday" />
 
             <EditText
@@ -197,27 +225,35 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
         app:layout_constraintVertical_bias="1.0">
 
-        <Button
-            android:id="@+id/save"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="7dp"
-            android:layout_weight="1"
-            android:text="@string/save"
-            android:textColor="@android:color/white" />
+
 
         <Button
             android:id="@+id/cancel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="40dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+            android:text="@string/save"
+            android:layout_weight="1"
+            android:textSize="@dimen/font_size_18sp"
+            android:background="@drawable/submit_button_profile"
+            android:textColor="@color/White"
+             />
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
             android:layout_marginLeft="7dp"
             android:layout_marginRight="7dp"
             android:layout_weight="1"
+            android:textSize="18sp"
             android:text="@string/cancel"
-            android:textColor="@color/colorPrimary" />
+            android:background="@drawable/cancel_button_profile"
+            android:textColor="@color/colorPrimary"
+             />
 
     </LinearLayout>
 
