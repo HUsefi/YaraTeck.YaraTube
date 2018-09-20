@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.yaratech.yaratube.R;
 import com.yaratech.yaratube.data.model.Headeritem;
+import com.yaratech.yaratube.data.model.Product;
 
 
 import java.util.List;
@@ -19,6 +20,7 @@ import static com.yaratech.yaratube.util.Constant.BASE_URL;
 public class HeaderItemAdapter extends RecyclerView.Adapter<HeaderItemAdapter.HomeItemViewHolder> {
 
     private List<Headeritem> headeritems;
+    HeaderItemAdapter.OnHeaderItemClickListener onHeaderItemClickListener;
 
     public void setHeaderItems(List<Headeritem> headeritems) {
         this.headeritems = headeritems;
@@ -46,7 +48,7 @@ public class HeaderItemAdapter extends RecyclerView.Adapter<HeaderItemAdapter.Ho
     }
 
 
-    public class HomeItemViewHolder extends RecyclerView.ViewHolder {
+    public class HomeItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
 
         private ImageView mHeaderImage;
@@ -63,5 +65,15 @@ public class HeaderItemAdapter extends RecyclerView.Adapter<HeaderItemAdapter.Ho
             urlHeaderImage = BASE_URL + '/' + headeritem.getFeatureAvatar().getXxhdpi();
             Glide.with(itemView.getContext()).load(urlHeaderImage).into(mHeaderImage);
         }
+
+        @Override
+        public void onClick(View view) {
+            onHeaderItemClickListener.getHeaderProductItem(headeritems.get(getAdapterPosition()).getId());
+        }
+    }
+
+
+    public interface OnHeaderItemClickListener {
+        void getHeaderProductItem(int productId);
     }
 }

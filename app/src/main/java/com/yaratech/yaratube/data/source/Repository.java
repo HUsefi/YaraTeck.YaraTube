@@ -1,23 +1,17 @@
 package com.yaratech.yaratube.data.source;
 
 import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
+
 
 import com.yaratech.yaratube.data.model.CategoryList;
 import com.yaratech.yaratube.data.model.Comment;
-import com.yaratech.yaratube.data.model.MobileLoginStep1;
 import com.yaratech.yaratube.data.model.Product;
-import com.yaratech.yaratube.data.model.ProductDetails;
-import com.yaratech.yaratube.data.model.ProductList;
 import com.yaratech.yaratube.data.model.Store;
 import com.yaratech.yaratube.data.source.remote.APIClient;
 import com.yaratech.yaratube.data.source.remote.APIInterface;
 import com.yaratech.yaratube.data.source.remote.APIResult;
-import com.yaratech.yaratube.util.Constant;
 
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -135,11 +129,6 @@ public class Repository {
             }
         });
     }
-    private void toastNetworkNotAvailable(Context context) {
-
-        Toast.makeText(context, Constant.INTERNET_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
-    }
-
 
 
 }

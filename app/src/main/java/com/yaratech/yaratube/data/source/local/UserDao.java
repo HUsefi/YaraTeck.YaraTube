@@ -25,6 +25,10 @@ public interface UserDao {
     @Query("SELECT phone_number FROM user")
     public String getPhoneNumber();
 
+    @Query("SELECT photo_uri FROM user")
+    String getPhotoUri();
+
+
     @Query("SELECT * FROM user")
     public UserEntity getUser();
 
@@ -39,4 +43,7 @@ public interface UserDao {
 
     @Query("UPDATE user SET token = null")
     void deleteToken();
+
+    @Query("SELECT COUNT(*) FROM user")
+    int getNumberOfUsers();
 }

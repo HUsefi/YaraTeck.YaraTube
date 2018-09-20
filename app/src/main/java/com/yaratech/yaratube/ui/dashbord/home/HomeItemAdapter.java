@@ -81,7 +81,7 @@ public class HomeItemAdapter extends RecyclerView.Adapter<HomeItemAdapter.HomeIt
         void onBind(Product product) {
 
             if (product.getAvatar() != null) {
-                Glide.with(itemView.getContext()).load(product.getAvatar().getXxhdpi()).into(mImageProduct);
+                Glide.with(itemView.getContext()).load(product.getFeatureAvatar().getXxhdpi()).into(mImageProduct);
             }
 
             mNameProduct.setText(product.getName());

@@ -2,6 +2,7 @@ package com.yaratech.yaratube.ui.dashbord.home;
 
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,9 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.yaratech.yaratube.R;
+import com.yaratech.yaratube.data.model.Headeritem;
+import com.yaratech.yaratube.data.model.Product;
+import com.yaratech.yaratube.ui.OnProductItemClick;
 
 
 public class HeaderHolderFragment extends Fragment {

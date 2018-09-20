@@ -2,6 +2,7 @@ package com.yaratech.yaratube.data.source.remote;
 
 
 import com.yaratech.yaratube.data.model.Activation;
+import com.yaratech.yaratube.data.model.CaptureProfile;
 import com.yaratech.yaratube.data.model.CategoryList;
 import com.yaratech.yaratube.data.model.Comment;
 import com.yaratech.yaratube.data.model.CommentPostResponse;
@@ -9,17 +10,21 @@ import com.yaratech.yaratube.data.model.GoogleLoginResponse;
 import com.yaratech.yaratube.data.model.MobileLoginStep1;
 import com.yaratech.yaratube.data.model.Product;
 import com.yaratech.yaratube.data.model.ProductDetails;
+import com.yaratech.yaratube.data.model.Profile;
 import com.yaratech.yaratube.data.model.Store;
 import com.yaratech.yaratube.util.Constant;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -35,23 +40,23 @@ public interface APIInterface {
 
     @GET("/listproducts/{product_id}")
     Call<List<Product>> getProductListData(@Path("product_id") int productId
-            ,@Query("offset") int offset
-            ,@Query("limit") int limit);
+            , @Query("offset") int offset
+            , @Query("limit") int limit);
 
     @GET("/product/{product_id}?device_os=ios")
-    Call<Product> getProductDetailData(@Path("product_id") int productId );
+    Call<Product> getProductDetailData(@Path("product_id") int productId);
 
     @GET("/comment/{product_id}")
     Call<List<Comment>> getCommentData(@Path("product_id") int productId);
 
     @FormUrlEncoded
-    @POST("mobile_login_step1/" + Constant.STORE_ID )
+    @POST("mobile_login_step1/" + Constant.STORE_ID)
     Call<MobileLoginStep1> sendMobileLoginStep1(
             @Field("mobile") String mobile,
             @Field("device_id") String deviceId,
             @Field("device_model") String deviceModel,
             @Field("device_os") String deviceOs);
-           // @Field("gcm") String gcm);
+    // @Field("gcm") String gcm);
 
     // send activation code and get token
     @POST("mobile_login_step2/" + STORE_ID)
@@ -69,11 +74,35 @@ public interface APIInterface {
                                           @Field("comment_text") String commnetText,
                                           @Path("productId") int productId,
                                           @Header("Authorization") String token);
+
     @FormUrlEncoded
-    @POST("login_google/" + Constant.STORE_ID )
+    @POST("login_google/" + Constant.STORE_ID)
     Call<GoogleLoginResponse> sendGoogleLogin(
             @Field("token_id") String tokenId,
             @Field("device_id") String deviceId,
             @Field("device_os") String deviceOs,
             @Field("device_model") String deviceModel);
+
+
+    @Multipart
+    @POST("profile")
+    Call<Profile> postImage(
+
+            @Part MultipartBody.Part image,
+            @Header("Authorization") String authorization
+    );
+
+    @FormUrlEncoded
+    @POST("profile")
+    Call<Profile> sendProfile(
+            @Header("Authorization") String authorization,
+            @Field("date_of_birth") String dateOfBirth,
+            @Field("gender") String gender
+    );
+
+    @GET("profile")
+    Call<CaptureProfile> getProfile(
+            @Header("Authorization") String authorization
+    );
+
 }

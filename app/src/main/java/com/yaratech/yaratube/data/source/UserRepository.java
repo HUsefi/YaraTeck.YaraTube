@@ -6,9 +6,11 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.yaratech.yaratube.data.model.Activation;
+import com.yaratech.yaratube.data.model.CaptureProfile;
 import com.yaratech.yaratube.data.model.CommentPostResponse;
 import com.yaratech.yaratube.data.model.GoogleLoginResponse;
 import com.yaratech.yaratube.data.model.MobileLoginStep1;
+import com.yaratech.yaratube.data.model.Profile;
 import com.yaratech.yaratube.data.source.local.AppDatabase;
 import com.yaratech.yaratube.data.source.local.UserEntity;
 import com.yaratech.yaratube.data.source.remote.APIClient;
@@ -17,6 +19,11 @@ import com.yaratech.yaratube.data.source.remote.APIResult;
 import com.yaratech.yaratube.ui.login.DialogContainerFragment;
 import com.yaratech.yaratube.util.Constant;
 
+import java.io.File;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -54,17 +61,22 @@ public class UserRepository {
     public void login(FragmentManager fragmentManager) {
 
         DialogContainerFragment dialogContainerFragment = DialogContainerFragment.newInstance();
-        dialogContainerFragment.setCancelable(false);
+  //      dialogContainerFragment.setCancelable(false);
         dialogContainerFragment.show(fragmentManager, dialogContainerFragment.getClass().getName());
     }
 
-    public void logout() {
+    public void logout(UserEntity user) {
         database.userDao().deleteToken();
     }
 
     public String phoneNumber() {
         return database.userDao().getPhoneNumber();
     }
+
+    public String token() {
+        return database.userDao().getToken();
+    }
+
     public void sendPhoneNumber(final APIResult<MobileLoginStep1> callback
             , String phoneNumber
             , String deviceId
@@ -171,6 +183,162 @@ public class UserRepository {
             });
         }
     }
+
+
+//    public void getProfile( String authorization, final APIResult<CaptureProfile> callBack) {
+//        Call<CaptureProfile> getProfileCall = service.getProfileData("Token " + authorization);
+//        getProfileCall.enqueue(new Callback<CaptureProfile>() {
+//            @Override
+//            public void onResponse(Call<CaptureProfile> call, Response<CaptureProfile> response) {
+//                if (response.isSuccessful()) {
+//                    callBack.onSuccess(response.body());
+//                } else {
+//                    callBack.onFail(response.message());
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<CaptureProfile> call, Throwable t) {
+//                callBack.onFail(t.getMessage());
+//            }
+//        });
+//    }
+//
+//    public void sendProfileImage( String authorization, String path, final APIResult<Profile> callBack) {
+//        File file = new File(path);
+//        RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
+//        MultipartBody.Part body = MultipartBody.Part.createFormData("avatar", file.getName(), reqFile);
+//
+//
+//        Call<Profile> req = service.postImage(  "Token " + authorization, body);
+//        req.enqueue(new Callback<Profile>() {
+//            @Override
+//            public void onResponse(Call<Profile> call, Response<Profile> response) {
+//                if (response.isSuccessful()) {
+//                    callBack.onSuccess(response.body());
+//                } else {
+//                    callBack.onFail(response.message());
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Profile> call, Throwable t) {
+//                callBack.onFail(t.getMessage());
+//            }
+//        });
+//    }
+//
+//
+//    public void sendProfile(String authorization
+//            , String nickname
+//            , String dateOfBirth
+//            , String gender
+//            , final APIResult<Profile> callBack) {
+//
+//        Call<Profile> sendProfileCall = service.sendProfile( "Token " + authorization
+//                , nickname
+//                , dateOfBirth
+//                , gender
+//        );
+//        sendProfileCall.enqueue(new Callback<Profile>() {
+//            @Override
+//            public void onResponse(Call<Profile> call, Response<Profile> response) {
+//                if (response.isSuccessful()) {
+//                    callBack.onSuccess(response.body());
+//                } else {
+//                    callBack.onFail(response.message());
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Profile> call, Throwable t) {
+//                callBack.onFail(t.getMessage());
+//            }
+//        });
+//    }
+
+    public CaptureProfile getProfile(String token, final APIResult<CaptureProfile> callback) {
+
+        Call<CaptureProfile> call = service.getProfile("Token " + token);
+        Log.d("token for get profile", "getProfile: "+token);
+
+        if (Constant.isNetworkAvailable(context)) {
+            call.enqueue(new Callback<CaptureProfile>() {
+                @Override
+                public void onResponse(Call<CaptureProfile> call, Response<CaptureProfile> response) {
+                    if (response.isSuccessful()) {
+                        callback.onSuccess(response.body());
+                    } else {
+                        callback.onFail(response.message());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<CaptureProfile> call, Throwable t) {
+
+                    callback.onFail(t.getMessage());
+                }
+            });
+        } else {
+            toastNetworkNotAvailable(context);
+        }
+        return null;
+    }
+
+    public void sendProfile( String birthDate, String gender,
+                            String tokenId, final APIResult<Profile> callback) {
+
+        Call<Profile> call = service.sendProfile( birthDate, gender, "Token " + tokenId);
+
+        if (Constant.isNetworkAvailable(context)) {
+            call.enqueue(new Callback<Profile>() {
+                @Override
+                public void onResponse(Call<Profile> call, Response<Profile> response) {
+                    if(response.isSuccessful()) {
+                        callback.onSuccess(response.body());
+                    } else {
+                        callback.onFail(response.message());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Profile> call, Throwable t) {
+                    callback.onFail(t.getMessage());
+                }
+            });
+        } else {
+            toastNetworkNotAvailable(context);
+        }
+    }
+
+    public void sendProfileImage(File image, String token, final APIResult<Profile> callback) {
+
+        RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), image);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("avatar", image.getName(), reqFile);
+
+        Call<Profile> call = service.postImage(body, "Token " + token);
+
+        if (Constant.isNetworkAvailable(context)) {
+            call.enqueue(new Callback<Profile>() {
+                @Override
+                public void onResponse(Call<Profile> call, Response<Profile> response) {
+                    if (response.isSuccessful())
+                        callback.onSuccess(response.body());
+                    else
+                        callback.onFail(response.message());
+                }
+
+                @Override
+                public void onFailure(Call<Profile> call, Throwable t) {
+
+                    callback.onFail(t.getMessage());
+                }
+            });
+        } else {
+            toastNetworkNotAvailable(context);
+        }
+    }
+
 
     private void toastNetworkNotAvailable(Context context) {
 

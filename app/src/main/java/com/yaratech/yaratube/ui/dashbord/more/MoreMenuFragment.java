@@ -14,7 +14,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yaratech.yaratube.R;
+import com.yaratech.yaratube.ui.login.DialogContainerFragment;
+import com.yaratech.yaratube.ui.productdetail.ProductDetailPresenter;
 import com.yaratech.yaratube.ui.profile.ProfileFragment;
+
+import static com.yaratech.yaratube.ui.login.DialogContainerFragment.DIALOG_CONTAINER_FRAGMENT_TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +28,9 @@ public class MoreMenuFragment extends Fragment {
     private TextView mTextView;
     private ProfileFragment profileFragment;
     private ReplaceContainer replaceContainer;
+    private MoreMenuPresenter moreMenuPresenter;
+    private DialogContainerFragment dialogContainerFragment;
+
 
     @Override
     public void onAttach(Context context) {
@@ -66,9 +73,20 @@ public class MoreMenuFragment extends Fragment {
         mTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (!moreMenuPresenter.isLogin()) {
+                    dialogContainerFragment = DialogContainerFragment.newInstance();
+                    dialogContainerFragment.show(getFragmentManager(), DIALOG_CONTAINER_FRAGMENT_TAG);
+                }
+                else
                replaceContainer.replace(profileFragment.newInstance());
             }
         });
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        moreMenuPresenter =new MoreMenuPresenter(getContext());
     }
 
     public interface ReplaceContainer {

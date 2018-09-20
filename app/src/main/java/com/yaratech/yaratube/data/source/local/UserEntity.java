@@ -14,12 +14,18 @@ public class UserEntity {
 
     private String name;
     private String sex;
+    private String nickname;
 
     @ColumnInfo(name = "birth_date")
     private String birthDate;
 
     @ColumnInfo(name = "phone_number")
     private String phoneNumber;
+
+    private String email;
+
+    @ColumnInfo(name = "photo_uri")
+    private String photoUri;
 
     public int getId() {
         return id;
@@ -36,6 +42,15 @@ public class UserEntity {
     public void setToken(String token) {
         this.token = token;
     }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
 
     public String getName() {
         return name;
@@ -67,5 +82,21 @@ public class UserEntity {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhotoUri() {
+        return photoUri;
+    }
+
+    public void setPhotoUri(String photoUri) {
+        this.photoUri = photoUri;
     }
 }

@@ -20,7 +20,7 @@ public class ProductDetailPresenter implements ProductDetailContract.Presenter {
     private UserRepository userRepository;
 
 
-    ProductDetailPresenter( Context context,ProductDetailContract.View mView) {
+    ProductDetailPresenter(Context context, ProductDetailContract.View mView) {
         this.mView = mView;
         mReposiroryProductDetail = new Repository(context);
         userRepository = new UserRepository(context);
@@ -48,19 +48,19 @@ public class ProductDetailPresenter implements ProductDetailContract.Presenter {
 
     @Override
     public void fetchCommentFromRemote(Product product) {
-         mReposiroryProductDetail.getComment(new APIResult<List<Comment>>() {
-             @Override
-             public void onSuccess(List<Comment> result) {
-                 mView.hideProgressBar();
+        mReposiroryProductDetail.getComment(new APIResult<List<Comment>>() {
+            @Override
+            public void onSuccess(List<Comment> result) {
+                mView.hideProgressBar();
                 mView.onGetDateComment(result);
-             }
+            }
 
-             @Override
-             public void onFail(String errorMessage) {
-                 mView.hideProgressBar();
+            @Override
+            public void onFail(String errorMessage) {
+                mView.hideProgressBar();
                 mView.notAvailableDate();
-             }
-         },product);
+            }
+        }, product);
 
     }
 

@@ -56,7 +56,10 @@ public class DialogContainerFragment extends DialogFragment implements LoginDial
             goToLoginCode(database.userDao().getPhoneNumber());
         else
             goToLoginMethod();
+        if (getDialog() != null)
+            getDialog().setCanceledOnTouchOutside(false);
         return result;
+
     }
 
     public void goToLoginMethod() {
