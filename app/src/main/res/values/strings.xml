@@ -129,4 +129,8 @@
     <string name="google_account_method">از طریق حساب GOOGLE</string>
     <string name="camera">دوربین</string>
     <string name="gallery">گالری</string>
+
+    <string name="text_myemail">Hyousefi412@gmail.com</string>
+    <string name="link_github">https://github.com/HUsefi</string>
+    <string name="text_about_me">Hello Dear ...This app is developed by Hossein Yousefi.</string>
 </resources>

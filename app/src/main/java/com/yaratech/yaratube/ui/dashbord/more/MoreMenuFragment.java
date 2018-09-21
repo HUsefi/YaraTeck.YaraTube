@@ -6,16 +6,15 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yaratech.yaratube.R;
+import com.yaratech.yaratube.ui.dashbord.more.developerinfo.AboutUsFragment;
+import com.yaratech.yaratube.ui.dashbord.more.developerinfo.ContactUsFragment;
 import com.yaratech.yaratube.ui.login.DialogContainerFragment;
-import com.yaratech.yaratube.ui.productdetail.ProductDetailPresenter;
 import com.yaratech.yaratube.ui.profile.ProfileFragment;
 
 import static com.yaratech.yaratube.ui.login.DialogContainerFragment.DIALOG_CONTAINER_FRAGMENT_TAG;
@@ -25,8 +24,10 @@ import static com.yaratech.yaratube.ui.login.DialogContainerFragment.DIALOG_CONT
  */
 public class MoreMenuFragment extends Fragment {
 
-    private TextView mTextView;
+    private TextView mTextViewProfile,mTextViewAbout,mTextViewContact;
     private ProfileFragment profileFragment;
+    private AboutUsFragment aboutUsFragment;
+    private ContactUsFragment contactUsFragment;
     private ReplaceContainer replaceContainer;
     private MoreMenuPresenter moreMenuPresenter;
     private DialogContainerFragment dialogContainerFragment;
@@ -69,8 +70,12 @@ public class MoreMenuFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mTextView = view.findViewById(R.id.text_more_profile);
-        mTextView.setOnClickListener(new View.OnClickListener() {
+        mTextViewProfile = view.findViewById(R.id.text_more_profile);
+        mTextViewAbout = view.findViewById(R.id.text_more_about_us);
+        mTextViewContact = view.findViewById(R.id.text_more_contact_us);
+
+
+        mTextViewProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!moreMenuPresenter.isLogin()) {
@@ -79,6 +84,20 @@ public class MoreMenuFragment extends Fragment {
                 }
                 else
                replaceContainer.replace(profileFragment.newInstance());
+            }
+        });
+
+        mTextViewAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                replaceContainer.replace(aboutUsFragment.newInstance());
+            }
+        });
+
+        mTextViewContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                replaceContainer.replace(contactUsFragment.newInstance());
             }
         });
     }

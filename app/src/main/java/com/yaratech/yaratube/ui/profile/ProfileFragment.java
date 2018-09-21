@@ -117,7 +117,6 @@ public class ProfileFragment extends Fragment implements ImageProviderFragment.O
         Spinner dropdown = view.findViewById(R.id.user_gender);
 
 
-
         buttonCalender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -136,7 +135,7 @@ public class ProfileFragment extends Fragment implements ImageProviderFragment.O
         });
 
 
-        String[] items = new String[]{"خانم", "آقا"};
+        String[] items = new String[]{"آقا","خانم"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown.setAdapter(adapter);
@@ -146,12 +145,10 @@ public class ProfileFragment extends Fragment implements ImageProviderFragment.O
 
                 switch (position) {
                     case 0:
-                        Log.e("item 1", "onItemSelected: ");
-                        gender = "Female";
+                        gender = "Male";
                         break;
                     case 1:
-                        Log.e("item 2", "onItemSelected: ");
-                        gender = "Male";
+                        gender = "Female";
                         break;
                 }
             }
@@ -175,6 +172,18 @@ public class ProfileFragment extends Fragment implements ImageProviderFragment.O
 
                 // send data to server
                 presenter.sendProfileToServer(dateOfBirth, gender);
+
+                // send profile image to server
+                if (imageFilePath != null) {
+                    // if user select an image for profile
+
+                    File file = new File(imageFilePath);
+                    long imageWidth = file.length() / 1024;
+                    if (imageWidth > 1024) {
+                    } else {
+                        presenter.sendProfileImageToServer(file);
+                    }
+                }
 
                 Constant.hideKeyboardFrom(getContext(), view);
             }

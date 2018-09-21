@@ -49,9 +49,9 @@ public class ProfilePresenter implements ProfileContract.Presenter {
         name.setText(user.getName());
         birthDate.setText(user.getBirthDate());
 
-        if (user.getSex() != null && user.getSex().equals("Female"))
+        if (user.getSex() != null && user.getSex().equals("Male"))
             gender.setSelection(0);
-        else if (user.getSex() != null && user.getSex().equals("Male"))
+        else if (user.getSex() != null && user.getSex().equals("Female"))
             gender.setSelection(1);
 
         if (user.getPhotoUri() != null)
@@ -107,9 +107,7 @@ public class ProfilePresenter implements ProfileContract.Presenter {
 
     @Override
     public void sendProfileImageToServer(File image) {
-        mRepository.sendProfileImage(image
-                , getTokenId()
-                , new APIResult<Profile>() {
+        mRepository.sendProfileImage(image, getTokenId(), new APIResult<Profile>() {
             @Override
             public void onSuccess(Profile result) {
 
@@ -118,9 +116,9 @@ public class ProfilePresenter implements ProfileContract.Presenter {
             @Override
             public void onFail(String errorMessage) {
 
-            }
-        });
 
+        }
+    });
     }
 
 
