@@ -1,6 +1,9 @@
 package com.yaratech.yaratube.data.model;
 
+import android.os.Parcelable;
+
 import java.util.List;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -8,8 +11,9 @@ import org.parceler.Parcel;
 import org.parceler.ParcelConstructor;
 
 import static com.yaratech.yaratube.util.Constant.BASE_URL;
+
 @Parcel
-public class Product {
+public class Product implements Parcelable {
 
     @SerializedName("id")
     @Expose
@@ -148,6 +152,76 @@ public class Product {
     public Product() {
 
     }
+
+    protected Product(android.os.Parcel in) {
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readInt();
+        }
+        name = in.readString();
+        nameEnglish = in.readString();
+        if (in.readByte() == 0) {
+            productType = null;
+        } else {
+            productType = in.readInt();
+        }
+        producerName = in.readString();
+        if (in.readByte() == 0) {
+            price = null;
+        } else {
+            price = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            rank = null;
+        } else {
+            rank = in.readFloat();
+        }
+        if (in.readByte() == 0) {
+            totalInstalled = null;
+        } else {
+            totalInstalled = in.readInt();
+        }
+        shortDescription = in.readString();
+        description = in.readString();
+        byte tmpIsPurchased = in.readByte();
+        isPurchased = tmpIsPurchased == 0 ? null : tmpIsPurchased == 1;
+        if (in.readByte() == 0) {
+            comments = null;
+        } else {
+            comments = in.readInt();
+        }
+        byte tmpIsJalali = in.readByte();
+        isJalali = tmpIsJalali == 0 ? null : tmpIsJalali == 1;
+        byte tmpIsBookmarked = in.readByte();
+        isBookmarked = tmpIsBookmarked == 0 ? null : tmpIsBookmarked == 1;
+        sku = in.readString();
+        tags = in.createStringArrayList();
+        priceUnit = in.readString();
+        if (in.readByte() == 0) {
+            totalView = null;
+        } else {
+            totalView = in.readInt();
+        }
+        byte tmpIsEnable = in.readByte();
+        isEnable = tmpIsEnable == 0 ? null : tmpIsEnable == 1;
+        dateAdded = in.readString();
+        byte tmpIsSpecial = in.readByte();
+        isSpecial = tmpIsSpecial == 0 ? null : tmpIsSpecial == 1;
+        datePublished = in.readString();
+    }
+
+    public static final Creator<Product> CREATOR = new Creator<Product>() {
+        @Override
+        public Product createFromParcel(android.os.Parcel in) {
+            return new Product(in);
+        }
+
+        @Override
+        public Product[] newArray(int size) {
+            return new Product[size];
+        }
+    };
 
     public Integer getId() {
         return id;
@@ -473,6 +547,72 @@ public class Product {
 
     public void setDatePublished(String datePublished) {
         this.datePublished = datePublished;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(android.os.Parcel parcel, int i) {
+        if (id == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(id);
+        }
+        parcel.writeString(name);
+        parcel.writeString(nameEnglish);
+        if (productType == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(productType);
+        }
+        parcel.writeString(producerName);
+        if (price == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(price);
+        }
+        if (rank == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeFloat(rank);
+        }
+        if (totalInstalled == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(totalInstalled);
+        }
+        parcel.writeString(shortDescription);
+        parcel.writeString(description);
+        parcel.writeByte((byte) (isPurchased == null ? 0 : isPurchased ? 1 : 2));
+        if (comments == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(comments);
+        }
+        parcel.writeByte((byte) (isJalali == null ? 0 : isJalali ? 1 : 2));
+        parcel.writeByte((byte) (isBookmarked == null ? 0 : isBookmarked ? 1 : 2));
+        parcel.writeString(sku);
+        parcel.writeStringList(tags);
+        parcel.writeString(priceUnit);
+        if (totalView == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(totalView);
+        }
+        parcel.writeByte((byte) (isEnable == null ? 0 : isEnable ? 1 : 2));
+        parcel.writeString(dateAdded);
+        parcel.writeByte((byte) (isSpecial == null ? 0 : isSpecial ? 1 : 2));
+        parcel.writeString(datePublished);
     }
 /*
     public Object getCustomjson() {

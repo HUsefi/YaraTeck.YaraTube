@@ -184,7 +184,6 @@ public class ProfileFragment extends Fragment implements ImageProviderFragment.O
                         presenter.sendProfileImageToServer(file);
                     }
                 }
-
                 Constant.hideKeyboardFrom(getContext(), view);
             }
         });

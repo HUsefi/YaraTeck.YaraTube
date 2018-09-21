@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.yaratech.yaratube.R;
 import com.yaratech.yaratube.data.model.Headeritem;
 import com.yaratech.yaratube.data.model.Homeitem;
+import com.yaratech.yaratube.data.model.Product;
 import com.yaratech.yaratube.data.model.Store;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Store mStore = new Store();
     private Context context;
     private List<Homeitem> homeitems;
-    private List<Headeritem> headeritems;
+    private List<Product> headeritems;
     private FragmentManager fragmentManager;
     private HeaderItemViewPagerAdapter mHeaderItemViewPagerAdapter;
     HomeItemAdapter.OnHomeItemClickListener onHomeItemClickListener;
@@ -132,25 +133,14 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         HeaderViewHolder(View itemView) {
             super(itemView);
-
-            // mHeaderRecyclerView = itemView.findViewById(R.id.recycler_view_header);
             mViewPager = itemView.findViewById(R.id.view_pager_header);
             mViewPager.setRotationY(180);
         }
 
         void onBind() {
-
-            // mHeaderRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,
-            //         false));
-            // HeaderItemAdapter adapter = new HeaderItemAdapter();
-            // adapter.setHeaderItems(headeritems);
-            //  mHeaderRecyclerView.setAdapter(adapter);
-            //  mViewPager.setAdapter(adapter);
-
             mHeaderItemViewPagerAdapter = new HeaderItemViewPagerAdapter(fragmentManager);
             mViewPager.setAdapter(mHeaderItemViewPagerAdapter);
             mHeaderItemViewPagerAdapter.setHeaderItems(headeritems);
-//            HeaderItemViewPagerAdapter adapter=new HeaderItemViewPagerAdapter();
         }
     }
 

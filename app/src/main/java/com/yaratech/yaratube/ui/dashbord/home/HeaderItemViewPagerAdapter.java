@@ -5,14 +5,15 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.yaratech.yaratube.data.model.Headeritem;
+import com.yaratech.yaratube.data.model.Product;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HeaderItemViewPagerAdapter extends FragmentPagerAdapter {
-    private List<Headeritem> headeritems = new ArrayList<>();
+    private List<Product> headeritems = new ArrayList<>();
 
-    public void setHeaderItems(List<Headeritem> headeritems) {
+    public void setHeaderItems(List<Product> headeritems) {
         this.headeritems = headeritems;
         notifyDataSetChanged();
     }
@@ -23,12 +24,13 @@ public class HeaderItemViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return HeaderHolderFragment.newInstance(headeritems.get(position).getFeatureAvatar().getXxhdpi());
+        return HeaderHolderFragment.newInstance(headeritems.get(position).getFeatureAvatar().getXxhdpi()
+                , headeritems.get(position));
     }
 
     @Override
     public int getCount() {
-        if(headeritems==null)
+        if (headeritems == null)
             return 0;
         return headeritems.size();
     }

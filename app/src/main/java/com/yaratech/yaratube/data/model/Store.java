@@ -2,6 +2,7 @@
 package com.yaratech.yaratube.data.model;
 
 import java.util.List;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -24,7 +25,7 @@ public class Store {
     private List<Object> tabStrip = null;
     @SerializedName("headeritem")
     @Expose
-    private List<Headeritem> headeritem = null;
+    private List<Product> headeritem = null;
     @SerializedName("homeitem")
     @Expose
     private List<Homeitem> homeitem = null;
@@ -44,6 +45,15 @@ public class Store {
     public void setParentCategories(List<ParentCategory> parentCategories) {
         this.parentCategories = parentCategories;
     }
+
+    public List<Product> getHeaderitem() {
+        return headeritem;
+    }
+
+    public void setHeaderitem(List<Product> headeritem) {
+        this.headeritem = headeritem;
+    }
+
 
     public String getName() {
         return name;
@@ -69,13 +79,6 @@ public class Store {
         this.tabStrip = tabStrip;
     }
 
-    public List<Headeritem> getHeaderitem() {
-        return headeritem;
-    }
-
-    public void setHeaderitem(List<Headeritem> headeritem) {
-        this.headeritem = headeritem;
-    }
 
     public List<Homeitem> getHomeitem() {
         return homeitem;

@@ -25,7 +25,7 @@ import com.yaratech.yaratube.ui.OnProductItemClick;
  * A simple {@link Fragment} subclass.
  */
 public class HomeFragment extends Fragment implements HomeContract.Veiw
-,HomeItemAdapter.OnHomeItemClickListener{
+        , HomeItemAdapter.OnHomeItemClickListener {
 
     private RecyclerView mRecyclerView;
     private HomeAdapter mHomeAdapter;
@@ -74,6 +74,7 @@ public class HomeFragment extends Fragment implements HomeContract.Veiw
             onProductItemClick = (OnProductItemClick) context;
         super.onAttach(context);
     }
+
     public void onDetach() {
         onProductItemClick = null;
         super.onDetach();

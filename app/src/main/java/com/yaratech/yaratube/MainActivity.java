@@ -15,6 +15,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.yaratech.yaratube.data.model.Product;
+import com.yaratech.yaratube.ui.dashbord.home.HeaderHolderFragment;
+import com.yaratech.yaratube.ui.dashbord.home.HeaderItemAdapter;
 import com.yaratech.yaratube.ui.dashbord.more.MoreMenuFragment;
 import com.yaratech.yaratube.ui.login.DialogContainerFragment;
 import com.yaratech.yaratube.ui.OnProductItemClick;
@@ -29,7 +31,8 @@ import static com.yaratech.yaratube.ui.productlist.ProductListFragment.PRODUCT_L
 public class MainActivity extends AppCompatActivity
         implements CategoryFragment.OnCategoryFragmentActionListener
         , OnProductItemClick
-        , MoreMenuFragment.ReplaceContainer {
+        , MoreMenuFragment.ReplaceContainer
+        , HeaderHolderFragment.OnHeaderItemClickListener {
 
     Toolbar toolbar;
     FragmentTransaction fragmentTransaction;
@@ -152,5 +155,12 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void replace(Fragment fragment) {
         setFragment(fragment, "");
+    }
+
+
+    @Override
+    public void getHeaderProductItem(Product product) {
+        productDetailFragment = ProductDetailFragment.newInstance((Product) product);
+        setFragment(productDetailFragment, ProductDetailFragment.PRODUCT_DETAIL_FRAGMENT_TAG);
     }
 }

@@ -1,6 +1,7 @@
 package com.yaratech.yaratube.ui.profile;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
@@ -150,6 +151,7 @@ public class ProfilePresenter implements ProfileContract.Presenter {
                             .apply(RequestOptions.circleCropTransform())
                             .transition(DrawableTransitionOptions.withCrossFade())
                             .into(profileImage);
+                Log.e("TTTT", "onSuccess: "+BASE_URL + result.getAvatar() );
             }
 
             @Override
